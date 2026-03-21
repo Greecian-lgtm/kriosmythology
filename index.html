@@ -123,7 +123,7 @@
         /* HERO SCROLL CANVAS */
         .hero-scroll {
             position: relative;
-            height: 250vh;
+            height: 200vh;
             width: 100%;
         }
 
@@ -175,11 +175,11 @@
 
         /* Rotating stamp */
         .stamp {
-            position: fixed;
+            position: absolute;
             top: 15%; left: 4vw;
+            z-index: 3;
             width: 160px; height: 160px;
             animation: rotate 45s linear infinite;
-            z-index: 50;
             opacity: 0.7;
             pointer-events: none;
         }
@@ -582,20 +582,19 @@
         </div>
     </nav>
 
-    <!-- ROTATING STAMP — TOP LEFT -->
-    <div class="stamp">
-        <svg viewBox="0 0 100 100">
-            <path id="curve" d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="transparent"></path>
-            <text>
-                <textPath href="#curve" startOffset="0%">
-                    Paros · Cyclades · Primary Sources · Stavros Commentary ·
-                </textPath>
-            </text>
-        </svg>
-    </div>
-
     <!-- HERO — SCROLL-DRIVEN CANVAS -->
     <section class="hero-scroll" id="hero-scroll">
+        <!-- ROTATING STAMP — TOP LEFT -->
+        <div class="stamp">
+            <svg viewBox="0 0 100 100">
+                <path id="curve" d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="transparent"></path>
+                <text>
+                    <textPath href="#curve" startOffset="0%">
+                        Paros · Cyclades · Primary Sources · Stavros Commentary ·
+                    </textPath>
+                </text>
+            </svg>
+        </div>
         <canvas id="hero-canvas"></canvas>
         <div class="hero-overlay">
             <div class="hero-gradient"></div>
