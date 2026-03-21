@@ -11,7 +11,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -20,8 +20,8 @@
             --blue-light: #2465a8;
             --text-main: #ffffff;
             --text-muted: rgba(255, 255, 255, 0.55);
-            --border-thin: rgba(255, 255, 255, 0.15);
-            --font-display: 'Playfair Display', serif;
+            --border-thin: rgba(255, 255, 255, 0.12);
+            --font-display: 'Cinzel', serif;
             --font-editorial: 'Cormorant Garamond', serif;
             --font-ui: 'Inter', sans-serif;
             --ease: cubic-bezier(0.25, 1, 0.5, 1);
@@ -42,8 +42,8 @@
         .t-display {
             font-family: var(--font-display);
             font-size: clamp(4rem, 10vw, 9rem);
-            line-height: 0.85;
-            letter-spacing: -0.02em;
+            line-height: 0.9;
+            letter-spacing: 0.04em;
             font-weight: 400;
         }
 
@@ -101,7 +101,7 @@
         .nav-logo {
             font-family: var(--font-display);
             font-size: 1.2rem;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             text-decoration: none;
             color: var(--text-main);
         }
@@ -120,45 +120,68 @@
 
         .nav-links a:hover { color: var(--blue-light); }
 
-        /* HERO */
-        .hero {
+        /* HERO SCROLL CANVAS */
+        .hero-scroll {
             position: relative;
-            min-height: 100vh;
+            height: 500vh;
+            width: 100%;
+        }
+
+        .hero-scroll canvas {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: block;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding-top: 10vh;
-            overflow: hidden;
+            pointer-events: none;
+            margin-top: -100vh;
         }
 
-        .hero-bg {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: -1;
-            background-image:
-                linear-gradient(135deg, rgba(3,11,20,0.95) 0%, rgba(16,51,92,0.7) 40%, rgba(36,101,168,0.4) 100%),
-                url('https://images.pexels.com/photos/1010657/pexels-photo-1010657.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80');
-            background-size: cover;
-            background-position: center 30%;
-            filter: contrast(1.1) brightness(0.9);
-        }
-
-        .hero-content {
+        .hero-overlay-inner {
             position: relative;
             z-index: 2;
             display: grid;
             grid-template-columns: repeat(12, 1fr);
             gap: 2rem;
             align-items: end;
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 4vw;
+            pointer-events: auto;
+        }
+
+        .hero-gradient {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(to top, var(--bg-deep) 0%, rgba(3,11,20,0.6) 30%, transparent 60%);
+            pointer-events: none;
+            z-index: 1;
         }
 
         /* Rotating stamp */
         .stamp {
-            position: absolute;
-            top: 15%; left: 10%;
-            width: 200px; height: 200px;
-            animation: rotate 40s linear infinite;
+            position: fixed;
+            top: 15%; left: 4vw;
+            width: 160px; height: 160px;
+            animation: rotate 45s linear infinite;
+            z-index: 50;
+            opacity: 0.7;
+            pointer-events: none;
         }
 
         .stamp svg {
@@ -182,9 +205,14 @@
             align-items: flex-start;
         }
 
+        .hero-title-word {
+            display: inline-block;
+            will-change: transform;
+        }
+
         .hero-sub {
             margin-left: 15%;
-            margin-bottom: -1rem;
+            margin-bottom: -0.5rem;
             z-index: 2;
             text-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
@@ -249,7 +277,7 @@
         .stat-number {
             font-family: var(--font-display);
             font-size: 2.5rem;
-            color: #2465a8;
+            color: var(--blue-light);
             line-height: 1;
             margin-bottom: 0.4rem;
         }
@@ -257,7 +285,6 @@
         /* EPISODES */
         .episodes-section {
             padding: 8rem 0;
-            background: linear-gradient(to bottom, transparent, var(--bg-deep) 20%);
         }
 
         .section-header {
@@ -293,18 +320,18 @@
             position: relative;
             background: rgba(255,255,255,0.01);
             backdrop-filter: blur(5px);
-            transition: all 0.4s var(--ease);
+            transition: background 0.4s var(--ease), border-color 0.4s var(--ease);
             display: flex;
             flex-direction: column;
             height: 100%;
             text-decoration: none;
             color: inherit;
+            will-change: transform;
         }
 
         .card:hover {
             background: rgba(255,255,255,0.03);
             border-color: rgba(255,255,255,0.3);
-            transform: translateY(-5px);
         }
 
         .card-number {
@@ -327,9 +354,10 @@
 
         .card-title {
             font-family: var(--font-display);
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             margin-bottom: 1rem;
-            line-height: 1.2;
+            line-height: 1.25;
+            letter-spacing: 0.01em;
         }
 
         .card-desc { margin-bottom: 2rem; flex-grow: 1; }
@@ -518,7 +546,7 @@
         /* RESPONSIVE */
         @media (max-width: 1024px) {
             .cards-grid { grid-template-columns: repeat(2, 1fr); }
-            .hero-content { grid-template-columns: 1fr; }
+            .hero-overlay-inner { grid-template-columns: 1fr; }
             .hero-title-block { grid-column: 1 / -1; }
             .hero-meta { grid-column: 1 / -1; text-align: left; margin-top: 2rem; }
             .stamp { display: none; }
@@ -532,6 +560,15 @@
             footer { flex-direction: column; gap: 1rem; }
             .stats-bar { flex-wrap: wrap; gap: 2rem; }
         }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .stamp { animation: none; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -541,36 +578,39 @@
         <div class="nav-links">
             <a href="#episodes">Episodes</a>
             <a href="#sources">Primary Sources</a>
-            <a href="https://www.youtube.com/@KriosMythology" target="_blank">YouTube ↗</a>
+            <a href="https://www.youtube.com/@KriosMythology" target="_blank">YouTube</a>
         </div>
     </nav>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-bg"></div>
+    <!-- ROTATING STAMP — TOP LEFT -->
+    <div class="stamp">
+        <svg viewBox="0 0 100 100">
+            <path id="curve" d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="transparent"></path>
+            <text>
+                <textPath href="#curve" startOffset="0%">
+                    Paros · Cyclades · Primary Sources · Stavros Commentary ·
+                </textPath>
+            </text>
+        </svg>
+    </div>
 
-        <div class="stamp">
-            <svg viewBox="0 0 100 100">
-                <path id="curve" d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="transparent"></path>
-                <text>
-                    <textPath href="#curve" startOffset="0%">
-                        • Paros · Cyclades · Primary Sources · Stavros Commentary
-                    </textPath>
-                </text>
-            </svg>
-        </div>
-
-        <div class="container hero-content">
-            <div class="hero-title-block">
-                <div class="t-expressive hero-sub">The stories of the</div>
-                <h1 class="t-display hero-title">Aegean</h1>
-                <p class="hero-tagline">Greek mythology told from primary sources — not the popular retelling. Every claim traced to Homer, Hesiod, and the ancient tradition.</p>
-                <a href="https://www.youtube.com/@KriosMythology" target="_blank" class="hero-cta">Watch on YouTube ↗</a>
-            </div>
-            <div class="hero-meta">
-                <p>Season 1</p>
-                <p>10 Episodes</p>
-                <p>All Primary Sources</p>
+    <!-- HERO — SCROLL-DRIVEN CANVAS -->
+    <section class="hero-scroll" id="hero-scroll">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-overlay">
+            <div class="hero-gradient"></div>
+            <div class="hero-overlay-inner">
+                <div class="hero-title-block">
+                    <div class="t-expressive hero-sub">The stories of the</div>
+                    <h1 class="t-display hero-title" id="hero-title">KRIOS</h1>
+                    <p class="hero-tagline">Greek mythology told from primary sources — not the popular retelling. Every claim traced to Homer, Hesiod, and the ancient tradition.</p>
+                    <a href="https://www.youtube.com/@KriosMythology" target="_blank" class="hero-cta">Watch on YouTube &#8599;</a>
+                </div>
+                <div class="hero-meta">
+                    <p>Season 1</p>
+                    <p>10 Episodes</p>
+                    <p>All Primary Sources</p>
+                </div>
             </div>
         </div>
     </section>
@@ -578,19 +618,19 @@
     <!-- STATS -->
     <div class="stats-bar">
         <div class="stat-item">
-            <div class="stat-number">10</div>
+            <div class="stat-number" data-target="10">0</div>
             <span class="t-meta">S1 Episodes</span>
         </div>
         <div class="stat-item">
-            <div class="stat-number">3,000+</div>
+            <div class="stat-number" data-target="3000" data-suffix="+">0</div>
             <span class="t-meta">Years of Sources</span>
         </div>
         <div class="stat-item">
-            <div class="stat-number">6</div>
+            <div class="stat-number" data-target="6">0</div>
             <span class="t-meta">Languages</span>
         </div>
         <div class="stat-item">
-            <div class="stat-number">0</div>
+            <div class="stat-number" data-target="0">0</div>
             <span class="t-meta">Unverified Claims</span>
         </div>
     </div>
@@ -603,16 +643,16 @@
     <section class="episodes-section container" id="episodes">
         <div class="section-header">
             <h2 class="t-display" style="font-size:3.5rem;">Season 1 Episodes</h2>
-            <a href="https://www.youtube.com/@KriosMythology" target="_blank" class="section-link">All Episodes ↗</a>
+            <a href="https://www.youtube.com/@KriosMythology" target="_blank" class="section-link">All Episodes &#8599;</a>
         </div>
 
         <div class="cards-grid">
 
             <a href="https://www.youtube.com/watch?v=rsNL4YMtjxY" target="_blank" class="card">
                 <div class="card-number">I</div>
-                <div class="card-tag">kleos · mênis</div>
+                <div class="card-tag">kleos · menis</div>
                 <h3 class="card-title">Achilles Wasn't Sulking — He Was Running a Calculation</h3>
-                <p class="t-body card-desc">Homer opens the Iliad with mênis — not ordinary anger. Achilles didn't withdraw because his feelings were hurt. He was orchestrating a precise, calculated revenge while protecting his shot at immortality.</p>
+                <p class="t-body card-desc">Homer opens the Iliad with menis — not ordinary anger. Achilles didn't withdraw because his feelings were hurt. He was orchestrating a precise, calculated revenge while protecting his shot at immortality.</p>
                 <div class="card-meta">
                     <span class="t-meta">Watch Episode</span>
                     <span class="t-meta">14 Min</span>
@@ -689,13 +729,13 @@
                 <span class="t-meta">S1 — The Word</span>
             </div>
             <div class="word-inner">
-                <div>
-                    <div class="word-greek">μῆνις</div>
-                    <div class="word-transliteration">mênis</div>
+                <div class="word-left">
+                    <div class="word-greek">&#956;&#8134;&#957;&#953;&#962;</div>
+                    <div class="word-transliteration">menis</div>
                 </div>
-                <div>
+                <div class="word-right">
                     <p class="word-definition">Not ordinary anger. A divinely-sanctioned, cosmically consequential wrath — the kind that reshapes the course of history and implicates the gods themselves.</p>
-                    <p class="word-body">Homer opens the entire Iliad with this single word. Not battle, not glory, not Troy. Mênis. Every death in the poem flows from that first line. No other mortal in Homer gets mênis — it belongs to gods and to Achilles alone, and that tells you everything about what Homer thought of him.<br><br>
+                    <p class="word-body">Homer opens the entire Iliad with this single word. Not battle, not glory, not Troy. Menis. Every death in the poem flows from that first line. No other mortal in Homer gets menis — it belongs to gods and to Achilles alone, and that tells you everything about what Homer thought of him.<br><br>
                     The popular reading is that Achilles sulks. The primary source reading is that he exercises the only power available to a man whose purpose has been publicly destroyed: strategic withdrawal, with divine endorsement behind it.</p>
                     <div class="word-episodes">
                         <span class="word-ep-tag">EP001 — Achilles</span>
@@ -790,15 +830,264 @@
         <div class="subscribe-content">
             <span class="t-meta" style="margin-bottom:1.5rem;display:block;">Join the Channel</span>
             <h2 class="t-expressive">Every episode will change something you thought you knew.</h2>
-            <p class="subscribe-body">Season 1 covers Achilles, Odysseus, Thermopylae, Heracles, Medusa, Troy and four more. Every claim traced to primary sources. New episodes weekly.<br><br>🌍 Subtítulos en español · Legendas em português</p>
-            <a href="https://www.youtube.com/@KriosMythology" target="_blank" class="btn-youtube">▶ Subscribe on YouTube</a>
+            <p class="subscribe-body">Season 1 covers Achilles, Odysseus, Thermopylae, Heracles, Medusa, Troy and four more. Every claim traced to primary sources. New episodes weekly.</p>
+            <a href="https://www.youtube.com/@KriosMythology" target="_blank" class="btn-youtube">&#9654; Subscribe on YouTube</a>
         </div>
     </section>
 
     <footer>
-        <span class="t-meta">© MMXXVI KRIOS — Stavros Commentary</span>
-        <span class="t-meta">🌐 kriosmythology.com · <a href="https://www.youtube.com/@KriosMythology" target="_blank" style="color:var(--text-muted);text-decoration:none;">YouTube ↗</a></span>
+        <span class="t-meta">&copy; MMXXVI KRIOS — Stavros Commentary</span>
+        <span class="t-meta">kriosmythology.com · <a href="https://www.youtube.com/@KriosMythology" target="_blank" style="color:var(--text-muted);text-decoration:none;">YouTube &#8599;</a></span>
     </footer>
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+    (function() {
+        'use strict';
+
+        // Respect reduced motion
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) return;
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ─── FRAME FLIPBOOK HERO ───
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        const totalFrames = 241;
+        const frames = [];
+        let loadedCount = 0;
+
+        function setCanvasSize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        setCanvasSize();
+        window.addEventListener('resize', setCanvasSize);
+
+        function drawFrame(index) {
+            const img = frames[index];
+            if (!img || !img.complete) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // Cover fit
+            const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
+            const w = img.width * scale;
+            const h = img.height * scale;
+            const x = (canvas.width - w) / 2;
+            const y = (canvas.height - h) / 2;
+            ctx.drawImage(img, x, y, w, h);
+        }
+
+        // Preload first 10 frames with priority, then rest
+        function loadFrame(i) {
+            return new Promise(function(resolve) {
+                const img = new Image();
+                img.onload = function() {
+                    loadedCount++;
+                    if (loadedCount === 1) drawFrame(0);
+                    resolve();
+                };
+                img.onerror = resolve;
+                img.src = 'frames/frame-' + String(i + 1).padStart(4, '0') + '.webp';
+                frames[i] = img;
+            });
+        }
+
+        async function preloadFrames() {
+            // Priority: first 10
+            const priority = [];
+            for (let i = 0; i < Math.min(10, totalFrames); i++) {
+                priority.push(loadFrame(i));
+            }
+            await Promise.all(priority);
+
+            // Rest in batches of 20
+            for (let batch = 10; batch < totalFrames; batch += 20) {
+                const promises = [];
+                for (let i = batch; i < Math.min(batch + 20, totalFrames); i++) {
+                    promises.push(loadFrame(i));
+                }
+                await Promise.all(promises);
+            }
+        }
+
+        preloadFrames();
+
+        // GSAP scrub the frame index
+        const frameObj = { frame: 0 };
+
+        gsap.to(frameObj, {
+            frame: totalFrames - 1,
+            snap: 'frame',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero-scroll',
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: 0.5,
+            },
+            onUpdate: function() {
+                drawFrame(Math.round(frameObj.frame));
+            }
+        });
+
+        // ─── HERO TITLE SPLIT + ANIMATE ───
+        const heroTitle = document.getElementById('hero-title');
+        const titleText = heroTitle.textContent;
+        heroTitle.innerHTML = '';
+        titleText.split('').forEach(function(char) {
+            const span = document.createElement('span');
+            span.className = 'hero-title-word';
+            span.textContent = char;
+            heroTitle.appendChild(span);
+        });
+
+        gsap.fromTo('#hero-title .hero-title-word', {
+            opacity: 0,
+            y: 60,
+            rotateX: -40
+        }, {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            duration: 1,
+            stagger: 0.12,
+            ease: 'power3.out',
+            delay: 0.3
+        });
+
+        gsap.fromTo('.hero-sub', { opacity: 0, y: 30 }, {
+            opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.1
+        });
+
+        gsap.fromTo('.hero-tagline', { opacity: 0, y: 20 }, {
+            opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.8
+        });
+
+        gsap.fromTo('.hero-cta', { opacity: 0, y: 20 }, {
+            opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 1
+        });
+
+        gsap.fromTo('.hero-meta p', { opacity: 0, x: 20 }, {
+            opacity: 1, x: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out', delay: 1.2
+        });
+
+        // ─── STATS COUNT-UP ───
+        document.querySelectorAll('.stat-number[data-target]').forEach(function(el) {
+            const target = parseInt(el.dataset.target);
+            const suffix = el.dataset.suffix || '';
+            if (target === 0) {
+                el.textContent = '0';
+                return;
+            }
+            const obj = { val: 0 };
+            gsap.to(obj, {
+                val: target,
+                duration: 2,
+                ease: 'power2.out',
+                snap: { val: 1 },
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 90%',
+                    once: true
+                },
+                onUpdate: function() {
+                    el.textContent = Math.round(obj.val).toLocaleString() + suffix;
+                }
+            });
+        });
+
+        // ─── SECTION REVEALS ───
+
+        // Episodes section header
+        gsap.fromTo('.episodes-section .section-header', {
+            opacity: 0, y: 40
+        }, {
+            opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+            scrollTrigger: { trigger: '.episodes-section', start: 'top 85%', once: true }
+        });
+
+        // Cards stagger in
+        gsap.fromTo('.cards-grid .card', {
+            opacity: 0, y: 50
+        }, {
+            opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power2.out',
+            scrollTrigger: { trigger: '.cards-grid', start: 'top 80%', once: true }
+        });
+
+        // Card hover with GSAP
+        document.querySelectorAll('.card').forEach(function(card) {
+            card.addEventListener('mouseenter', function() {
+                gsap.to(card, { y: -6, duration: 0.3, ease: 'power2.out' });
+            });
+            card.addEventListener('mouseleave', function() {
+                gsap.to(card, { y: 0, duration: 0.4, ease: 'elastic.out(1, 0.5)' });
+            });
+        });
+
+        // Word section cascade
+        gsap.fromTo('.word-left', {
+            opacity: 0, x: -40
+        }, {
+            opacity: 1, x: 0, duration: 0.8, ease: 'power2.out',
+            scrollTrigger: { trigger: '.word-section', start: 'top 85%', once: true }
+        });
+
+        gsap.fromTo('.word-right > *', {
+            opacity: 0, y: 30
+        }, {
+            opacity: 1, y: 0, duration: 0.7, stagger: 0.08, ease: 'power2.out',
+            scrollTrigger: { trigger: '.word-section', start: 'top 80%', once: true }
+        });
+
+        // Paros quote
+        gsap.fromTo('.paros-quote', {
+            opacity: 0, y: 30
+        }, {
+            opacity: 1, y: 0, duration: 1, ease: 'power2.out',
+            scrollTrigger: { trigger: '.paros-section', start: 'top 85%', once: true }
+        });
+
+        gsap.fromTo('.paros-attr', {
+            opacity: 0
+        }, {
+            opacity: 1, duration: 0.8, delay: 0.3, ease: 'power2.out',
+            scrollTrigger: { trigger: '.paros-section', start: 'top 85%', once: true }
+        });
+
+        // Sources table rows
+        gsap.fromTo('.sources-section .section-header', {
+            opacity: 0, y: 30
+        }, {
+            opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+            scrollTrigger: { trigger: '.sources-section', start: 'top 85%', once: true }
+        });
+
+        gsap.fromTo('tbody tr', {
+            opacity: 0, y: 20
+        }, {
+            opacity: 1, y: 0, duration: 0.5, stagger: 0.06, ease: 'power2.out',
+            scrollTrigger: { trigger: 'tbody', start: 'top 85%', once: true }
+        });
+
+        // Subscribe section
+        gsap.fromTo('.subscribe-content > *', {
+            opacity: 0, y: 30
+        }, {
+            opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power2.out',
+            scrollTrigger: { trigger: '.subscribe-section', start: 'top 85%', once: true }
+        });
+
+        // Stamp fade in on scroll back to top area
+        gsap.fromTo('.stamp', { opacity: 0 }, {
+            opacity: 0.7, duration: 1, delay: 0.5, ease: 'power2.out'
+        });
+
+    })();
+    </script>
 
 </body>
 </html>
