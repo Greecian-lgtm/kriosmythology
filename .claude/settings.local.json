@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ffprobe:*)",
+      "Bash(mkdir -p /home/krios/krios-website/frames)",
+      "Bash(ffmpeg -i \"/mnt/c/Users/BreakAway/Desktop/paros_transition.mp4\" -vf \"fps=24\" -c:v libwebp -quality 80 -compression_level 4 /home/krios/krios-website/frames/frame-%04d.webp)"
+    ]
+  }
+}
