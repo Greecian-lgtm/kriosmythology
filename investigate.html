@@ -4,30 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNKNOWN FILES — Case UF-TROY-006: The Xenia Violation</title>
-    <meta name="description" content="Investigate the real cause of the Trojan War. Examine primary sources. Interrogate witnesses. Close the case. A free mythology investigation from Krios.">
-    <meta property="og:title" content="UNKNOWN FILES — Case UF-TROY-006">
+    <meta name="description" content="Investigate the real cause of the Trojan War. Primary sources. Cross-cultural evidence. Close the case.">
+    <meta property="og:title" content="UNKNOWN FILES — Case UF-TROY-006: The Xenia Violation">
     <meta property="og:description" content="Troy didn't fall over a stolen wife. Investigate the real cause.">
     <meta property="og:url" content="https://www.kriosmythology.com/investigate">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-deep: #030b14;
-            --bg-case: #0a0e16;
-            --bg-evidence: #0d1420;
+            --bg-deep: #0a0d12;
+            --bg-card: #0f1318;
+            --bg-briefing: #111720;
             --amber: #c9a84c;
-            --amber-dim: rgba(201, 168, 76, 0.15);
-            --amber-glow: rgba(201, 168, 76, 0.4);
-            --red-alert: #8b2020;
-            --red-glow: rgba(139, 32, 32, 0.3);
-            --green-verified: #2d6a4f;
-            --text-main: #ffffff;
-            --text-muted: rgba(255, 255, 255, 0.5);
+            --amber-dim: rgba(201, 168, 76, 0.12);
+            --amber-border: rgba(201, 168, 76, 0.25);
+            --amber-glow: rgba(201, 168, 76, 0.35);
+            --red: #9b2226;
+            --red-dim: rgba(155, 34, 38, 0.15);
+            --red-border: rgba(155, 34, 38, 0.5);
+            --text-main: #e8e0d0;
+            --text-muted: rgba(232, 224, 208, 0.45);
             --text-warm: rgba(232, 213, 176, 0.9);
-            --border: rgba(201, 168, 76, 0.2);
             --font-display: 'Cinzel', serif;
             --font-body: 'Cormorant Garamond', serif;
             --font-mono: 'JetBrains Mono', monospace;
@@ -45,15 +45,17 @@
             line-height: 1.6;
         }
 
-        /* ── CASE FILE HEADER ── */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ═══════════════════════════════════════
+           CASE HEADER
+           ═══════════════════════════════════════ */
         .case-header {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
+            padding: 5rem 0 3rem;
             position: relative;
             overflow: hidden;
         }
@@ -62,641 +64,805 @@
             content: '';
             position: absolute;
             inset: 0;
-            background:
-                radial-gradient(ellipse at 30% 20%, rgba(201, 168, 76, 0.06) 0%, transparent 60%),
-                radial-gradient(ellipse at 70% 80%, rgba(139, 32, 32, 0.04) 0%, transparent 50%);
+            background: radial-gradient(ellipse at 20% 30%, rgba(201, 168, 76, 0.04) 0%, transparent 60%);
         }
 
-        .case-stamp {
-            font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--amber);
-            border: 1px solid var(--border);
-            padding: 0.4rem 1.2rem;
-            display: inline-block;
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 1;
-            animation: fadeIn 1s ease 0.3s both;
-        }
-
-        .case-title {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 7vw, 5rem);
-            font-weight: 400;
-            letter-spacing: 0.06em;
-            line-height: 1;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-            animation: fadeIn 1s ease 0.6s both;
-        }
-
-        .case-subtitle {
-            font-family: var(--font-body);
-            font-style: italic;
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            font-weight: 300;
-            color: var(--text-warm);
-            margin-bottom: 2.5rem;
-            position: relative;
-            z-index: 1;
-            animation: fadeIn 1s ease 0.9s both;
-        }
-
-        .case-classification {
+        .dept-label {
             font-family: var(--font-mono);
             font-size: 0.6rem;
-            letter-spacing: 0.15em;
-            color: var(--red-alert);
+            letter-spacing: 0.35em;
             text-transform: uppercase;
-            border: 1px solid var(--red-alert);
-            padding: 0.3rem 1rem;
-            position: relative;
-            z-index: 1;
-            animation: fadeIn 1s ease 1.2s both;
+            color: var(--amber);
+            margin-bottom: 1rem;
+            display: block;
         }
 
-        .begin-btn {
-            display: inline-block;
-            margin-top: 3rem;
+        .case-number {
             font-family: var(--font-display);
-            font-size: 0.85rem;
-            letter-spacing: 0.15em;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            line-height: 1;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .case-meta {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .priority-badge {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--bg-deep);
             background: var(--amber);
-            padding: 0.9rem 2.5rem;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            position: relative;
-            z-index: 1;
-            transition: all 0.3s ease;
-            animation: fadeIn 1s ease 1.5s both;
+            padding: 0.3rem 0.8rem;
         }
 
-        .begin-btn:hover {
-            background: var(--text-warm);
-            box-shadow: 0 0 30px var(--amber-glow);
+        .filed-date {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            text-transform: uppercase;
         }
 
-        /* ── CASE SECTIONS ── */
-        .case-section {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
+        /* Stamp */
+        .stamp {
+            position: absolute;
+            top: 5rem;
+            right: 2rem;
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: var(--red);
+            border: 4px solid var(--red);
+            padding: 0.3rem 1.2rem;
+            transform: rotate(12deg);
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            line-height: 1.1;
+            text-align: center;
         }
 
-        .case-section.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .stamp-sub {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.45rem;
+            letter-spacing: 0.25em;
+            margin-top: 0.2rem;
         }
 
-        .section-label {
+        /* ═══════════════════════════════════════
+           HANDLER TRANSMISSION
+           ═══════════════════════════════════════ */
+        .transmission-section {
+            padding: 3rem 0;
+        }
+
+        .section-flag {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .section-flag::before {
+            content: '⊡';
+            font-size: 0.8rem;
+        }
+
+        .transmission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .transmission-grid { grid-template-columns: 1fr; }
+            .stamp { position: relative; top: 0; right: 0; transform: rotate(8deg); margin: 1rem 0 2rem; display: inline-block; }
+        }
+
+        .handler-quote {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: var(--text-warm);
+            padding: 1.5rem 0;
+        }
+
+        .handler-sig {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            color: var(--amber);
+            margin-top: 1.5rem;
+        }
+
+        /* Briefing card */
+        .briefing-card {
+            background: var(--bg-briefing);
+            border: 1px solid var(--amber-border);
+            padding: 2rem;
+        }
+
+        .briefing-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--amber-border);
+        }
+
+        .briefing-title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+        }
+
+        .briefing-ref {
+            font-family: var(--font-mono);
+            font-size: 0.5rem;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .briefing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .briefing-grid { grid-template-columns: 1fr; }
+        }
+
+        .briefing-item {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(232, 224, 208, 0.8);
+        }
+
+        .briefing-tag {
+            font-family: var(--font-mono);
+            font-size: 0.55rem;
+            letter-spacing: 0.15em;
+            color: var(--amber);
+            text-transform: uppercase;
+            margin-right: 0.5rem;
+        }
+
+        /* ═══════════════════════════════════════
+           EVIDENCE MANIFEST
+           ═══════════════════════════════════════ */
+        .evidence-section {
+            padding: 3rem 0;
+        }
+
+        .manifest-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--amber-border);
+        }
+
+        .manifest-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 400;
+            letter-spacing: 0.06em;
+        }
+
+        .manifest-count {
             font-family: var(--font-mono);
             font-size: 0.6rem;
             letter-spacing: 0.2em;
+            color: var(--text-muted);
             text-transform: uppercase;
-            color: var(--amber);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border);
         }
 
-        .section-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.5rem, 4vw, 2.2rem);
-            font-weight: 400;
-            letter-spacing: 0.04em;
-            margin-bottom: 1.5rem;
-        }
-
-        .section-text {
-            font-family: var(--font-body);
-            font-size: 1.15rem;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 1.5rem;
-        }
-
-        /* ── HANDLER MESSAGE ── */
-        .handler-msg {
-            background: var(--bg-evidence);
-            border-left: 3px solid var(--amber);
-            padding: 1.5rem 2rem;
-            margin: 2rem 0;
-            position: relative;
-        }
-
-        .handler-msg::before {
-            content: 'HANDLER: STAVROS';
-            font-family: var(--font-mono);
-            font-size: 0.55rem;
-            letter-spacing: 0.2em;
-            color: var(--amber);
-            position: absolute;
-            top: -0.7rem;
-            left: 2rem;
-            background: var(--bg-deep);
-            padding: 0 0.5rem;
-        }
-
-        .handler-msg p {
-            font-family: var(--font-body);
-            font-style: italic;
-            font-size: 1.1rem;
-            color: var(--text-warm);
-            line-height: 1.7;
-        }
-
-        /* ── EVIDENCE CARDS ── */
         .evidence-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
-            margin: 2rem 0;
         }
 
+        @media (max-width: 900px) { .evidence-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .evidence-grid { grid-template-columns: 1fr; } }
+
         .evidence-card {
-            background: var(--bg-evidence);
-            border: 1px solid var(--border);
+            background: var(--bg-card);
+            border: 1px solid var(--amber-border);
             padding: 1.5rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.35s ease;
             position: relative;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
         }
 
         .evidence-card:hover {
             border-color: var(--amber);
-            box-shadow: 0 0 20px var(--amber-dim);
+            box-shadow: 0 0 25px var(--amber-dim);
+            transform: translateY(-2px);
         }
 
-        .evidence-card.revealed .evidence-hidden {
-            display: block;
+        .evidence-card.open {
+            border-color: var(--amber);
+            background: var(--bg-briefing);
         }
 
-        .evidence-tag {
+        .evidence-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .evidence-icon {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--amber-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .evidence-num {
             font-family: var(--font-mono);
             font-size: 0.55rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
+            letter-spacing: 0.15em;
             color: var(--amber);
-            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            background: var(--amber-dim);
+            padding: 0.2rem 0.6rem;
         }
 
-        .evidence-label {
+        .evidence-name {
             font-family: var(--font-display);
             font-size: 1rem;
+            font-weight: 500;
             letter-spacing: 0.04em;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
+            line-height: 1.3;
         }
 
         .evidence-desc {
             font-family: var(--font-body);
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.5;
+            flex: 1;
         }
 
-        .evidence-hidden {
+        .evidence-chevron {
+            text-align: center;
+            margin-top: 0.8rem;
+            color: var(--amber);
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .evidence-card.open .evidence-chevron { transform: rotate(180deg); }
+
+        .evidence-reveal {
             display: none;
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid var(--amber-border);
         }
 
-        .evidence-hidden p {
+        .evidence-card.open .evidence-reveal { display: block; }
+
+        .evidence-reveal p {
             font-family: var(--font-body);
             font-size: 1rem;
-            color: rgba(255, 255, 255, 0.85);
             line-height: 1.7;
+            color: var(--text-warm);
+            margin-bottom: 0.8rem;
         }
 
-        .evidence-tap {
-            font-family: var(--font-mono);
-            font-size: 0.5rem;
-            color: var(--text-muted);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            position: absolute;
-            bottom: 0.8rem;
-            right: 1rem;
-        }
-
-        /* ── VERDICT SECTION ── */
-        .verdict-box {
-            background: linear-gradient(135deg, var(--bg-evidence), rgba(139, 32, 32, 0.08));
-            border: 1px solid var(--red-alert);
-            padding: 2.5rem;
-            text-align: center;
-            margin: 3rem 0;
-        }
-
-        .verdict-label {
+        .evidence-finding {
             font-family: var(--font-mono);
             font-size: 0.6rem;
-            letter-spacing: 0.3em;
-            color: var(--red-alert);
+            letter-spacing: 0.1em;
+            color: var(--amber);
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--amber-dim);
+        }
+
+        /* ═══════════════════════════════════════
+           FINAL VERDICT
+           ═══════════════════════════════════════ */
+        .verdict-section {
+            padding: 4rem 0;
+        }
+
+        .verdict-box {
+            position: relative;
+            border: 2px solid var(--red);
+            padding: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-deep), rgba(155, 34, 38, 0.06));
+        }
+
+        .verdict-corner-label {
+            position: absolute;
+            top: -0.6rem;
+            left: 2rem;
+            font-family: var(--font-mono);
+            font-size: 0.55rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--red);
+            background: var(--bg-deep);
+            padding: 0 0.5rem;
+        }
+
+        .verdict-heading {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            color: var(--red);
+            margin-bottom: 0.5rem;
+        }
+
+        .verdict-line {
+            width: 50px;
+            height: 2px;
+            background: var(--red);
+            margin: 1.5rem auto;
         }
 
         .verdict-text {
-            font-family: var(--font-display);
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            font-weight: 400;
-            letter-spacing: 0.04em;
-            line-height: 1.4;
-            margin-bottom: 1.5rem;
-        }
-
-        .verdict-source {
-            font-family: var(--font-mono);
-            font-size: 0.6rem;
-            color: var(--text-muted);
-            letter-spacing: 0.1em;
-        }
-
-        /* ── CTA SECTION ── */
-        .cta-section {
-            text-align: center;
-            padding: 5rem 2rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .cta-section h2 {
-            font-family: var(--font-display);
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 400;
-            letter-spacing: 0.04em;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta-section p {
             font-family: var(--font-body);
-            font-size: 1.15rem;
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: var(--text-warm);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .verdict-meta {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .verdict-meta-item {
+            text-align: center;
+        }
+
+        .verdict-meta-label {
+            font-family: var(--font-mono);
+            font-size: 0.5rem;
+            letter-spacing: 0.2em;
+            color: var(--amber);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .verdict-meta-value {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            letter-spacing: 0.06em;
+            color: var(--text-main);
+        }
+
+        /* ═══════════════════════════════════════
+           JOIN THE INVESTIGATION
+           ═══════════════════════════════════════ */
+        .join-section {
+            padding: 5rem 0;
+            text-align: center;
+            border-top: 1px solid var(--amber-border);
+        }
+
+        .join-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            color: var(--amber);
+            margin-bottom: 1rem;
+        }
+
+        .join-text {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
             color: var(--text-muted);
             margin-bottom: 2rem;
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
-        .cta-buttons {
+        .email-row {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            align-items: center;
+            gap: 0;
+            max-width: 500px;
+            margin: 0 auto 2.5rem;
         }
 
-        .cta-primary {
+        .email-row input {
+            flex: 1;
+            padding: 0.85rem 1.2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--amber-border);
+            border-right: none;
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            outline: none;
+        }
+
+        .email-row input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .email-row input:focus {
+            border-color: var(--amber);
+        }
+
+        .email-row button {
+            padding: 0.85rem 1.8rem;
+            background: var(--amber);
+            color: var(--bg-deep);
+            border: 1px solid var(--amber);
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .email-row button:hover {
+            background: var(--text-warm);
+            box-shadow: 0 0 25px var(--amber-glow);
+        }
+
+        #emailStatus {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            margin-top: -1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
             font-family: var(--font-display);
-            font-size: 0.8rem;
-            letter-spacing: 0.15em;
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--bg-deep);
             background: var(--amber);
-            padding: 1rem 2.5rem;
+            padding: 0.9rem 2rem;
             text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
-        .cta-primary:hover {
+        .btn-primary:hover {
             background: var(--text-warm);
-            box-shadow: 0 0 30px var(--amber-glow);
+            box-shadow: 0 0 25px var(--amber-glow);
         }
 
-        .cta-secondary {
+        .btn-outline {
             font-family: var(--font-display);
             font-size: 0.75rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--amber);
-            border: 1px solid var(--border);
-            padding: 0.8rem 2rem;
+            border: 1px solid var(--amber-border);
+            padding: 0.9rem 2rem;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
-        .cta-secondary:hover {
+        .btn-outline:hover {
             border-color: var(--amber);
             box-shadow: 0 0 15px var(--amber-dim);
         }
 
-        /* ── EMAIL CAPTURE ── */
-        .email-capture {
-            background: var(--bg-evidence);
-            border: 1px solid var(--border);
-            padding: 2.5rem;
+        /* ═══════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════ */
+        .case-footer {
+            padding: 3rem 0;
             text-align: center;
-            max-width: 600px;
-            margin: 2rem auto 4rem;
+            border-top: 1px solid rgba(201, 168, 76, 0.1);
         }
 
-        .email-capture h3 {
-            font-family: var(--font-display);
-            font-size: 1.1rem;
-            letter-spacing: 0.06em;
-            margin-bottom: 0.8rem;
-        }
-
-        .email-capture p {
-            font-family: var(--font-body);
-            font-size: 1rem;
-            color: var(--text-muted);
+        .social-row {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
             margin-bottom: 1.5rem;
         }
 
-        .email-form {
-            display: flex;
-            gap: 0.5rem;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .email-form input {
-            flex: 1;
-            padding: 0.7rem 1rem;
-            background: var(--bg-deep);
-            border: 1px solid var(--border);
-            color: var(--text-main);
+        .social-row a {
+            color: var(--text-muted);
+            text-decoration: none;
             font-family: var(--font-ui);
-            font-size: 0.85rem;
-            outline: none;
+            font-size: 0.8rem;
+            transition: color 0.3s;
         }
 
-        .email-form input:focus {
-            border-color: var(--amber);
-        }
+        .social-row a:hover { color: var(--amber); }
 
-        .email-form button {
-            padding: 0.7rem 1.5rem;
-            background: var(--amber);
-            color: var(--bg-deep);
-            border: none;
+        .footer-text {
             font-family: var(--font-mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .email-form button:hover {
-            background: var(--text-warm);
-        }
-
-        /* ── FOOTER ── */
-        .case-footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .case-footer p {
-            font-family: var(--font-mono);
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             letter-spacing: 0.15em;
             color: var(--text-muted);
             text-transform: uppercase;
         }
 
-        .case-footer a {
+        .footer-text a {
             color: var(--amber);
             text-decoration: none;
         }
 
-        /* ── PROGRESS BAR ── */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 2px;
-            background: var(--amber);
-            z-index: 100;
-            transition: width 0.3s ease;
+        /* ═══════════════════════════════════════
+           ANIMATIONS
+           ═══════════════════════════════════════ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: all 0.7s ease;
         }
 
-        /* ── ANIMATIONS ── */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+        @keyframes stampDrop {
+            0% { transform: rotate(12deg) scale(2); opacity: 0; }
+            60% { transform: rotate(12deg) scale(0.95); opacity: 0.8; }
+            100% { transform: rotate(12deg) scale(1); opacity: 0.7; }
         }
 
-        /* ── RESPONSIVE ── */
-        @media (max-width: 600px) {
-            .email-form { flex-direction: column; }
-            .evidence-grid { gap: 1rem; }
-            .case-header { padding: 1.5rem; }
-        }
+        .stamp { animation: stampDrop 0.6s ease 0.8s both; }
     </style>
 </head>
 <body>
 
-<div class="progress-bar" id="progressBar"></div>
+<div class="container">
 
-<!-- ════════════════ CASE HEADER ════════════════ -->
-<section class="case-header">
-    <div class="case-stamp">Unknown Files — Case No. UF-TROY-006</div>
-    <h1 class="case-title">THE XENIA<br>VIOLATION</h1>
-    <p class="case-subtitle">Troy didn't fall over a stolen wife.<br>It fell over a broken dinner rule.</p>
-    <div class="case-classification">Classification: Open — Primary Sources Under Review</div>
-    <a href="#briefing" class="begin-btn">Open Case File</a>
-</section>
+    <!-- ════════ CASE HEADER ════════ -->
+    <header class="case-header">
+        <span class="dept-label">Department of Archaic Anomalies</span>
+        <h1 class="case-number">CASE FILE<br>UF-TROY-006</h1>
+        <div class="case-meta">
+            <span class="priority-badge">Priority: Omega</span>
+            <span class="filed-date">Filed: 8th Century BCE &mdash; Reopened: 2026</span>
+        </div>
+        <div class="stamp">Unredacted<span class="stamp-sub">Access Level 5 Required</span></div>
+    </header>
 
-<!-- ════════════════ HANDLER BRIEFING ════════════════ -->
-<section class="case-section" id="briefing">
-    <div class="section-label">Section 01 — Handler Briefing</div>
+    <!-- ════════ HANDLER TRANSMISSION ════════ -->
+    <section class="transmission-section fade-in">
+        <div class="section-flag">Incoming Transmission</div>
 
-    <div class="handler-msg">
-        <p>Investigator — every retelling of the Trojan War says the same thing: Paris stole Helen, Menelaus wanted her back, Greece mobilised. A love story that became a war.</p>
-        <p style="margin-top: 1rem;">That's the version that survived. But the primary sources tell a different story. Your job is to examine the evidence and determine what actually caused the war.</p>
-        <p style="margin-top: 1rem;">Start with the evidence locker. Click each piece. Build your case.</p>
-        <p style="margin-top: 1rem; text-align: right; color: var(--amber);">— Stavros</p>
-    </div>
-</section>
-
-<!-- ════════════════ EVIDENCE LOCKER ════════════════ -->
-<section class="case-section" id="evidence">
-    <div class="section-label">Section 02 — Evidence Locker</div>
-    <h2 class="section-title">Examine the Sources</h2>
-    <p class="section-text">Each exhibit contains a primary source. Click to examine. The evidence speaks for itself.</p>
-
-    <div class="evidence-grid">
-
-        <div class="evidence-card" onclick="this.classList.toggle('revealed')">
-            <div class="evidence-tag">Exhibit A — Homer, Iliad Book 3</div>
-            <div class="evidence-label">The Duel That Should Have Ended Everything</div>
-            <div class="evidence-desc">Paris and Menelaus fight a single combat duel. The winner gets Helen. The loser's army goes home. What happens?</div>
-            <div class="evidence-hidden">
-                <p>Menelaus wins. Decisively. He drags Paris by the helmet toward the Greek lines. The war should be over.</p>
-                <p style="margin-top: 0.8rem;">Aphrodite intervenes. She snatches Paris away in a cloud of mist and deposits him in Helen's bedroom. The Trojans violate the truce. The war continues — not because of Helen, but because the gods won't let the agreed resolution stand.</p>
-                <p style="margin-top: 0.8rem; color: var(--amber); font-style: italic;">Key finding: The Greeks and Trojans agreed to settle it. The gods overruled them.</p>
+        <div class="transmission-grid">
+            <div>
+                <p class="handler-quote">"Investigator, the fragments recovered from the Homeric texts suggest the Trojan War was never about a stolen wife. The diplomatic markers found in Books 3, 6, and 13 do not match any known love-story sequence. Investigate the primary sources attached. The truth is older than the legend."</p>
+                <div class="handler-sig">&mdash; Handler 'Stavros'</div>
             </div>
-            <span class="evidence-tap">click to examine</span>
+
+            <div class="briefing-card">
+                <div class="briefing-header">
+                    <span class="briefing-title">Briefing Summary</span>
+                    <span class="briefing-ref">Ref: UF-TROY-006</span>
+                </div>
+                <div class="briefing-grid">
+                    <p class="briefing-item"><span class="briefing-tag">[Site]</span> Troy (Hisarlik), Anatolia. Layer VII matches Homeric timeline. Xenia violation markers present in all primary accounts.</p>
+                    <p class="briefing-item"><span class="briefing-tag">[Subject]</span> Paris of Troy (Codename: GUEST-BREAKER). Violated divine covenant of xenia under Zeus Xenios while hosted by Menelaus of Sparta.</p>
+                    <p class="briefing-item"><span class="briefing-tag">[Object]</span> Sacred host-guest bond (xenia). Enforced by Zeus himself. Violation triggers divine-mandate military response — not personal revenge.</p>
+                    <p class="briefing-item"><span class="briefing-tag">[Status]</span> Active investigation. All field agents must cross-reference against Homer, Iliad Books 3, 6, 13 and Odyssey Book 24 before filing conclusions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════ EVIDENCE MANIFEST ════════ -->
+    <section class="evidence-section fade-in">
+        <div class="manifest-header">
+            <h2 class="manifest-title">Evidence Manifest</h2>
+            <span class="manifest-count">5 Entries Recovered</span>
         </div>
 
-        <div class="evidence-card" onclick="this.classList.toggle('revealed')">
-            <div class="evidence-tag">Exhibit B — Homer, Iliad Book 6</div>
-            <div class="evidence-label">Hector Condemns His Own Brother</div>
-            <div class="evidence-desc">Hector confronts Paris inside the walls of Troy. What does Troy's greatest defender actually say to him?</div>
-            <div class="evidence-hidden">
-                <p>Hector doesn't call Paris a thief. He doesn't accuse him of stealing a woman. He calls him a man who violated the sacred bond between host and guest.</p>
-                <p style="margin-top: 0.8rem;">In Greek: Paris broke xenia. He sat at Menelaus's table, ate his food, slept under his roof — and then took his wife. The crime isn't theft. It's the violation of a divine covenant.</p>
-                <p style="margin-top: 0.8rem; color: var(--amber); font-style: italic;">Key finding: Even Troy's own hero identified xenia — not Helen — as the cause.</p>
+        <div class="evidence-grid">
+
+            <div class="evidence-card" onclick="this.classList.toggle('open')">
+                <div class="evidence-top">
+                    <div class="evidence-icon">⚔</div>
+                    <span class="evidence-num">#EVID-001</span>
+                </div>
+                <div class="evidence-name">The Duel Resolution</div>
+                <div class="evidence-desc">Paris and Menelaus agree to single combat. Winner takes Helen. The loser's army goes home. What actually happens?</div>
+                <div class="evidence-chevron">&#8964;</div>
+                <div class="evidence-reveal">
+                    <p>Menelaus wins decisively. Drags Paris by the helmet toward the Greek lines. The war should end here.</p>
+                    <p>Aphrodite intervenes — snatches Paris away in mist. The Trojans violate the truce. War continues not because of Helen, but because the gods overruled the agreed resolution.</p>
+                    <div class="evidence-finding">Finding: Greeks and Trojans agreed to settle it. The gods overruled them.</div>
+                </div>
             </div>
-            <span class="evidence-tap">click to examine</span>
-        </div>
 
-        <div class="evidence-card" onclick="this.classList.toggle('revealed')">
-            <div class="evidence-tag">Exhibit C — Homer, Iliad Book 13</div>
-            <div class="evidence-label">Zeus's Law of Xenia</div>
-            <div class="evidence-desc">Zeus is called "Zeus Xenios" — protector of guests and hosts. What does this title mean for the Trojan War?</div>
-            <div class="evidence-hidden">
-                <p>Zeus Xenios enforces the covenant of xenia across the entire Greek world. When a host welcomes a guest — food, shelter, gifts — both are bound by divine law. Neither can harm the other.</p>
-                <p style="margin-top: 0.8rem;">Paris didn't just break a social norm. He violated a law enforced by the king of the gods himself. The Greek coalition that sailed to Troy wasn't an army fighting for a stolen woman. It was a divinely mandated enforcement action.</p>
-                <p style="margin-top: 0.8rem; color: var(--amber); font-style: italic;">Key finding: The war was divine punishment, not personal revenge.</p>
+            <div class="evidence-card" onclick="this.classList.toggle('open')">
+                <div class="evidence-top">
+                    <div class="evidence-icon">🏛</div>
+                    <span class="evidence-num">#EVID-002</span>
+                </div>
+                <div class="evidence-name">Hector's Condemnation</div>
+                <div class="evidence-desc">Troy's greatest defender confronts his own brother inside the walls. What does Hector actually accuse Paris of?</div>
+                <div class="evidence-chevron">&#8964;</div>
+                <div class="evidence-reveal">
+                    <p>Hector doesn't call Paris a thief. He doesn't accuse him of stealing a woman. He calls him a man who violated the sacred bond between host and guest.</p>
+                    <p>Paris broke xenia. He sat at Menelaus's table, ate his food, slept under his roof — then took his wife. The crime isn't theft. It's violation of divine covenant.</p>
+                    <div class="evidence-finding">Finding: Even Troy's own hero identified xenia — not Helen — as the cause.</div>
+                </div>
             </div>
-            <span class="evidence-tap">click to examine</span>
-        </div>
 
-        <div class="evidence-card" onclick="this.classList.toggle('revealed')">
-            <div class="evidence-tag">Exhibit D — Homer, Odyssey Book 24</div>
-            <div class="evidence-label">The Pattern Repeats</div>
-            <div class="evidence-desc">The suitors in Odysseus's house commit the same crime as Paris. What happens to them?</div>
-            <div class="evidence-hidden">
-                <p>The suitors eat Odysseus's food. Sleep under his roof. Court his wife. They violate xenia from the other direction — as guests who abuse the host's home.</p>
-                <p style="margin-top: 0.8rem;">Odysseus kills every single one of them. Homer frames this as justice — the same divine framework that condemned Paris. The entire Odyssey is a second xenia case study.</p>
-                <p style="margin-top: 0.8rem; color: var(--amber); font-style: italic;">Key finding: Homer uses the same crime-and-punishment pattern across both epics. Xenia violation = annihilation.</p>
+            <div class="evidence-card" onclick="this.classList.toggle('open')">
+                <div class="evidence-top">
+                    <div class="evidence-icon">⚡</div>
+                    <span class="evidence-num">#EVID-003</span>
+                </div>
+                <div class="evidence-name">Zeus Xenios Protocol</div>
+                <div class="evidence-desc">Zeus is called "protector of guests and hosts." What does this title mean for the entire war?</div>
+                <div class="evidence-chevron">&#8964;</div>
+                <div class="evidence-reveal">
+                    <p>Zeus Xenios enforces the covenant of xenia across the entire Greek world. When a host welcomes a guest — food, shelter, gifts — both are bound by divine law.</p>
+                    <p>Paris didn't break a social norm. He violated a law enforced by the king of the gods. The Greek coalition wasn't an army fighting for a stolen woman. It was a divinely mandated enforcement action.</p>
+                    <div class="evidence-finding">Finding: The war was divine punishment, not personal revenge.</div>
+                </div>
             </div>
-            <span class="evidence-tap">click to examine</span>
-        </div>
 
-        <div class="evidence-card" onclick="this.classList.toggle('revealed')">
-            <div class="evidence-tag">Exhibit E — Cross-Cultural Parallel</div>
-            <div class="evidence-label">The Universal Pattern</div>
-            <div class="evidence-desc">Other ancient cultures had the same concept. What does this tell us about xenia?</div>
-            <div class="evidence-hidden">
-                <p>Hebrew tradition: Abraham's hospitality to the three strangers is a foundational story. Sodom's destruction is framed as punishment for violating guest-right — not the sins modern readers assume.</p>
-                <p style="margin-top: 0.8rem;">Norse culture: breaking hospitality bonds triggered blood feuds that lasted generations. The guest-host relationship was as sacred as kinship.</p>
-                <p style="margin-top: 0.8rem;">Hindu tradition: Atithi Devo Bhava — "the guest is god." Violating this brought cosmic consequences.</p>
-                <p style="margin-top: 0.8rem; color: var(--amber); font-style: italic;">Key finding: Xenia wasn't uniquely Greek. It was a universal ancient law. Paris violated the most sacred rule of the Bronze Age world.</p>
+            <div class="evidence-card" onclick="this.classList.toggle('open')">
+                <div class="evidence-top">
+                    <div class="evidence-icon">🔄</div>
+                    <span class="evidence-num">#EVID-004</span>
+                </div>
+                <div class="evidence-name">The Odyssey Parallel</div>
+                <div class="evidence-desc">The suitors in Odysseus's house commit the same crime. What happens to every single one of them?</div>
+                <div class="evidence-chevron">&#8964;</div>
+                <div class="evidence-reveal">
+                    <p>The suitors eat Odysseus's food, sleep under his roof, court his wife. They violate xenia from the opposite direction — as guests who abuse the host's home.</p>
+                    <p>Odysseus kills every single one. Homer frames this as justice — the same divine framework that condemned Paris. The entire Odyssey is a second xenia case study.</p>
+                    <div class="evidence-finding">Finding: Homer uses the same crime-and-punishment across both epics. Xenia violation = annihilation.</div>
+                </div>
             </div>
-            <span class="evidence-tap">click to examine</span>
+
+            <div class="evidence-card" onclick="this.classList.toggle('open')">
+                <div class="evidence-top">
+                    <div class="evidence-icon">🌍</div>
+                    <span class="evidence-num">#EVID-005</span>
+                </div>
+                <div class="evidence-name">Cross-Cultural Parallel</div>
+                <div class="evidence-desc">Other ancient civilisations had the same concept. What does this tell us about xenia?</div>
+                <div class="evidence-chevron">&#8964;</div>
+                <div class="evidence-reveal">
+                    <p>Hebrew tradition: Abraham's hospitality is foundational. Sodom's destruction is framed as punishment for violating guest-right.</p>
+                    <p>Norse culture: breaking hospitality bonds triggered blood feuds lasting generations. Hindu tradition: Atithi Devo Bhava — "the guest is god."</p>
+                    <div class="evidence-finding">Finding: Xenia wasn't uniquely Greek. Paris violated the most sacred rule of the Bronze Age world.</div>
+                </div>
+            </div>
+
         </div>
+    </section>
 
-    </div>
-</section>
+    <!-- ════════ FINAL VERDICT ════════ -->
+    <section class="verdict-section fade-in">
+        <div class="verdict-box">
+            <span class="verdict-corner-label">Critical</span>
+            <h2 class="verdict-heading">Final Verdict</h2>
+            <div class="verdict-line"></div>
+            <p class="verdict-text">"The Trojan War was not caused by a stolen wife. It was caused by the violation of xenia — a sacred covenant between host and guest, enforced by Zeus himself. Greece did not mobilise for Helen. Greece mobilised because Paris broke the oldest law in the ancient world."</p>
+            <div class="verdict-meta">
+                <div class="verdict-meta-item">
+                    <span class="verdict-meta-label">Classification Status</span>
+                    <span class="verdict-meta-value">Case Closed</span>
+                </div>
+                <div class="verdict-meta-item">
+                    <span class="verdict-meta-label">Primary Sources</span>
+                    <span class="verdict-meta-value">Homer, 8th Century BCE</span>
+                </div>
+                <div class="verdict-meta-item">
+                    <span class="verdict-meta-label">Operation Code</span>
+                    <span class="verdict-meta-value">Xenia Protocol</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- ════════════════ CASE VERDICT ════════════════ -->
-<section class="case-section" id="verdict">
-    <div class="section-label">Section 03 — Case Verdict</div>
+    <!-- ════════ JOIN THE INVESTIGATION ════════ -->
+    <section class="join-section fade-in">
+        <h2 class="join-title">Join the Investigation</h2>
+        <p class="join-text">Receive classified intelligence and primary source notes<br>delivered directly to your inbox. Eyes only.</p>
 
-    <div class="verdict-box">
-        <div class="verdict-label">Investigator's Conclusion</div>
-        <p class="verdict-text">The Trojan War was not caused by a stolen wife.<br>It was caused by the violation of xenia —<br>a divine covenant enforced by Zeus himself.</p>
-        <p class="verdict-text" style="font-family: var(--font-body); font-style: italic; font-size: 1.1rem; color: var(--text-warm);">Greece didn't mobilise for Helen.<br>Greece mobilised because Paris broke the oldest law in the ancient world.</p>
-        <div class="verdict-source">Sources: Homer, Iliad Books 3, 6, 13, 24 · Odyssey Book 24 · 8th century BCE</div>
-    </div>
+        <div class="email-row">
+            <input type="email" placeholder="agent_email@classified.gov" id="emailInput">
+            <button onclick="captureEmail()">Subscribe to Dossier</button>
+        </div>
+        <p id="emailStatus"></p>
 
-    <div class="handler-msg" style="margin-top: 3rem;">
-        <p>That's the case most people never see. The sources are right there — Homer wrote it in plain Greek. Three thousand years of retellings turned a divine law violation into a love story.</p>
-        <p style="margin-top: 1rem;">This was one case. There are more. Every Krios episode has a mystery underneath the myth. If you want the full investigation — including what Hector actually said to Helen on the walls of Troy — the episode is on the channel.</p>
-        <p style="margin-top: 1rem; text-align: right; color: var(--amber);">— Stavros</p>
-    </div>
-</section>
+        <div class="cta-row">
+            <a href="https://www.youtube.com/@KriosMythology?sub_confirmation=1" target="_blank" class="btn-primary">Subscribe to Krios</a>
+            <a href="https://www.youtube.com/watch?v=2rg3tPOXz9Y" target="_blank" class="btn-outline">Watch Full Troy Episode</a>
+        </div>
+    </section>
 
-<!-- ════════════════ CTA ════════════════ -->
-<section class="cta-section">
-    <h2>THE INVESTIGATION<br>CONTINUES</h2>
-    <p>Every episode of Krios hides an investigation like this one. Primary sources. Cross-cultural evidence. The stories you thought you knew — examined properly for the first time.</p>
+    <!-- ════════ FOOTER ════════ -->
+    <footer class="case-footer">
+        <div class="social-row">
+            <a href="https://www.youtube.com/@KriosMythology" target="_blank">YouTube</a>
+            <a href="https://www.tiktok.com/@kriosmythology" target="_blank">TikTok</a>
+            <a href="https://www.instagram.com/kriosmythology" target="_blank">Instagram</a>
+        </div>
+        <p class="footer-text"><a href="https://www.kriosmythology.com">Krios Mythology</a> &middot; Stavros Commentary &middot; Case UF-TROY-006</p>
+        <p class="footer-text" style="margin-top: 0.5rem;">All sources cited from primary texts &middot; AI-assisted production</p>
+    </footer>
 
-    <div class="cta-buttons">
-        <a href="https://www.youtube.com/@KriosMythology?sub_confirmation=1" class="cta-primary" target="_blank">Subscribe to Krios on YouTube</a>
-        <a href="https://www.youtube.com/watch?v=2rg3tPOXz9Y" class="cta-secondary" target="_blank">Watch the Full Troy Episode</a>
-    </div>
-</section>
-
-<!-- ════════════════ EMAIL CAPTURE ════════════════ -->
-<section class="email-capture">
-    <h3>GET THE PRIMARY SOURCE NOTES</h3>
-    <p>Every episode's sources, translated passages, and investigation notes — delivered to your inbox.</p>
-    <div class="email-form">
-        <input type="email" placeholder="your@email.com" id="emailInput">
-        <button onclick="captureEmail()">JOIN</button>
-    </div>
-    <p style="font-size: 0.75rem; margin-top: 1rem; color: var(--text-muted);" id="emailStatus"></p>
-</section>
-
-<!-- ════════════════ WAITLIST ════════════════ -->
-<section class="case-section" id="waitlist" style="text-align: center;">
-    <div class="section-label">Coming Soon</div>
-    <h2 class="section-title">UNKNOWN FILES</h2>
-    <p class="section-text" style="max-width: 500px; margin: 0 auto 1.5rem;">A mythology investigation app. New cases with every episode. Stavros as your handler. Primary sources as evidence. Join the waitlist.</p>
-    <a href="#" class="cta-secondary" onclick="document.getElementById('emailInput').focus(); return false;">Join the Waitlist</a>
-</section>
-
-<!-- ════════════════ FOOTER ════════════════ -->
-<footer class="case-footer">
-    <p><a href="https://www.kriosmythology.com">Krios Mythology</a> · Stavros Commentary · <a href="https://www.youtube.com/@KriosMythology">YouTube</a> · <a href="https://www.tiktok.com/@kriosmythology">TikTok</a></p>
-    <p style="margin-top: 0.5rem;">Case UF-TROY-006 · All sources cited from primary texts · AI-assisted production</p>
-</footer>
+</div>
 
 <script>
-    // Progress bar
-    window.addEventListener('scroll', () => {
-        const h = document.documentElement.scrollHeight - window.innerHeight;
-        const p = (window.scrollY / h) * 100;
-        document.getElementById('progressBar').style.width = p + '%';
-    });
-
     // Scroll reveal
-    const sections = document.querySelectorAll('.case-section');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-            if (e.isIntersecting) e.target.classList.add('visible');
-        });
-    }, { threshold: 0.15 });
-    sections.forEach(s => observer.observe(s));
+    const fades = document.querySelectorAll('.fade-in');
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    fades.forEach(f => obs.observe(f));
 
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-            e.preventDefault();
-            document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-        });
-    });
-
-    // Email capture (Kit/ConvertKit integration placeholder)
+    // Email capture
     function captureEmail() {
         const email = document.getElementById('emailInput').value;
         const status = document.getElementById('emailStatus');
         if (!email || !email.includes('@')) {
-            status.textContent = 'Enter a valid email address.';
-            status.style.color = 'var(--red-alert)';
+            status.textContent = 'INVALID AGENT CREDENTIALS. TRY AGAIN.';
+            status.style.color = 'var(--red)';
             return;
         }
-        // Replace with Kit form action when ready
-        status.textContent = 'Added to the investigation list. Check your inbox.';
+        status.textContent = 'AGENT REGISTERED. DOSSIER INCOMING. CHECK YOUR TERMINAL.';
         status.style.color = 'var(--amber)';
-        // TODO: Wire to Kit (ConvertKit) API
-        // fetch('https://app.convertkit.com/forms/YOUR_FORM_ID/subscriptions', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify({ email_address: email })
-        // });
     }
 </script>
 
