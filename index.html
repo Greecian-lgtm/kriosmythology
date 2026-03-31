@@ -690,7 +690,53 @@
             <a href="https://www.youtube.com/@KriosMythology?utm_source=kriosmythology.com&utm_medium=website&utm_campaign=subscribe" target="_blank" class="section-link">All Episodes &#8599;</a>
         </div>
 
-        <div class="cards-grid">
+
+        <div class="section-header" style="margin-bottom:2rem;">
+            <h3 class="t-display" style="font-size:2rem; color: var(--gold);">Latest Episodes</h3>
+        </div>
+        <div id="latest-episodes-feed" class="cards-grid" style="margin-bottom:4rem;">
+            <div class="card" style="opacity:0.5;"><p class="t-body">Loading latest episodes...</p></div>
+        </div>
+        <script>
+        (function() {
+            var CHANNEL_ID = 'UC845GaAiIR51FFPD5wEsXAg';
+            var RSS_URL = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID;
+            var PROXY = 'https://api.allorigins.win/get?url=' + encodeURIComponent(RSS_URL);
+            fetch(PROXY)
+                .then(function(r){ return r.json(); })
+                .then(function(data) {
+                    var parser = new DOMParser();
+                    var xml = parser.parseFromString(data.contents, 'text/xml');
+                    var entries = xml.querySelectorAll('entry');
+                    var feed = document.getElementById('latest-episodes-feed');
+                    feed.innerHTML = '';
+                    var count = 0;
+                    entries.forEach(function(entry) {
+                        if (count >= 3) return;
+                        var title = entry.querySelector('title') ? entry.querySelector('title').textContent : '';
+                        var link = entry.querySelector('link') ? entry.querySelector('link').getAttribute('href') : '#';
+                        var videoId = link.split('v=')[1] || '';
+                        var thumb = videoId ? 'https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg' : '';
+                        var published = entry.querySelector('published') ? entry.querySelector('published').textContent.substring(0,10) : '';
+                        var card = document.createElement('a');
+                        card.href = link;
+                        card.target = '_blank';
+                        card.className = 'card';
+                        card.innerHTML = (thumb ? '<img src="' + thumb + '" alt="' + title + '" style="width:100%;border-radius:4px;margin-bottom:1rem;aspect-ratio:16/9;object-fit:cover;">' : '') +
+                            '<h3 class="card-title">' + title + '</h3>' +
+                            '<div class="card-meta"><span class="t-meta">Watch Episode</span><span class="t-meta">' + published + '</span></div>';
+                        feed.appendChild(card);
+                        count++;
+                    });
+                    if (count === 0) feed.innerHTML = '<p class="t-body">No episodes found.</p>';
+                })
+                .catch(function(e){ 
+                    document.getElementById('latest-episodes-feed').innerHTML = '';
+                });
+        })();
+        </script>
+
+        <div class="cards-grid" style="margin-top:2rem;">
 
             <a href="https://www.youtube.com/watch?v=rsNL4YMtjxY" target="_blank" class="card">
                 <div class="card-number">I</div>
