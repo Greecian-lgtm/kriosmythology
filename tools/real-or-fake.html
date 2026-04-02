@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Is This Myth Real or Fake? | Krios Mythology</title>
+<meta name="description" content="Test your mythology knowledge. 15 statements. Primary sources decide. Can you tell real myths from fake ones?">
+<meta property="og:title" content="I got _/15 on the Real or Fake mythology quiz — Krios Mythology">
+<style>:root{--bg:#0a0806;--text:#e8d5a0;--gold:#c9a84c;--white:#f5f0e8;--dim:#8a7430;--correct:#4a7c59;--wrong:#8c3a3a}
+body{background:var(--bg);color:var(--text);font-family:Georgia,serif;max-width:720px;margin:0 auto;padding:2rem 1.5rem;line-height:1.7}
+h1{color:var(--white);font-size:1.8rem;border-bottom:2px solid var(--gold);padding-bottom:.5rem}
+h2{color:var(--gold)}
+a{color:var(--gold)}
+.nav{color:var(--dim);font-size:.85rem;margin-bottom:2rem}
+.nav a{color:var(--dim)}
+button{background:var(--gold);color:var(--bg);border:none;padding:.8rem 1.5rem;border-radius:4px;cursor:pointer;font-family:Georgia,serif;font-size:1rem;margin:.4rem;transition:all .2s}
+button:hover{opacity:.85}
+.question-card{background:#1a1510;border:1px solid var(--gold);border-radius:8px;padding:1.5rem;margin:1.5rem 0}
+.score-card{background:#1a1510;border:2px solid var(--gold);border-radius:8px;padding:2rem;margin:2rem 0;text-align:center}
+.score-card h2{font-size:2.5rem;margin:.5rem 0}
+.share-btn{background:var(--gold);color:var(--bg);padding:1rem 2rem;border-radius:4px;text-decoration:none;display:inline-block;font-weight:bold;margin:.5rem}
+.correct{border-color:var(--correct)}
+.wrong{border-color:var(--wrong)}
+.hidden{display:none}
+.myth-card{background:#1a1510;border:1px solid var(--gold);border-radius:8px;padding:2rem;margin:1.5rem 0;text-align:center}
+.myth-card .wrong-version{color:var(--wrong);font-size:1.1rem;text-decoration:line-through;opacity:.7}
+.myth-card .right-version{color:var(--correct);font-size:1.3rem;margin-top:1rem}
+.myth-card .source{color:var(--dim);font-size:.85rem;margin-top:.5rem}
+
+.real-btn{background:#4a7c59} .fake-btn{background:#8c3a3a}
+.real-btn:hover{background:#5a9c69} .fake-btn:hover{background:#ac4a4a}
+.statement{font-size:1.3rem;color:var(--white);margin:1rem 0;font-style:italic}
+.progress{color:var(--dim);font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="nav"><a href="https://kriosmythology.com">Krios</a> > <a href="https://kriosmythology.com/tools">Tools</a> > Real or Fake</div>
+<h1>Is This Myth Real or Fake?</h1>
+<p>15 statements about Greek mythology. Some are what the primary sources actually say. Some are what your textbook made up. Can you tell the difference?</p>
+<div id="game"></div>
+<div id="result" class="score-card hidden">
+    <p style="color:var(--dim)">YOUR SCORE</p>
+    <h2 id="rf-score" style="color:var(--gold)"></h2>
+    <p id="rf-msg"></p>
+    <div style="margin-top:1.5rem">
+        <a id="rf-share" class="share-btn" target="_blank">Share on X</a>
+        <a class="share-btn" href="#" onclick="copyRF();return false" id="rf-copy">Copy Result</a>
+    </div>
+    <p style="margin-top:1.5rem"><a href="https://youtube.com/@KriosMythology">Watch Krios on YouTube — primary sources first →</a></p>
+</div>
+<script>
+const M = [{"statement": "Achilles was invulnerable everywhere except his heel", "answer": "FAKE", "truth": "Homer never mentions the heel vulnerability in the Iliad. This detail appears only in later Roman sources like Statius's Achilleid (1st century AD), centuries after Homer.", "source": "Homer, Iliad; Statius, Achilleid"}, {"statement": "Odysseus's wife Penelope was faithful during his 10-year absence", "answer": "REAL", "truth": "In Homer's Odyssey, Penelope resists 108 suitors for years while Odysseus is gone, remaining devoted despite pressure and uncertainty of his return.", "source": "Homer, Odyssey"}, {"statement": "Medusa was always a monster with snakes for hair", "answer": "FAKE", "truth": "Ovid's Metamorphoses describes Medusa as a beautiful woman transformed into a monster by Athena as punishment. Earlier sources like Hesiod's Theogony present her as born monstrous.", "source": "Ovid, Metamorphoses; Hesiod, Theogony"}, {"statement": "Hades abducted Persephone against her will, causing her eternal imprisonment in the Underworld", "answer": "FAKE", "truth": "In Ovid's version, Persephone is taken unwillingly, but the Homeric Hymn to Demeter suggests some ambiguity, and later sources depict their relationship as consensual and loving, not imprisonment.", "source": "Homeric Hymn to Demeter; Ovid, Metamorphoses"}, {"statement": "Zeus fathered Heracles with the mortal woman Alcmene", "answer": "REAL", "truth": "The Theogony and multiple classical sources confirm Zeus disguised himself as Alcmene's husband Amphitryon to father Heracles, the greatest Greek hero.", "source": "Hesiod, Theogony; Apollodorus, Bibliotheca"}, {"statement": "The Trojan War lasted exactly 10 years", "answer": "REAL", "truth": "Homer's Iliad and subsequent epic traditions consistently describe the Trojan War as lasting 10 years before Troy's fall, establishing this as canonical in Greek mythology.", "source": "Homer, Iliad; Odyssey"}, {"statement": "Theseus killed the Minotaur using only his bare hands", "answer": "FAKE", "truth": "Most sources, including Plutarch and Ovid, describe Theseus using a sword or club to defeat the Minotaur. The 'bare hands' version is a modern romanticization not found in primary sources.", "source": "Plutarch, Life of Theseus; Ovid, Metamorphoses"}, {"statement": "Perseus used Medusa's severed head as a weapon", "answer": "REAL", "truth": "Ovid and other classical sources describe Perseus carrying Medusa's head and using its petrifying gaze against enemies, even mounting it on Athena's aegis.", "source": "Ovid, Metamorphoses; Apollodorus, Bibliotheca"}, {"statement": "Heracles completed 12 impossible labors as punishment for killing his family", "answer": "REAL", "truth": "Apollodorus's Bibliotheca and other sources confirm Heracles performed 12 labors as penance for murdering his wife Megara and children in a madness induced by Hera.", "source": "Apollodorus, Bibliotheca; Diodorus Siculus"}, {"statement": "Odysseus blinded Polyphemus the Cyclops by driving a heated stake through his eye", "answer": "REAL", "truth": "Homer's Odyssey explicitly describes Odysseus heating a wooden stake and driving it into Polyphemus's single eye to escape the cave.", "source": "Homer, Odyssey, Book 9"}, {"statement": "Achilles and Patroclus were lovers, as stated in Homer's Iliad", "answer": "FAKE", "truth": "Homer never explicitly states they were romantic lovers; their relationship is described as deep friendship. Later Greek writers like Aeschylus interpreted their bond as erotic.", "source": "Homer, Iliad; Aeschylus, fragments"}, {"statement": "Persephone spends half the year in the Underworld and half on Earth, explaining seasons", "answer": "REAL", "truth": "The Homeric Hymn to Demeter establishes that Persephone must return to Hades for part of each year, creating winter when Demeter mourns her daughter's absence.", "source": "Homeric Hymn to Demeter"}, {"statement": "Perseus was born from Zeus and a mortal princess locked in a bronze tower", "answer": "REAL", "truth": "Apollodorus and Ovid describe how Zeus entered Dana\u00eb's bronze prison as golden rain, resulting in Perseus's birth and fulfilling a prophecy about her fate.", "source": "Apollodorus, Bibliotheca; Ovid, Metamorphoses"}, {"statement": "Theseus abandoned Ariadne on an island because he fell in love with her sister", "answer": "FAKE", "truth": "While Theseus does leave Ariadne on Naxos, sources differ on reasons\u2014some say Dionysus appeared and took her, others say Theseus simply abandoned her. The sister detail is a modern invention.", "source": "Plutarch, Life of Theseus; Ovid, Heroides"}, {"statement": "Zeus punished Prometheus by having an eagle eat his liver daily for eternity", "answer": "REAL", "truth": "Hesiod's Theogony describes Zeus's punishment of Prometheus: an eagle devours his regenerating liver each day as eternal torment for stealing fire for humans.", "source": "Hesiod, Theogony; Aeschylus, Prometheus Bound"}];
+let ci = 0, sc = 0, ans = false;
+
+function render() {
+    if (ci >= M.length) { showRF(); return; }
+    const m = M[ci];
+    document.getElementById('game').innerHTML = `
+        <div class="question-card">
+            <p class="progress">${ci+1}/${M.length}</p>
+            <p class="statement">"${m.statement}"</p>
+            <div>
+                <button class="real-btn" onclick="pick('REAL')">REAL — Primary sources say this</button>
+                <button class="fake-btn" onclick="pick('FAKE')">FAKE — This is a misconception</button>
+            </div>
+            <p id="truth" class="hidden" style="margin-top:1rem"></p>
+            <button id="nxt" class="hidden" onclick="ci++;render()" style="margin-top:1rem">Next →</button>
+        </div>`;
+    ans = false;
+}
+
+function pick(choice) {
+    if (ans) return;
+    ans = true;
+    const m = M[ci];
+    if (choice === m.answer) sc++;
+    const color = choice === m.answer ? 'var(--correct)' : 'var(--wrong)';
+    const icon = choice === m.answer ? '✓' : '✗';
+    document.getElementById('truth').innerHTML = `<span style="color:${color}">${icon} ${m.answer}</span> — ${m.truth}<br><span style="color:var(--dim);font-size:.85rem">— ${m.source}</span>`;
+    document.getElementById('truth').classList.remove('hidden');
+    document.getElementById('nxt').classList.remove('hidden');
+}
+
+function showRF() {
+    document.getElementById('game').classList.add('hidden');
+    document.getElementById('result').classList.remove('hidden');
+    document.getElementById('rf-score').textContent = sc + '/' + M.length;
+    const pct = Math.round(sc/M.length*100);
+    const msgs = {0:'Homer is disappointed.',20:'Your textbook taught you well. Unfortunately it was wrong.',40:'Getting there. The primary sources are tricky.',60:'Not bad. You can tell myth from misconception.',80:'Impressive. You read the actual sources.',100:'Perfect. Stavros approves.'};
+    const tier = Math.floor(pct/20)*20;
+    document.getElementById('rf-msg').textContent = msgs[tier] || msgs[60];
+    document.getElementById('rf-share').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent('I got ' + sc + '/15 on the Real or Fake mythology quiz by @KriosMythology. Primary sources decide. Can you beat me? kriosmythology.com/tools/real-or-fake.html');
+}
+
+function copyRF() {
+    navigator.clipboard.writeText('I got ' + sc + '/15 on the Real or Fake mythology quiz — @KriosMythology kriosmythology.com/tools/real-or-fake.html').then(() => { document.getElementById('rf-copy').textContent = 'Copied!'; });
+}
+
+render();
+</script>
+<footer style="margin-top:3rem;border-top:1px solid var(--dim);color:var(--dim);font-size:.85rem;padding-top:1rem">
+<p>© 2026 Stavros Research Labs LLC | <a href="https://kriosmythology.com">kriosmythology.com</a></p>
+</footer>
+</body></html>
