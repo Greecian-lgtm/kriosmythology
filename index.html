@@ -23,12 +23,16 @@
 
     <style>
         :root {
-            --bg-deep: #030b14;
-            --blue-mid: #10335c;
-            --blue-light: #2465a8;
-            --text-main: #ffffff;
-            --text-muted: rgba(255, 255, 255, 0.55);
-            --border-thin: rgba(255, 255, 255, 0.12);
+            /* Paros Dark Aegean palette — Option B */
+            --bg-deep: #0A1520;           /* Deep Aegean night */
+            --blue-mid: #1A3A5C;          /* Cycladic cobalt shadow */
+            --blue-light: #C9972A;        /* Paros gold — replaces cold blue accent */
+            --terracotta: #B85C38;        /* Marble amber */
+            --aegean: #1B4F8A;            /* True Aegean blue */
+            --ivory: #EDE8DC;             /* Whitewash marble */
+            --text-main: #F5F0E8;         /* Warm whitewash white */
+            --text-muted: rgba(237, 232, 220, 0.55);
+            --border-thin: rgba(201, 151, 42, 0.15); /* Gold border */
             --font-display: 'Cinzel', serif;
             --font-editorial: 'Cormorant Garamond', serif;
             --font-ui: 'Inter', sans-serif;
@@ -39,6 +43,9 @@
 
         body {
             background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(ellipse at 20% 50%, rgba(27,79,138,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(201,151,42,0.05) 0%, transparent 50%);
             color: var(--text-main);
             font-family: var(--font-editorial);
             -webkit-font-smoothing: antialiased;
@@ -89,7 +96,7 @@
         .hairline-divider {
             height: 1px;
             width: 100%;
-            background-color: var(--border-thin);
+            background: linear-gradient(to right, transparent, rgba(201,151,42,0.3), transparent);
             margin: 4rem 0;
         }
 
@@ -98,7 +105,7 @@
             position: fixed;
             top: 0; left: 0;
             width: 100%;
-            background: linear-gradient(to bottom, rgba(2,8,16,0.92) 0%, rgba(2,8,16,0.0) 100%);
+            background: linear-gradient(to bottom, rgba(8,16,26,0.95) 0%, rgba(8,16,26,0.0) 100%);
             padding: 2rem 4vw;
             display: flex;
             justify-content: space-between;
@@ -178,7 +185,7 @@
             position: absolute;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: linear-gradient(to top, var(--bg-deep) 0%, rgba(3,11,20,0.6) 30%, transparent 60%);
+            background: linear-gradient(to top, #0A1520 0%, rgba(10,21,32,0.5) 30%, transparent 60%);
             pointer-events: none;
             z-index: 1;
         }
@@ -274,7 +281,7 @@
 
         /* STATS BAR */
         .stats-bar {
-            background: rgba(16,51,92,0.3);
+            background: rgba(27,79,138,0.15);
             border-top: 1px solid var(--border-thin);
             border-bottom: 1px solid var(--border-thin);
             padding: 2rem 4vw;
@@ -296,8 +303,8 @@
         .email-capture {
             padding: 4rem 0;
             background: var(--bg-deep);
-            border-top: 1px solid rgba(255,255,255,0.08);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            border-top: 1px solid rgba(201,151,42,0.2);
+            border-bottom: 1px solid rgba(201,151,42,0.2);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -347,7 +354,7 @@
             border: 1px solid var(--border-thin);
             padding: 2.5rem 2rem;
             position: relative;
-            background: rgba(255,255,255,0.01);
+            background: rgba(27,79,138,0.06);
             backdrop-filter: blur(5px);
             transition: background 0.4s var(--ease), border-color 0.4s var(--ease);
             display: flex;
@@ -359,7 +366,7 @@
         }
 
         .card:hover {
-            background: rgba(255,255,255,0.03);
+            background: rgba(201,151,42,0.04);
             border-color: rgba(255,255,255,0.3);
         }
 
@@ -404,7 +411,7 @@
             padding: 8rem 0;
             border-top: 1px solid var(--border-thin);
             border-bottom: 1px solid var(--border-thin);
-            background: rgba(16,51,92,0.08);
+            background: rgba(201,151,42,0.06);
         }
 
         .word-inner {
