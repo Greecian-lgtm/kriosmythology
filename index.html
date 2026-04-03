@@ -122,12 +122,20 @@
             color: var(--text-main);
         }
 
-        .nav-links { display: flex; gap: 3rem; }
+        .nav-links {
+            display: flex;
+            gap: 0;
+            background: rgba(8,16,26,0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(201,151,42,0.25);
+            border-radius: 40px;
+            padding: 0.5rem 0.25rem;
+        }
 
         .nav-links a {
-            color: #ffffff;
+            color: #F5F0E8;
             text-decoration: none;
-            text-shadow: 0 1px 8px rgba(0,0,0,0.8);
             font-family: var(--font-ui);
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -135,7 +143,15 @@
             transition: color 0.3s var(--ease);
         }
 
-        .nav-links a:hover { color: var(--blue-light); }
+        .nav-links a {
+            padding: 0.4rem 1.2rem;
+            border-radius: 30px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--blue-light);
+            background: rgba(201,151,42,0.12);
+        }
 
         /* HERO SCROLL CANVAS */
         .hero-scroll {
