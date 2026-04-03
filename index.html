@@ -601,6 +601,69 @@
         }
 
         /* RESPONSIVE */
+        /* Hamburger button */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            background: rgba(8,16,26,0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(201,151,42,0.25);
+            border-radius: 8px;
+        }
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #F5F0E8;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* Mobile menu overlay */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(8,16,26,0.97);
+            z-index: 99;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a {
+            color: #F5F0E8;
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            letter-spacing: 0.1em;
+            padding: 1.25rem 2rem;
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid rgba(201,151,42,0.15);
+            transition: color 0.2s, background 0.2s;
+        }
+        .mobile-menu a:first-child { border-top: 1px solid rgba(201,151,42,0.15); }
+        .mobile-menu a:hover { color: var(--blue-light); background: rgba(201,151,42,0.06); }
+        .mobile-menu .close-btn {
+            position: absolute;
+            top: 1.2rem; right: 1.5rem;
+            background: none;
+            border: none;
+            color: #F5F0E8;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
         @media (max-width: 1024px) {
             .cards-grid { grid-template-columns: repeat(2, 1fr); }
             .hero-overlay-inner { grid-template-columns: 1fr; }
@@ -613,6 +676,7 @@
         @media (max-width: 768px) {
             .cards-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
+            .hamburger { display: flex; }
             .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
             footer { flex-direction: column; gap: 1rem; }
             .stats-bar { flex-wrap: wrap; gap: 2rem; }
@@ -638,7 +702,21 @@
             <a href="/links/">Links</a>
             <a href="/tools/real-or-fake/" style="color:var(--blue-light);">Real or Fake?</a>
         </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-btn" id="closeMenu">✕</button>
+        <a href="#episodes" onclick="closeMobileMenu()">Episodes</a>
+        <a href="#sources" onclick="closeMobileMenu()">Primary Sources</a>
+        <a href="/links/">Links</a>
+        <a href="/tools/real-or-fake/" style="color:var(--blue-light);">Real or Fake?</a>
+        <a href="https://www.youtube.com/@KriosMythology" target="_blank" style="color:#C9972A;">▶ Subscribe on YouTube</a>
+        <a href="/investigate.html" style="color:#C9972A;">🔍 Investigate Free</a>
+    </div>
 
     <!-- HERO — SCROLL-DRIVEN CANVAS -->
     <section class="hero-scroll" id="hero-scroll">
