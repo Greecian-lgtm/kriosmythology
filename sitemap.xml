@@ -62,4 +62,10 @@
   <url><loc>https://kriosmythology.com/tools/quiz-ep006-troy.html</loc></url>
   <url><loc>https://kriosmythology.com/tools/quiz-ep007-theseus.html</loc></url>
   <url><loc>https://kriosmythology.com/tools/real-or-fake.html</loc></url>
+  <url>
+    <loc>https://kriosmythology.com/answers/index</loc>
+    <lastmod>2026-04-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
