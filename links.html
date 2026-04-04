@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Krios — Greek mythology from primary sources. Stavros Commentary. All links.">
+  <title>Krios — Links</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #0a0a0a;
+      --panel:     #111111;
+      --border:    #222222;
+      --gold:      #c9a84c;
+      --gold2:     #e8c97a;
+      --text:      #e8e4d9;
+      --muted:     #888888;
+      --terracotta:#c17a4a;
+      --blue:      #4a7ab5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 20px 80px;
+    }
+
+    /* Meander border top */
+    body::before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--gold) 0px, var(--gold) 8px,
+        transparent 8px, transparent 12px,
+        var(--gold) 12px, var(--gold) 16px,
+        transparent 16px, transparent 24px
+      );
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .channel-badge {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .channel-name {
+      font-family: 'Cinzel', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 6px;
+      margin-bottom: 8px;
+    }
+
+    .channel-sub {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 20px auto;
+      opacity: 0.4;
+    }
+
+    .stavros-line {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      font-style: italic;
+      margin-bottom: 36px;
+    }
+
+    /* Link buttons */
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      padding: 16px 20px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-btn:hover {
+      border-color: var(--gold);
+      background: #161616;
+    }
+
+    .link-btn .icon {
+      font-size: 18px;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .link-btn .label {
+      flex: 1;
+    }
+
+    .link-btn .label-main {
+      display: block;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .link-btn .label-sub {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 2px;
+      font-weight: 400;
+    }
+
+    .link-btn .arrow {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Primary CTA — YouTube */
+    .link-btn.primary {
+      border-color: var(--gold);
+      background: #141008;
+    }
+
+    .link-btn.primary .label-main {
+      color: var(--gold2);
+    }
+
+    .link-btn.primary:hover {
+      background: #1a1508;
+    }
+
+    /* Unknown Files */
+    .link-btn.investigate {
+      border-color: #2a1a2a;
+      background: #0e0a0e;
+    }
+
+    .link-btn.investigate .label-main {
+      color: #c9a0e8;
+    }
+
+    .link-btn.investigate:hover {
+      border-color: #c9a0e8;
+    }
+
+    /* Section label */
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      text-transform: uppercase;
+      text-align: center;
+      margin: 8px 0 4px;
+      width: 100%;
+    }
+
+    /* Kit email form section */
+    .email-section {
+      width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 24px 20px;
+      margin-bottom: 40px;
+    }
+
+    .email-label {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .email-title {
+      font-size: 14px;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .email-sub {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* Kit form override styles */
+    .formkit-form {
+      background: transparent !important;
+    }
+
+    .formkit-form * {
+      font-family: 'Inter', sans-serif !important;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .footer-brand {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .footer-sub {
+      font-size: 11px;
+      color: #555;
+    }
+
+    .footer-sub a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-sub a:hover {
+      color: var(--gold);
+    }
+
+    /* Meander bottom decoration */
+    .meander-bottom {
+      width: 100%;
+      height: 2px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--gold) 0px, var(--gold) 8px,
+        transparent 8px, transparent 12px,
+        var(--gold) 12px, var(--gold) 16px,
+        transparent 16px, transparent 24px
+      );
+      opacity: 0.3;
+      margin: 32px 0 24px;
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 40px 16px 60px; }
+      .channel-name { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="channel-badge">@KriosMythology</div>
+    <div class="channel-name">KRIOS</div>
+    <div class="channel-sub">Greek mythology from primary sources</div>
+    <div class="divider"></div>
+    <div class="stavros-line">Stavros Commentary · Paros, Cyclades</div>
+  </div>
+
+  <!-- Links -->
+  <div class="links">
+
+    <!-- YouTube — Primary CTA -->
+    <a href="https://www.youtube.com/@KriosMythology?utm_source=links&utm_medium=linkinbio&utm_campaign=krios" 
+       class="link-btn primary" target="_blank" rel="noopener">
+      <span class="icon">▶</span>
+      <span class="label">
+        <span class="label-main">Watch on YouTube</span>
+        <span class="label-sub">Season 1 — 7 episodes live</span>
+      </span>
+      <span class="arrow">↗</span>
+    </a>
+
+    <!-- Unknown Files -->
+    <a href="https://kriosmythology.com/investigate" 
+       class="link-btn investigate" target="_blank" rel="noopener">
+      <span class="icon">🔍</span>
+      <span class="label">
+        <span class="label-main">Unknown Files — Free Case</span>
+        <span class="label-sub">Investigate the real cause of the Trojan War</span>
+      </span>
+      <span class="arrow">↗</span>
+    </a>
+
+    <div class="section-label">Follow</div>
+
+    <!-- TikTok -->
+    <a href="https://www.tiktok.com/@kriosmythology?utm_source=links&utm_medium=linkinbio" 
+       class="link-btn" target="_blank" rel="noopener">
+      <span class="icon">♪</span>
+      <span class="label">
+        <span class="label-main">TikTok</span>
+        <span class="label-sub">@kriosmythology — myth shorts</span>
+      </span>
+      <span class="arrow">↗</span>
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/kriosmythology/?utm_source=links&utm_medium=linkinbio" 
+       class="link-btn" target="_blank" rel="noopener">
+      <span class="icon">◎</span>
+      <span class="label">
+        <span class="label-main">Instagram</span>
+        <span class="label-sub">@kriosmythology</span>
+      </span>
+      <span class="arrow">↗</span>
+    </a>
+
+    <div class="section-label">Explore</div>
+
+    <!-- Website -->
+    <a href="https://kriosmythology.com?utm_source=links&utm_medium=linkinbio" 
+       class="link-btn" target="_blank" rel="noopener">
+      <span class="icon">⊕</span>
+      <span class="label">
+        <span class="label-main">kriosmythology.com</span>
+        <span class="label-sub">Episodes, sources, tools</span>
+      </span>
+      <span class="arrow">↗</span>
+    </a>
+
+    <!-- Real or Fake -->
+    <a href="https://kriosmythology.com/tools/real-or-fake/?utm_source=links&utm_medium=linkinbio" 
+       class="link-btn" target="_blank" rel="noopener">
+      <span class="icon">⚡</span>
+      <span class="label">
+        <span class="label-main">Real or Fake? — Quiz</span>
+        <span class="label-sub">Can you spot the invented myth?</span>
+      </span>
+      <span class="arrow">↗</span>
+    </a>
+
+  </div>
+
+  <!-- Kit Email Form -->
+  <div class="email-section">
+    <div class="email-label">Free — Primary Source Notes</div>
+    <div class="email-title">The version Stavros didn't put in the video</div>
+    <div class="email-sub">What the primary sources actually say — sent after every episode.</div>
+    <script async data-uid="a62ecc2651" src="https://krios-primary-sources.kit.com/a62ecc2651/index.js"></script>
+  </div>
+
+  <div class="meander-bottom"></div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-brand">KRIOS · MMXXVI</div>
+    <div class="footer-sub">
+      <a href="https://kriosmythology.com">kriosmythology.com</a>
+      &nbsp;·&nbsp;
+      <a href="https://www.youtube.com/@KriosMythology">YouTube</a>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
