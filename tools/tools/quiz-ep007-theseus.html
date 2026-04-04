@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Quiz: How Well Do You Know Theseus? | Krios Mythology</title>
+<meta name="description" content="Test your knowledge of Theseus from Greek mythology. 5 questions based on primary sources, not textbooks.">
+<meta property="og:title" content="I scored _/5 on the Theseus quiz — Krios Mythology">
+<meta property="og:url" content="https://kriosmythology.com/tools/quiz-ep007-theseus.html">
+<style>:root{--bg:#0a0806;--text:#e8d5a0;--gold:#c9a84c;--white:#f5f0e8;--dim:#8a7430;--correct:#4a7c59;--wrong:#8c3a3a}
+body{background:var(--bg);color:var(--text);font-family:Georgia,serif;max-width:720px;margin:0 auto;padding:2rem 1.5rem;line-height:1.7}
+h1{color:var(--white);font-size:1.8rem;border-bottom:2px solid var(--gold);padding-bottom:.5rem}
+h2{color:var(--gold)}
+a{color:var(--gold)}
+.nav{color:var(--dim);font-size:.85rem;margin-bottom:2rem}
+.nav a{color:var(--dim)}
+button{background:var(--gold);color:var(--bg);border:none;padding:.8rem 1.5rem;border-radius:4px;cursor:pointer;font-family:Georgia,serif;font-size:1rem;margin:.4rem;transition:all .2s}
+button:hover{opacity:.85}
+.question-card{background:#1a1510;border:1px solid var(--gold);border-radius:8px;padding:1.5rem;margin:1.5rem 0}
+.score-card{background:#1a1510;border:2px solid var(--gold);border-radius:8px;padding:2rem;margin:2rem 0;text-align:center}
+.score-card h2{font-size:2.5rem;margin:.5rem 0}
+.share-btn{background:var(--gold);color:var(--bg);padding:1rem 2rem;border-radius:4px;text-decoration:none;display:inline-block;font-weight:bold;margin:.5rem}
+.correct{border-color:var(--correct)}
+.wrong{border-color:var(--wrong)}
+.hidden{display:none}
+.myth-card{background:#1a1510;border:1px solid var(--gold);border-radius:8px;padding:2rem;margin:1.5rem 0;text-align:center}
+.myth-card .wrong-version{color:var(--wrong);font-size:1.1rem;text-decoration:line-through;opacity:.7}
+.myth-card .right-version{color:var(--correct);font-size:1.3rem;margin-top:1rem}
+.myth-card .source{color:var(--dim);font-size:.85rem;margin-top:.5rem}
+</style>
+</head>
+<body>
+<div class="nav"><a href="https://kriosmythology.com">Krios</a> > <a href="https://kriosmythology.com/tools">Tools</a> > Quiz</div>
+<h1>How Well Do You Know Theseus?</h1>
+<p>5 questions. Primary sources only. Your textbook won't help you here.</p>
+<div id="quiz"></div>
+<div id="result" class="score-card hidden">
+    <p style="color:var(--dim)">YOUR SCORE</p>
+    <h2 id="score-display" style="color:var(--gold)"></h2>
+    <p id="score-msg"></p>
+    <div style="margin-top:1.5rem">
+        <a id="share-twitter" class="share-btn" target="_blank">Share on X</a>
+        <a id="share-copy" class="share-btn" href="#" onclick="copyScore();return false">Copy Result</a>
+    </div>
+    <p style="margin-top:1.5rem"><a href="https://youtube.com/@KriosMythology">Watch the full Theseus episode on YouTube →</a></p>
+</div>
+<script>
+const Q = [{"question": "According to the script, what is the most surprising detail that modern retellings of Theseus's story almost always omit?", "options": ["That Aegeus was not Theseus's only father\u2014Poseidon was also his father", "That Theseus never actually killed the Minotaur but bribed his way out", "That Ariadne was the one who suggested changing the sails"], "correct": 0, "explanation": "The script explicitly states: 'The detail that almost every modern retelling drops? Aegeus wasn't Theseus's only father. Depending on the version, Theseus is also the son of Poseidon.' This dual parentage adds a darker layer to the myth."}, {"question": "In the earliest versions of the myth mentioned in the script, what was different about Theseus and the sails?", "options": ["He forgot to change them from black to white due to his carelessness", "He left them black on purpose, not by accident", "He changed them to black instead of white as a signal"], "correct": 1, "explanation": "The script states: 'But here's what actually surprised me \u2014 in some of the earliest versions, Theseus doesn't forget the sails at all. He leaves them black on purpose.' This reframes the story from tragic accident to intentional act."}, {"question": "According to the script, what distinguishes the Cretan version of the Theseus myth from most other versions?", "options": ["Theseus never enters the labyrinth and faces the Minotaur", "Theseus kills the Minotaur but refuses to return home", "Theseus never actually kills the Minotaur\u2014he just bribes his way out and lies about it"], "correct": 2, "explanation": "The script references: 'There's one variant from Crete itself where Theseus never kills the Minotaur at all \u2014 he just bribes his way out of the labyrinth and lies about it afterward.'"}, {"question": "What primary source does the script cite as the oldest version of the Theseus myth?", "options": ["Euripides' dramatic works", "Apollodorus in the second century", "Bacchylides' epic poems"], "correct": 1, "explanation": "The script states: 'The oldest version we have comes from Apollodorus in the second century, but he's clearly pulling from much older oral traditions.' While Bacchylides and Euripides are mentioned as sources, Apollodorus is cited as having the oldest written version."}, {"question": "What does the script suggest is the true tragedy of the Theseus myth?", "options": ["That the hero fails to complete his quest and dies in shame", "That glory comes at the cost of those who love the hero\u2014Aegeus dies while Theseus wins everything", "That Theseus is punished by the gods for his hubris"], "correct": 1, "explanation": "The script argues: 'This is about what glory costs the people who love you. Theseus gets Ariadne, gets the crown, gets his name remembered forever. Aegeus gets thirty seconds of screentime before he hits the water.' The reframing suggests the real tragedy is not the hero's downfall but the collateral damage of his success."}];
+let current = 0, score = 0, answered = false;
+const quizDiv = document.getElementById('quiz');
+const resultDiv = document.getElementById('result');
+
+function render() {
+    if (current >= Q.length) { showResult(); return; }
+    const q = Q[current];
+    let html = '<div class="question-card"><p style="color:var(--dim)">Question ' + (current+1) + '/' + Q.length + '</p>';
+    html += '<h2 style="color:var(--white);font-size:1.2rem">' + q.question + '</h2>';
+    html += '<div id="options">';
+    q.options.forEach((opt, i) => {
+        html += '<button onclick="answer(' + i + ')" id="opt' + i + '">' + opt + '</button><br>';
+    });
+    html += '</div><p id="explanation" class="hidden" style="margin-top:1rem;color:var(--dim)"></p>';
+    html += '<button id="next-btn" class="hidden" onclick="next()" style="margin-top:1rem">Next →</button></div>';
+    quizDiv.innerHTML = html;
+    answered = false;
+}
+
+function answer(i) {
+    if (answered) return;
+    answered = true;
+    const q = Q[current];
+    const btns = document.querySelectorAll('#options button');
+    btns.forEach((b,j) => {
+        b.style.opacity = j === q.correct ? '1' : '0.4';
+        if (j === q.correct) b.style.background = '#4a7c59';
+        if (j === i && i !== q.correct) b.style.background = '#8c3a3a';
+    });
+    if (i === q.correct) score++;
+    document.getElementById('explanation').textContent = q.explanation;
+    document.getElementById('explanation').classList.remove('hidden');
+    document.getElementById('next-btn').classList.remove('hidden');
+}
+
+function next() { current++; render(); }
+
+function showResult() {
+    quizDiv.classList.add('hidden');
+    resultDiv.classList.remove('hidden');
+    document.getElementById('score-display').textContent = score + '/' + Q.length;
+    const msgs = ['The primary sources would be disappointed.','Not bad, but Homer expected more.','Solid knowledge. The ancients approve.','Impressive. You read the actual sources.','Perfect. Stavros is proud.'];
+    document.getElementById('score-msg').textContent = msgs[score] || msgs[2];
+    const shareText = 'I scored ' + score + '/5 on the Theseus mythology quiz. Primary sources only. Can you beat me? https://kriosmythology.com/tools/quiz-ep007-theseus.html';
+    document.getElementById('share-twitter').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText);
+}
+
+function copyScore() {
+    const text = 'I scored ' + score + '/5 on the Theseus mythology quiz — @KriosMythology. Can you beat me? kriosmythology.com/tools/quiz-ep007-theseus.html';
+    navigator.clipboard.writeText(text).then(() => { document.getElementById('share-copy').textContent = 'Copied!'; });
+}
+
+render();
+</script>
+<footer style="margin-top:3rem;border-top:1px solid var(--dim);color:var(--dim);font-size:.85rem;padding-top:1rem">
+<p>© 2026 Stavros Research Labs LLC | <a href="https://kriosmythology.com">kriosmythology.com</a></p>
+</footer>
+</body></html>
