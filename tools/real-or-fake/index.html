@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Real or Fake? — Can you tell the difference between actual Greek mythology and invented myths? Test yourself with primary sources.">
+  <title>Real or Fake? — Krios Greek Mythology Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CR9SJHDTPB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CR9SJHDTPB');
+  </script>
+  <style>
+    :root {
+      --bg:       #0a0a0a;
+      --panel:    #111111;
+      --border:   #222222;
+      --gold:     #c9a84c;
+      --gold2:    #e8c97a;
+      --text:     #e8e4d9;
+      --muted:    #888888;
+      --green:    #4caf82;
+      --red:      #cf6679;
+      --terracotta: #c17a4a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* Meander top border */
+    .meander {
+      width: 100%;
+      height: 3px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--gold) 0px, var(--gold) 8px,
+        transparent 8px, transparent 12px,
+        var(--gold) 12px, var(--gold) 16px,
+        transparent 16px, transparent 24px
+      );
+      opacity: 0.6;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav a.logo {
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    nav a.back {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    nav a.back:hover { color: var(--text); }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-badge {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 4px;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Quiz container */
+    .quiz-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    /* Progress */
+    .progress-bar {
+      width: 100%;
+      height: 2px;
+      background: var(--border);
+      border-radius: 1px;
+      margin-bottom: 32px;
+    }
+
+    .progress-fill {
+      height: 2px;
+      background: var(--gold);
+      border-radius: 1px;
+      transition: width 0.4s ease;
+    }
+
+    .progress-label {
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    /* Question card */
+    .question-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 40px 36px;
+      margin-bottom: 24px;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .question-source {
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .question-text {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(15px, 2.5vw, 20px);
+      line-height: 1.6;
+      color: var(--text);
+      font-style: italic;
+    }
+
+    /* Buttons */
+    .btn-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .btn-choice {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--panel);
+      color: var(--text);
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .btn-choice:hover:not(:disabled) {
+      border-color: var(--gold);
+      background: #161208;
+    }
+
+    .btn-choice.correct {
+      border-color: var(--green);
+      background: #0a1a0f;
+      color: var(--green);
+    }
+
+    .btn-choice.wrong {
+      border-color: var(--red);
+      background: #1a0a0f;
+      color: var(--red);
+    }
+
+    .btn-choice.reveal-correct {
+      border-color: var(--green);
+      background: #0a1a0f;
+      color: var(--green);
+    }
+
+    .btn-choice:disabled {
+      cursor: default;
+    }
+
+    /* Reveal panel */
+    .reveal-panel {
+      background: #0e0e0e;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 4px;
+      padding: 24px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .reveal-panel.show { display: block; }
+
+    .reveal-verdict {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      margin-bottom: 10px;
+    }
+
+    .reveal-verdict.real { color: var(--green); }
+    .reveal-verdict.fake { color: var(--red); }
+
+    .reveal-source {
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .reveal-explanation {
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .reveal-explanation em {
+      color: var(--gold2);
+      font-style: normal;
+    }
+
+    /* Next button */
+    .btn-next {
+      width: 100%;
+      padding: 16px;
+      background: transparent;
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      color: var(--gold);
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: none;
+    }
+
+    .btn-next.show { display: block; }
+    .btn-next:hover { background: #161208; }
+
+    /* Score screen */
+    .score-screen {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .score-screen.show { display: block; }
+
+    .score-badge {
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .score-number {
+      font-family: 'Cinzel', serif;
+      font-size: 72px;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .score-total {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .score-label {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .score-sub {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 400px;
+      margin: 0 auto 40px;
+    }
+
+    .score-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.3;
+      margin: 24px auto;
+    }
+
+    .btn-restart {
+      padding: 16px 40px;
+      background: transparent;
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      color: var(--gold);
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .btn-restart:hover { background: #161208; }
+
+    .cta-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .cta-link {
+      display: block;
+      padding: 14px 20px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      transition: border-color 0.2s;
+      text-align: center;
+    }
+
+    .cta-link:hover { border-color: var(--gold); }
+    .cta-link span { color: var(--muted); font-size: 11px; display: block; margin-top: 2px; }
+
+    /* Quiz area toggle */
+    .quiz-area { display: block; }
+
+    @media (max-width: 480px) {
+      .question-card { padding: 28px 20px; }
+      .btn-row { grid-template-columns: 1fr; }
+      nav { padding: 14px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="meander"></div>
+
+<nav>
+  <a href="https://kriosmythology.com" class="logo">KRIOS</a>
+  <a href="https://kriosmythology.com" class="back">← Back to Episodes</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Greek Mythology · Primary Sources</div>
+  <h1>Real or Fake?</h1>
+  <p>Every claim below is either from an actual ancient source — Homer, Hesiod, Pindar, Pausanias — or invented. Can you tell the difference?</p>
+</div>
+
+<div class="quiz-wrap">
+
+  <!-- Quiz area -->
+  <div class="quiz-area" id="quizArea">
+    <div class="progress-label" id="progressLabel">QUESTION 1 OF 10</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill" style="width: 10%"></div>
+    </div>
+
+    <div class="question-card">
+      <div class="question-source" id="questionSource">FROM THE SOURCES</div>
+      <div class="question-text" id="questionText">Loading...</div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-choice" id="btnReal" onclick="answer('real')">✓ REAL</button>
+      <button class="btn-choice" id="btnFake" onclick="answer('fake')">✗ FAKE</button>
+    </div>
+
+    <div class="reveal-panel" id="revealPanel">
+      <div class="reveal-verdict" id="revealVerdict"></div>
+      <div class="reveal-source" id="revealSource"></div>
+      <div class="reveal-explanation" id="revealExplanation"></div>
+    </div>
+
+    <button class="btn-next" id="btnNext" onclick="nextQuestion()">NEXT QUESTION →</button>
+  </div>
+
+  <!-- Score screen -->
+  <div class="score-screen" id="scoreScreen">
+    <div class="score-badge">QUIZ COMPLETE</div>
+    <div class="score-number" id="scoreNumber">0</div>
+    <div class="score-total" id="scoreTotal">out of 10</div>
+    <div class="score-label" id="scoreLabel"></div>
+    <div class="score-sub" id="scoreSub"></div>
+    <div class="score-divider"></div>
+    <button class="btn-restart" onclick="restartQuiz()">PLAY AGAIN</button>
+    <div class="cta-links">
+      <a href="https://www.youtube.com/@KriosMythology" class="cta-link">
+        Watch Krios on YouTube
+        <span>Every claim traced to primary sources</span>
+      </a>
+      <a href="https://kriosmythology.com/investigate" class="cta-link">
+        Unknown Files — Free Case
+        <span>Investigate the real cause of the Trojan War</span>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    text: "Achilles was invulnerable everywhere except his heel, which his mother Thetis forgot to dip in the River Styx.",
+    answer: "fake",
+    source: "Homer — Iliad",
+    explanation: "Homer never mentions the heel. Not once. The Iliad opens with Achilles' wrath, describes his death by Paris' arrow — but gives no invulnerability story at all. The Styx heel story appears in <em>later</em> Roman sources, most notably Statius writing in the 1st century CE — 800 years after Homer."
+  },
+  {
+    text: "Hesiod says that Zeus swallowed his first wife Metis whole because an oracle warned him their son would be mightier than the father.",
+    answer: "real",
+    source: "Hesiod — Theogony, c. 886",
+    explanation: "Exact text. Hesiod writes that Zeus swallowed Metis after she became pregnant, fearing the prophecy. Athena was later born fully armed from Zeus' head. This is in the Theogony — Hesiod's actual account of how the gods came to be."
+  },
+  {
+    text: "Odysseus blinded the Cyclops Polyphemus by driving a sharpened olive-wood stake through his eye while he slept.",
+    answer: "real",
+    source: "Homer — Odyssey, Book 9",
+    explanation: "Correct in every detail. Homer specifies olive wood, sharpened and hardened in fire. Odysseus and his men drove it into the Cyclops' eye while he slept. This is one of the most precisely described scenes in the Odyssey — Homer gives the exact species of wood."
+  },
+  {
+    text: "Medusa was originally a beautiful woman who was punished by Poseidon for boasting that she was more beautiful than the sea-nymphs.",
+    answer: "fake",
+    source: "Ovid — Metamorphoses IV / Pindar — Pythian 12",
+    explanation: "The boasting story is invented. In Ovid — the actual Roman source — Poseidon assaulted Medusa in Athena's temple. Athena then punished Medusa. Pindar's earlier account has no origin story for Medusa at all. The boasting version circulates online but exists in no ancient source."
+  },
+  {
+    text: "The first word of the Iliad is 'mênis' — wrath — and Homer uses this specific word for only two beings in the entire epic: Achilles and the gods.",
+    answer: "real",
+    source: "Homer — Iliad, Book 1, line 1",
+    explanation: "Exactly right. Mênis is the very first word of the Iliad — 'Sing, goddess, the wrath of Achilles.' It is a cosmically-charged anger, theologically distinct from ordinary anger. Throughout the Iliad, Homer restricts this word to divine wrath and Achilles alone. Every death in the poem follows from that first word."
+  },
+  {
+    text: "Heracles murdered his wife Megara and their children in a fit of madness sent by Hera before he was assigned his twelve labours.",
+    answer: "real",
+    source: "Euripides — Heracles / Apollodorus — Bibliotheca",
+    explanation: "This is the actual myth — and why the labours exist. Euripides' play Heracles dramatises this murder. Apollodorus records it in the Bibliotheca. The labours were assigned by the Delphic oracle as penance. The Disney version that frames the labours as heroic adventure omits the crime that necessitated them."
+  },
+  {
+    text: "Persephone chose to remain in the underworld after falling in love with Hades, and the seasons were Demeter's punishment of the earth for interfering.",
+    answer: "fake",
+    source: "Homeric Hymn to Demeter",
+    explanation: "The oldest source — the Homeric Hymn to Demeter — says Zeus gave Persephone to Hades. The Greek word is edōken: he gave her, same word used for a father giving a daughter in marriage. There is no choice and no love story in the earliest text. Demeter's grief caused the seasons — not punishment for interference."
+  },
+  {
+    text: "Pausanias, writing in the 2nd century CE, personally visited the cave at Cape Tainaron in the southern Peloponnese that the Greeks identified as an entrance to the underworld.",
+    answer: "real",
+    source: "Pausanias — Description of Greece, III.25.4",
+    explanation: "Pausanias records his visit in precise geographic detail. The cave at Cape Tainaron — modern Cape Matapan — was an actual cult site. Pausanias notes it housed a sanctuary of Poseidon and was traditionally considered a descent point to Hades. It is one of the few underworld entrances from Greek myth with a real archaeological location."
+  },
+  {
+    text: "In Homer's Odyssey, the Sirens are described as half-woman half-bird creatures who lure sailors with their beautiful appearance.",
+    answer: "fake",
+    source: "Homer — Odyssey, Book 12",
+    explanation: "Homer describes only the Sirens' voices and their song — never their appearance. The half-woman half-bird image comes from later vase paintings and Roman art. In the Odyssey, Odysseus has himself tied to the mast to hear them safely. Homer's focus is entirely on what they know and what they promise — not what they look like."
+  },
+  {
+    text: "There were approximately 7,000 Greek soldiers at Thermopylae, not 300 — and the 700 Thespians who fought to the last are barely remembered.",
+    answer: "real",
+    source: "Herodotus — Histories, Book 7",
+    explanation: "Herodotus gives precise numbers: 300 Spartans, 700 Thespians, 400 Thebans, and thousands more from other city-states. The Thespians chose to stay and died to the last man — their city was later burned by Xerxes in retaliation. Herodotus considered them the true heroes of Thermopylae. They have no film."
+  }
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+let order = [];
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function loadQuestion() {
+  const q = QUESTIONS[order[current]];
+  answered = false;
+
+  document.getElementById('progressLabel').textContent =
+    `QUESTION ${current + 1} OF ${QUESTIONS.length}`;
+  document.getElementById('progressFill').style.width =
+    `${((current + 1) / QUESTIONS.length) * 100}%`;
+  document.getElementById('questionText').textContent = q.text;
+  document.getElementById('questionSource').textContent = 'CAN YOU TELL?';
+
+  const btnReal = document.getElementById('btnReal');
+  const btnFake = document.getElementById('btnFake');
+  btnReal.className = 'btn-choice';
+  btnFake.className = 'btn-choice';
+  btnReal.disabled = false;
+  btnFake.disabled = false;
+
+  document.getElementById('revealPanel').classList.remove('show');
+  document.getElementById('btnNext').classList.remove('show');
+}
+
+function answer(choice) {
+  if (answered) return;
+  answered = true;
+
+  const q = QUESTIONS[order[current]];
+  const correct = choice === q.answer;
+  if (correct) score++;
+
+  const btnReal = document.getElementById('btnReal');
+  const btnFake = document.getElementById('btnFake');
+  btnReal.disabled = true;
+  btnFake.disabled = true;
+
+  if (choice === 'real') {
+    btnReal.className = correct ? 'btn-choice correct' : 'btn-choice wrong';
+    if (!correct) btnFake.className = 'btn-choice reveal-correct';
+  } else {
+    btnFake.className = correct ? 'btn-choice correct' : 'btn-choice wrong';
+    if (!correct) btnReal.className = 'btn-choice reveal-correct';
+  }
+
+  // Show reveal
+  const panel = document.getElementById('revealPanel');
+  const verdict = document.getElementById('revealVerdict');
+  verdict.textContent = q.answer === 'real' ? '✓ REAL — FROM THE SOURCES' : '✗ FAKE — NOT IN ANY ANCIENT TEXT';
+  verdict.className = `reveal-verdict ${q.answer}`;
+  document.getElementById('revealSource').textContent = q.source;
+  document.getElementById('revealExplanation').innerHTML = q.explanation;
+  panel.classList.add('show');
+
+  document.getElementById('btnNext').classList.add('show');
+
+  // GA event
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'quiz_answer', {
+      question: current + 1,
+      correct: correct,
+      answer: choice
+    });
+  }
+}
+
+function nextQuestion() {
+  current++;
+  if (current >= QUESTIONS.length) {
+    showScore();
+  } else {
+    loadQuestion();
+  }
+}
+
+function showScore() {
+  document.getElementById('quizArea').style.display = 'none';
+  const screen = document.getElementById('scoreScreen');
+  screen.classList.add('show');
+
+  document.getElementById('scoreNumber').textContent = score;
+  document.getElementById('scoreTotal').textContent = `out of ${QUESTIONS.length}`;
+
+  const pct = score / QUESTIONS.length;
+  let label, sub;
+
+  if (pct === 1) {
+    label = "Homer himself would approve.";
+    sub = "You know the primary sources. Every answer correct — you're reading the actual texts, not the popular retellings.";
+  } else if (pct >= 0.8) {
+    label = "The sources are in you.";
+    sub = "Strong knowledge of what the ancient writers actually said. The gaps are where the popular versions diverged from the originals.";
+  } else if (pct >= 0.6) {
+    label = "You know the myths. Now find the sources.";
+    sub = "Good instincts — but some of what you know comes from Ovid, Disney, or later retellings, not Homer and Hesiod.";
+  } else if (pct >= 0.4) {
+    label = "The popular versions have done their work.";
+    sub = "Most of what circulates as Greek mythology is Roman, medieval, or modern. The original sources are stranger and better.";
+  } else {
+    label = "Start with Homer.";
+    sub = "The gap between what mythology 'says' and what the ancient writers actually wrote is enormous. Every Krios episode closes that gap.";
+  }
+
+  document.getElementById('scoreLabel').textContent = label;
+  document.getElementById('scoreSub').textContent = sub;
+
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'quiz_complete', { score: score, total: QUESTIONS.length });
+  }
+}
+
+function restartQuiz() {
+  current = 0;
+  score = 0;
+  order = shuffle([...Array(QUESTIONS.length).keys()]);
+  document.getElementById('quizArea').style.display = 'block';
+  document.getElementById('scoreScreen').classList.remove('show');
+  loadQuestion();
+}
+
+// Init
+order = shuffle([...Array(QUESTIONS.length).keys()]);
+loadQuestion();
+</script>
+
+</body>
+</html>
