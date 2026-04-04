@@ -794,8 +794,130 @@ footer {
   .hero-stats { gap: 2rem; }
   .hero { padding: calc(var(--nav-h) + 3rem) 1.5rem 5rem; }
 }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   GSAP SCROLL FLIPBOOK SECTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.flipbook-section {
+  position: relative;
+  overflow: hidden;
+}
+.flipbook-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  filter: saturate(1.1) brightness(0.7);
+  z-index: 0;
+}
+.flipbook-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  pointer-events: none;
+}
+.flipbook-section .section-inner,
+.flipbook-section .investigate-inner,
+.flipbook-section .split-outer {
+  position: relative; z-index: 2;
+}
+/* Investigate overlay — coastal deep */
+.investigate-flipbook-overlay {
+  background:
+    radial-gradient(ellipse 70% 80% at 0% 50%, rgba(8,26,40,0.75) 0%, transparent 65%),
+    linear-gradient(90deg, rgba(8,15,26,0.85) 0%, rgba(8,15,26,0.4) 60%, rgba(8,15,26,0.7) 100%);
+}
+/* Episodes overlay — dark with warm centre */
+.episodes-flipbook-overlay {
+  background:
+    radial-gradient(ellipse 60% 70% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(8,15,26,0.9) 0%, rgba(8,15,26,0.7) 50%, rgba(8,15,26,0.9) 100%);
+}
+/* Commentary overlay — Byzantine gold ground */
+.commentary-flipbook-overlay {
+  background:
+    radial-gradient(ellipse 55% 70% at 30% 50%, rgba(201,168,76,0.08) 0%, transparent 55%),
+    linear-gradient(180deg, rgba(5,10,16,0.92) 0%, rgba(5,10,16,0.75) 50%, rgba(5,10,16,0.92) 100%);
+}
+/* Sources overlay — marble light */
+.sources-flipbook-overlay {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.05) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(8,15,26,0.88) 0%, rgba(8,15,26,0.65) 50%, rgba(8,15,26,0.88) 100%);
+}
+
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer>
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   GSAP SCROLLTRIGGER FLIPBOOK ENGINE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+gsap.registerPlugin(ScrollTrigger);
+
+function buildFlipbook(canvasId, triggerId, frameDir, totalFrames) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const frames = [];
+  let loaded = 0;
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    if (frames[Math.floor(obj.frame)] && frames[Math.floor(obj.frame)].complete) {
+      drawFrame(Math.floor(obj.frame));
+    }
+  }
+
+  function drawFrame(n) {
+    const img = frames[n];
+    if (!img || !img.complete) return;
+    const cw = canvas.width, ch = canvas.height;
+    const iw = img.naturalWidth, ih = img.naturalHeight;
+    const scale = Math.max(cw / iw, ch / ih);
+    const x = (cw - iw * scale) / 2;
+    const y = (ch - ih * scale) / 2;
+    ctx.clearRect(0, 0, cw, ch);
+    ctx.drawImage(img, x, y, iw * scale, ih * scale);
+  }
+
+  const obj = { frame: 0 };
+
+  // Preload all frames
+  for (let i = 1; i <= totalFrames; i++) {
+    const img = new Image();
+    const num = String(i).padStart(4, '0');
+    img.src = `frames/${frameDir}/frame-${num}.webp`;
+    img.onload = () => {
+      loaded++;
+      if (loaded === 1) { resize(); drawFrame(0); }
+    };
+    frames.push(img);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  gsap.to(obj, {
+    frame: totalFrames - 1,
+    snap: 'frame',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: `#${triggerId}`,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 0.5,
+      onUpdate: () => drawFrame(Math.round(obj.frame))
+    }
+  });
+}
+
+// Wire all 4 flipbooks — 217 frames each
+window.addEventListener('load', () => {
+  buildFlipbook('canvas-investigate', 'fb-investigate',  'investigate', 217);
+  buildFlipbook('canvas-episodes',    'episodes',         'episodes',    217);
+  buildFlipbook('canvas-commentary',  'fb-commentary',    'commentary',  217);
+  buildFlipbook('canvas-sources',     'fb-sources',       'sources',     217);
+});
+
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 </head>
 <body>
@@ -895,7 +1017,9 @@ footer {
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━
      INVESTIGATE BAND
 ━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-<div class="investigate-band">
+<div class="investigate-band flipbook-section" id="fb-investigate">
+  <canvas class="flipbook-canvas" id="canvas-investigate"></canvas>
+  <div class="flipbook-overlay investigate-flipbook-overlay"></div>
   <div class="investigate-inner">
     <div class="investigate-text">
       <div class="investigate-label">Unknown Files — Free Case</div>
@@ -914,7 +1038,9 @@ footer {
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━
      EPISODES — FLIP CARDS
 ━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-<section class="episodes-section" id="episodes" aria-label="Season 1 Episodes">
+<section class="episodes-section flipbook-section" id="episodes" aria-label="Season 1 Episodes">
+  <canvas class="flipbook-canvas" id="canvas-episodes"></canvas>
+  <div class="flipbook-overlay episodes-flipbook-overlay"></div>
   <div class="section-inner">
     <div class="episodes-header">
       <div>
@@ -971,7 +1097,9 @@ footer {
      STAVROS COMMENTARY — STICKY SPLIT
      Byzantine icon treatment
 ━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-<section class="commentary-section" aria-label="Stavros Commentary">
+<section class="commentary-section flipbook-section" id="fb-commentary" aria-label="Stavros Commentary">
+  <canvas class="flipbook-canvas" id="canvas-commentary"></canvas>
+  <div class="flipbook-overlay commentary-flipbook-overlay"></div>
   <div class="split-outer">
     <div class="split-sticky">
       <div class="split-sticky-inner">
@@ -1033,7 +1161,9 @@ footer {
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━
      PRIMARY SOURCES
 ━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-<section class="sources-section" id="sources" aria-label="Primary Sources">
+<section class="sources-section flipbook-section" id="fb-sources" aria-label="Primary Sources">
+  <canvas class="flipbook-canvas" id="canvas-sources"></canvas>
+  <div class="flipbook-overlay sources-flipbook-overlay"></div>
   <div class="section-inner">
     <div class="section-label">Primary Sources</div>
     <h2 class="section-title">Every Claim Referenced</h2>
