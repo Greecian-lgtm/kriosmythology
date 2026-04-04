@@ -11,46 +11,45 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;600;700;900&display=swap" rel="stylesheet">
 
 <style>
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   STYLE BLEND: myth-greek-olympian (134) 60%
-                nature-coastal (92) 25%
-                medieval-byzantine-icon (152) 15%
-   "Paros at the Edge of Olympus"
+   STYLE: maximalist-luxury — "Palazzo of the Gods"
+   Palette: deep purple-black #1A0A2E · antique gold #C9A84C
+            cream #F5EDD8 · burgundy #8B1A4A
+   Fonts:   Bodoni Moda (display) · EB Garamond (body) · Cinzel (labels)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* myth-greek-olympian palette */
   --marble:      #FAFAF5;
-  --night:       #0B1628;
-  --night-mid:   #111E30;
-  --night-deep:  #080F1A;
+  --night:       #1A0A2E;
+  --night-mid:   #150820;
+  --night-deep:  #120618;
   --attic-gold:  #C9A84C;
   --gold-dim:    #8B6E2F;
   --gold-pale:   rgba(201,168,76,0.12);
   --gold-glow:   rgba(201,168,76,0.25);
-  --classical-red: #8B1A1A;
+  --classical-red: #8B1A4A;
   --parchment:   #F5EDD8;
-  --cream:       #EDE8DC;
-  --ink:         #1A1208;
-  --mist:        #6B7880;
+  --cream:       #F5EDD8;
+  --ink:         #1A0A2E;
+  --mist:        #9A8A9A;
 
-  /* nature-coastal palette */
-  --ocean-deep:  #2C5F7A;
-  --seafoam:     #7ABFBF;
-  --sand:        #E8C585;
+  /* repurposed — palazzo deep */
+  --ocean-deep:  #2C1A4A;
+  --seafoam:     #C9A84C;
+  --sand:        #F5EDD8;
   --driftwood:   #C4A882;
-  --coastal-mist: rgba(122,191,191,0.15);
+  --coastal-mist: rgba(201,168,76,0.08);
 
-  /* byzantine accent */
+  /* Byzantine → Palazzo */
   --gold-ground: #C9A84C;
-  --icon-shadow: #1A0A00;
-  --lapis:       #0D3B6E;
-  --vermillion:  #8B1A1A;
+  --icon-shadow: #1A0A2E;
+  --lapis:       #1A0A2E;
+  --vermillion:  #8B1A4A;
 
   --nav-h: 64px;
 }
@@ -60,9 +59,9 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--night);
   color: var(--cream);
-  font-family: 'Crimson Pro', Georgia, serif;
+  font-family: 'EB Garamond', Georgia, serif;
   font-size: 18px;
-  line-height: 1.75;
+  line-height: 1.9;
   overflow-x: hidden;
 }
 a { color: inherit; text-decoration: none; }
@@ -88,7 +87,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   MARBLE GRAIN TEXTURE (Style 134)
+   MARBLE GRAIN TEXTURE
    SVG turbulence as CSS background
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .marble-texture::before {
@@ -100,7 +99,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GREEK KEY MEANDER (Style 134)
+   GREEK KEY MEANDER
    SVG inline as border treatment
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .meander-border {
@@ -112,7 +111,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   WAVE DIVIDER (Style 92 — coastal)
+   WAVE DIVIDER
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .wave-divider {
   width: 100%; overflow: hidden;
@@ -128,22 +127,24 @@ nav {
   height: var(--nav-h);
   display: flex; align-items: center;
   padding: 0 3rem; gap: 2.5rem;
-  background: rgba(4,8,15,0.96);
+  background: rgba(14,6,28,0.96);
   backdrop-filter: blur(24px);
   border-bottom: 1px solid rgba(201,168,76,0.25);
 }
 .nav-logo {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 1rem; font-weight: 700;
-  letter-spacing: 0.3em; color: var(--attic-gold);
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.1rem; font-weight: 900;
+  font-style: italic;
+  letter-spacing: 0.2em; color: var(--attic-gold);
   margin-right: auto;
   text-shadow: 0 0 20px rgba(201,168,76,0.6);
 }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
 .nav-links a {
   font-family: 'Cinzel', serif;
-  font-size: 10px; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--mist);
+  font-size: 12px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: rgba(245,237,216,0.9);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
   transition: color 0.25s;
 }
 .nav-links a:hover { color: var(--attic-gold); }
@@ -163,7 +164,7 @@ nav {
 .nav-mobile-menu {
   display: none; position: fixed;
   inset: var(--nav-h) 0 0 0; z-index: 998;
-  background: rgba(8,15,26,0.98);
+  background: rgba(18,6,24,0.98);
   flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
 }
 .nav-mobile-menu.open { display: flex; }
@@ -173,8 +174,7 @@ nav {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   HERO — Paros at Dusk
-   Style 134 + 92 fused
+   HERO — Palazzo of the Gods
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .hero {
   min-height: 100vh; position: relative;
@@ -185,55 +185,53 @@ nav {
   overflow: hidden;
 }
 
-/* Paros coastal dusk sky — style 92 + 134 fusion */
+/* Palazzo throne room — deep purple with gold aureole */
 .hero-bg {
   position: absolute; inset: 0; z-index: 0;
   background:
-    /* Sunset amber horizon — Paros golden hour */
-    radial-gradient(ellipse 100% 40% at 50% 100%, rgba(196,168,130,0.18) 0%, transparent 65%),
-    /* Aegean sea depth bottom */
-    radial-gradient(ellipse 80% 50% at 50% 85%, rgba(44,95,122,0.25) 0%, transparent 60%),
-    /* Divine Olympian light centre — god rays */
-    radial-gradient(ellipse 60% 60% at 50% 35%, rgba(201,168,76,0.07) 0%, transparent 65%),
-      /* Radial bloom — strong centre halo behind text, dark edges */
+    /* Gold aureole — divine light at horizon */
+    radial-gradient(ellipse 100% 40% at 50% 100%, rgba(201,168,76,0.12) 0%, transparent 65%),
+    /* Burgundy depth — palazzo shadow */
+    radial-gradient(ellipse 80% 50% at 50% 85%, rgba(139,26,74,0.15) 0%, transparent 60%),
+    /* Radial bloom — gold halo behind text */
     radial-gradient(ellipse 65% 55% at 50% 42%,
       rgba(201,168,76,0.18) 0%,
-      rgba(30,50,80,0.55) 40%,
-      rgba(8,15,26,0.82) 70%,
-      rgba(4,8,15,0.95) 100%
+      rgba(26,10,46,0.55) 40%,
+      rgba(18,6,36,0.82) 70%,
+      rgba(12,4,24,0.95) 100%
     ),
-    /* Bottom vignette — ground the video */
+    /* Bottom vignette */
     linear-gradient(180deg,
       transparent 50%,
-      rgba(4,8,15,0.7) 80%,
-      rgba(4,8,15,0.95) 100%
+      rgba(12,4,24,0.7) 80%,
+      rgba(12,4,24,0.95) 100%
     ),
     /* Top vignette — nav area dark */
     linear-gradient(180deg,
-      rgba(4,8,15,0.7) 0%,
+      rgba(12,4,24,0.7) 0%,
       transparent 25%
     );
 }
 
-/* Marble grain overlay */
+/* Grain overlay */
 .hero-grain {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
   opacity: 0.018;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='600' height='600' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Coastal horizon line — style 92 */
+/* Palazzo threshold line — gold + burgundy */
 .hero-horizon {
   position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;
   height: 1px;
   background: linear-gradient(90deg,
-    transparent 0%, rgba(122,191,191,0.3) 20%,
+    transparent 0%, rgba(139,26,74,0.3) 20%,
     rgba(201,168,76,0.4) 50%,
-    rgba(122,191,191,0.3) 80%, transparent 100%
+    rgba(139,26,74,0.3) 80%, transparent 100%
   );
 }
 
-/* Star field — Cycladic night sky */
+/* Star field */
 .hero-stars {
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
 }
@@ -255,20 +253,21 @@ nav {
   animation: blink 0.75s step-end infinite;
 }
 .hero-pre {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: clamp(1rem, 2vw, 1.2rem);
-  font-weight: 300; font-style: italic;
+  font-weight: 400; font-style: italic;
   color: var(--cream); margin-bottom: 0.4rem;
   letter-spacing: 0.1em;
   text-shadow: 0 2px 20px rgba(0,0,0,0.8);
 }
 
-/* KRIOS title — Style 134 marble + gold */
+/* KRIOS title — Bodoni Moda Black italic */
 .hero-title {
-  font-family: 'Cinzel Decorative', serif;
+  font-family: 'Bodoni Moda', serif;
   font-size: clamp(4.5rem, 13vw, 10rem);
-  font-weight: 700; line-height: 0.95;
-  letter-spacing: 0.05em;
+  font-weight: 900; line-height: 0.8;
+  letter-spacing: -0.03em;
+  font-style: italic;
   background: linear-gradient(
     180deg,
     #F5F0E8 0%,
@@ -301,11 +300,11 @@ nav {
   opacity: 1;
   animation: glitch-bot 0.35s steps(2) 0.12s infinite;
   clip-path: inset(58% 0 0 0);
-  -webkit-text-fill-color: var(--seafoam);
+  -webkit-text-fill-color: rgba(201,168,76,0.9);
   background: none; left: -3px;
 }
 
-/* Laurel wreath flanking title — Style 134 */
+/* Laurel wreath flanking title */
 .hero-laurel {
   display: flex; align-items: center; justify-content: center;
   gap: 1.5rem; margin-bottom: 2rem;
@@ -313,11 +312,11 @@ nav {
 .laurel-svg { opacity: 0.5; }
 
 .hero-sub {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: clamp(1rem, 2vw, 1.25rem);
-  font-weight: 300; font-style: italic;
+  font-weight: 400; font-style: italic;
   color: var(--cream); max-width: 540px;
-  margin: 0 auto 3rem; line-height: 1.8;
+  margin: 0 auto 3rem; line-height: 1.9;
   text-shadow: 0 2px 24px rgba(0,0,0,0.9);
 }
 
@@ -326,7 +325,7 @@ nav {
   flex-wrap: wrap; margin-bottom: 5rem;
 }
 
-/* Meander border below CTAs — Style 134 */
+/* Meander border below CTAs */
 .hero-meander { margin-bottom: 3rem; }
 
 .hero-stats {
@@ -334,8 +333,9 @@ nav {
 }
 .hero-stat { text-align: center; }
 .hero-stat-num {
-  font-family: 'Cinzel', serif;
-  font-size: 1.8rem; font-weight: 700; color: var(--attic-gold);
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.8rem; font-weight: 700; font-style: italic;
+  color: var(--attic-gold);
   line-height: 1;
   text-shadow: 0 0 20px rgba(201,168,76,0.6);
 }
@@ -396,32 +396,33 @@ section { padding: 7rem 2rem; position: relative; }
   text-transform: uppercase; margin-bottom: 0.75rem;
 }
 .section-title {
-  font-family: 'Cinzel', serif;
+  font-family: 'Bodoni Moda', serif;
   font-size: clamp(1.8rem, 4vw, 3rem);
-  font-weight: 700; color: var(--parchment);
-  line-height: 1.15; margin-bottom: 1rem;
+  font-weight: 900; font-style: italic;
+  color: var(--parchment);
+  line-height: 1.05; margin-bottom: 1rem;
+  letter-spacing: -0.02em;
 }
 .section-sub {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1.1rem; font-style: italic;
   color: var(--mist); max-width: 520px; margin-bottom: 3rem;
-  line-height: 1.75;
+  line-height: 1.9;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    INVESTIGATE BAND
-   Style 92 — coastal dark band
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .investigate-band {
-  background: linear-gradient(135deg, #0B1A28 0%, #0D1E30 50%, #091520 100%);
-  border-top: 1px solid rgba(122,191,191,0.15);
-  border-bottom: 1px solid rgba(122,191,191,0.15);
+  background: linear-gradient(135deg, #1A0A2E 0%, #150820 50%, #120618 100%);
+  border-top: 1px solid rgba(201,168,76,0.15);
+  border-bottom: 1px solid rgba(201,168,76,0.15);
   padding: 5rem 2rem; position: relative;
 }
 .investigate-band::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 80% at 0% 50%, rgba(44,95,122,0.2) 0%, transparent 60%);
+  background: radial-gradient(ellipse 60% 80% at 0% 50%, rgba(139,26,74,0.15) 0%, transparent 60%);
   pointer-events: none;
 }
 .investigate-inner {
@@ -431,27 +432,28 @@ section { padding: 7rem 2rem; position: relative; }
 }
 .investigate-text { flex: 1; min-width: 280px; }
 .investigate-text h2 {
-  font-family: 'Cinzel', serif;
+  font-family: 'Bodoni Moda', serif;
   font-size: clamp(1.6rem, 3vw, 2.4rem);
-  color: var(--parchment); margin-bottom: 0.75rem; line-height: 1.2;
+  font-weight: 900; font-style: italic;
+  color: var(--parchment); margin-bottom: 0.75rem; line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 .investigate-text p {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-style: italic; color: var(--mist);
 }
-/* Seafoam accent on label — Style 92 coastal */
+/* Gold accent on label */
 .investigate-label {
   font-family: 'Cinzel', serif; font-size: 9px;
-  letter-spacing: 0.4em; color: var(--seafoam);
+  letter-spacing: 0.4em; color: var(--attic-gold);
   text-transform: uppercase; margin-bottom: 0.75rem;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    EPISODES — FLIP CARDS
-   Style 134: Attic parchment, meander hover border
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .episodes-section {
-  background: linear-gradient(180deg, #080F1A 0%, #0A1220 100%);
+  background: linear-gradient(180deg, #120618 0%, #1A0A2E 100%);
 }
 .episodes-header {
   display: flex; align-items: flex-end;
@@ -477,20 +479,20 @@ section { padding: 7rem 2rem; position: relative; }
   border-radius: 2px; padding: 2rem;
 }
 
-/* Front — aged parchment toned surface — Style 134 */
+/* Front — palazzo surface */
 .flip-front {
-  background: linear-gradient(145deg, #131C28 0%, #0E1520 100%);
+  background: linear-gradient(145deg, #200D36 0%, #180924 100%);
   border: 1px solid rgba(201,168,76,0.2);
   display: flex; flex-direction: column; justify-content: space-between;
   position: relative; overflow: hidden;
 }
-/* Marble grain on card */
+/* Gold light at corner */
 .flip-front::before {
   content: '';
   position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(ellipse 80% 60% at 80% 20%, rgba(201,168,76,0.04) 0%, transparent 60%);
+  background: radial-gradient(ellipse 80% 60% at 80% 20%, rgba(201,168,76,0.06) 0%, transparent 60%);
 }
-/* Meander top border — Style 134 */
+/* Gold top border on hover */
 .flip-front::after {
   content: '';
   position: absolute; top: 0; left: 0; right: 0; height: 3px;
@@ -508,15 +510,16 @@ section { padding: 7rem 2rem; position: relative; }
   font-size: 0.7rem; letter-spacing: 0.25em; color: var(--attic-gold);
 }
 .flip-ep-words {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.8rem; font-style: italic;
+  font-family: 'EB Garamond', serif;
+  font-size: 0.85rem; font-style: italic;
   color: var(--mist); text-align: right;
 }
 .flip-front-title {
-  font-family: 'Cinzel', serif;
-  font-size: 1rem; font-weight: 600;
-  color: var(--parchment); line-height: 1.35;
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1rem; font-weight: 700; font-style: italic;
+  color: var(--parchment); line-height: 1.3;
   margin-top: auto; padding-top: 1rem; position: relative; z-index: 1;
+  letter-spacing: -0.01em;
 }
 .flip-front-duration {
   font-family: 'Cinzel', serif; font-size: 8px;
@@ -525,15 +528,15 @@ section { padding: 7rem 2rem; position: relative; }
 }
 
 .flip-back {
-  background: linear-gradient(145deg, #0D1820 0%, #081018 100%);
+  background: linear-gradient(145deg, #1E0B34 0%, #160820 100%);
   border: 1px solid var(--gold-dim);
   transform: rotateY(180deg);
   display: flex; flex-direction: column; justify-content: space-between;
 }
 .flip-back-hook {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1rem; font-style: italic;
-  color: var(--cream); line-height: 1.7;
+  color: var(--cream); line-height: 1.75;
 }
 .flip-back-btn {
   display: inline-flex; align-items: center; gap: 0.4rem;
@@ -547,8 +550,7 @@ section { padding: 7rem 2rem; position: relative; }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    STAVROS COMMENTARY
-   Style 152 Byzantine icon — gold ground
-   on sticky panel. μῆνις as sacred text.
+   Palazzo icon — gold ground
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .commentary-section {
   background: var(--night-deep);
@@ -559,7 +561,7 @@ section { padding: 7rem 2rem; position: relative; }
   max-width: 1100px; margin: 0 auto;
 }
 
-/* Byzantine gold ground — the divine light panel — Style 152 */
+/* Palazzo gold ground panel */
 .split-sticky {
   flex: 0 0 42%; position: sticky;
   top: var(--nav-h); height: calc(100vh - var(--nav-h));
@@ -569,32 +571,32 @@ section { padding: 7rem 2rem; position: relative; }
 .split-sticky-inner {
   width: 100%;
   background: linear-gradient(160deg,
-    rgba(201,168,76,0.08) 0%,
-    rgba(139,110,47,0.04) 50%,
+    rgba(201,168,76,0.10) 0%,
+    rgba(139,110,47,0.05) 50%,
     transparent 100%
   );
-  border: 1px solid rgba(201,168,76,0.2);
+  border: 1px solid rgba(201,168,76,0.25);
   border-radius: 2px;
   padding: 2.5rem;
   position: relative;
 }
-/* Oklad frame — Byzantine icon treatment — Style 152 */
+/* Gilt inner frame — palazzo oklad */
 .split-sticky-inner::before {
   content: '';
   position: absolute; inset: 6px;
-  border: 1px solid rgba(201,168,76,0.15);
+  border: 1px solid rgba(201,168,76,0.18);
   border-radius: 1px; pointer-events: none;
 }
-/* Gold shimmer animation — uncreated light — Style 152 */
+/* Gold shimmer — uncreated light */
 .split-sticky-inner::after {
   content: '';
   position: absolute; inset: 0;
   background: linear-gradient(
     135deg,
     transparent 0%,
-    rgba(201,168,76,0.04) 30%,
-    rgba(201,168,76,0.08) 50%,
-    rgba(201,168,76,0.04) 70%,
+    rgba(201,168,76,0.05) 30%,
+    rgba(201,168,76,0.10) 50%,
+    rgba(201,168,76,0.05) 70%,
     transparent 100%
   );
   background-size: 200% 200%;
@@ -614,19 +616,19 @@ section { padding: 7rem 2rem; position: relative; }
   position: relative; z-index: 1;
 }
 
-/* The Greek word as icon — Style 152 */
+/* The Greek word as palazzo icon */
 .greek-word-icon {
   position: relative; z-index: 1; margin-bottom: 1.5rem;
 }
 .greek-large {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 3.5rem; font-weight: 700; line-height: 1;
+  font-family: 'Bodoni Moda', serif;
+  font-size: 3.5rem; font-weight: 900; line-height: 1;
   color: transparent;
   -webkit-text-stroke: 1px var(--attic-gold);
-  /* Byzantine: elongated = spiritual transcendence */
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   cursor: default;
   filter: drop-shadow(0 0 20px rgba(201,168,76,0.3));
+  font-style: italic;
 }
 .greek-transliteration {
   font-family: 'Cinzel', serif; font-size: 0.8rem;
@@ -634,12 +636,12 @@ section { padding: 7rem 2rem; position: relative; }
   margin-top: 0.5rem;
 }
 .greek-meaning {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 0.95rem; font-style: italic;
-  color: var(--mist); margin-top: 0.25rem; line-height: 1.6;
+  color: var(--mist); margin-top: 0.25rem; line-height: 1.7;
 }
 
-/* SVG draw — mu stroke — Style 134 */
+/* SVG draw — mu stroke */
 #greek-svg path {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
@@ -653,9 +655,9 @@ section { padding: 7rem 2rem; position: relative; }
   position: relative; z-index: 1;
 }
 .attribution-quote {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 0.9rem; font-style: italic;
-  color: var(--mist); line-height: 1.7;
+  color: var(--mist); line-height: 1.8;
 }
 .attribution-name {
   font-family: 'Cinzel', serif; font-size: 8px;
@@ -676,21 +678,22 @@ section { padding: 7rem 2rem; position: relative; }
   margin-bottom: 0.5rem;
 }
 .split-item h3 {
-  font-family: 'Cinzel', serif; font-size: 1.05rem;
-  color: var(--parchment); margin-bottom: 0.75rem; letter-spacing: 0.05em;
+  font-family: 'Bodoni Moda', serif; font-size: 1.1rem;
+  font-weight: 700; font-style: italic;
+  color: var(--parchment); margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
 }
 .split-item p {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1.05rem; color: var(--mist);
-  font-style: italic; line-height: 1.75;
+  font-style: italic; line-height: 1.9;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    PRIMARY SOURCES
-   Style 134 table treatment
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .sources-section {
-  background: linear-gradient(180deg, #0A1220 0%, #080F1A 100%);
+  background: linear-gradient(180deg, #1A0A2E 0%, #120618 100%);
 }
 .sources-table-wrap { overflow-x: auto; margin-top: 2rem; }
 table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
@@ -710,24 +713,25 @@ tbody td {
   padding: 0.9rem 1rem; color: var(--cream); vertical-align: top;
 }
 tbody td:first-child {
-  font-family: 'Cinzel', serif;
-  font-size: 0.85rem; color: var(--parchment);
+  font-family: 'Bodoni Moda', serif;
+  font-size: 0.9rem; color: var(--parchment);
+  font-style: italic;
 }
 tbody td:last-child {
   font-family: 'Cinzel', serif; font-size: 0.75rem;
   letter-spacing: 0.1em; color: var(--gold-dim);
 }
 
-/* Subtitle pills — Style 92 coastal accent */
+/* Subtitle pills — gold accent */
 .subtitles-row {
   display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 3rem;
 }
 .subtitle-pill {
   padding: 0.4rem 1rem;
-  border: 1px solid rgba(122,191,191,0.2);
+  border: 1px solid rgba(201,168,76,0.2);
   border-radius: 1px;
   font-family: 'Cinzel', serif; font-size: 10px;
-  letter-spacing: 0.12em; color: rgba(122,191,191,0.7);
+  letter-spacing: 0.12em; color: rgba(201,168,76,0.7);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -740,13 +744,13 @@ footer {
 }
 .footer-inner { max-width: 1100px; margin: 0 auto; }
 .footer-logo {
-  font-family: 'Cinzel Decorative', serif;
-  font-size: 1.5rem; font-weight: 700;
-  color: var(--attic-gold); letter-spacing: 0.25em;
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.5rem; font-weight: 900; font-style: italic;
+  color: var(--attic-gold); letter-spacing: 0.1em;
   margin-bottom: 0.5rem;
 }
 .footer-tagline {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   font-size: 0.9rem; font-style: italic;
   color: var(--mist); margin-bottom: 2rem;
 }
@@ -762,7 +766,7 @@ footer {
 .footer-links a:hover { color: var(--attic-gold); }
 .footer-copy {
   font-family: 'Cinzel', serif; font-size: 8px;
-  letter-spacing: 0.18em; color: rgba(107,120,128,0.6);
+  letter-spacing: 0.18em; color: rgba(154,138,154,0.6);
   text-transform: uppercase;
 }
 
@@ -819,29 +823,29 @@ footer {
 .flipbook-section .split-outer {
   position: relative; z-index: 2;
 }
-/* Investigate overlay — coastal deep */
+/* Investigate overlay — palazzo shadow */
 .investigate-flipbook-overlay {
   background:
-    radial-gradient(ellipse 70% 80% at 0% 50%, rgba(8,26,40,0.75) 0%, transparent 65%),
-    linear-gradient(90deg, rgba(8,15,26,0.85) 0%, rgba(8,15,26,0.4) 60%, rgba(8,15,26,0.7) 100%);
+    radial-gradient(ellipse 70% 80% at 0% 50%, rgba(26,10,46,0.78) 0%, transparent 65%),
+    linear-gradient(90deg, rgba(18,6,24,0.85) 0%, rgba(18,6,24,0.4) 60%, rgba(18,6,24,0.7) 100%);
 }
-/* Episodes overlay — dark with warm centre */
+/* Episodes overlay — purple-black with gold centre */
 .episodes-flipbook-overlay {
   background:
     radial-gradient(ellipse 60% 70% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 60%),
-    linear-gradient(180deg, rgba(8,15,26,0.9) 0%, rgba(8,15,26,0.7) 50%, rgba(8,15,26,0.9) 100%);
+    linear-gradient(180deg, rgba(18,6,24,0.9) 0%, rgba(18,6,24,0.7) 50%, rgba(18,6,24,0.9) 100%);
 }
-/* Commentary overlay — Byzantine gold ground */
+/* Commentary overlay — palazzo gold ground */
 .commentary-flipbook-overlay {
   background:
     radial-gradient(ellipse 55% 70% at 30% 50%, rgba(201,168,76,0.08) 0%, transparent 55%),
-    linear-gradient(180deg, rgba(5,10,16,0.92) 0%, rgba(5,10,16,0.75) 50%, rgba(5,10,16,0.92) 100%);
+    linear-gradient(180deg, rgba(12,4,20,0.92) 0%, rgba(12,4,20,0.75) 50%, rgba(12,4,20,0.92) 100%);
 }
-/* Sources overlay — marble light */
+/* Sources overlay — gilt marble light */
 .sources-flipbook-overlay {
   background:
     radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.05) 0%, transparent 60%),
-    linear-gradient(180deg, rgba(8,15,26,0.88) 0%, rgba(8,15,26,0.65) 50%, rgba(8,15,26,0.88) 100%);
+    linear-gradient(180deg, rgba(18,6,24,0.88) 0%, rgba(18,6,24,0.65) 50%, rgba(18,6,24,0.88) 100%);
 }
 
 </style>
@@ -964,7 +968,7 @@ window.addEventListener('load', () => {
 
     <h1 class="hero-title" aria-label="KRIOS">KRIOS</h1>
 
-    <!-- Laurel wreath — Style 134 -->
+    <!-- Laurel wreath -->
     <div class="hero-laurel" aria-hidden="true">
       <svg class="laurel-svg" width="80" height="24" viewBox="0 0 80 24" fill="none">
         <path d="M80 12 Q70 4 58 8 Q46 12 40 12" stroke="#C9A84C" stroke-width="1" fill="none" opacity="0.6"/>
@@ -1004,13 +1008,13 @@ window.addEventListener('load', () => {
   <div class="hero-scroll" aria-hidden="true">↓ &nbsp; scroll</div>
 </section>
 
-<!-- Coastal wave divider — Style 92 -->
+<!-- Wave divider -->
 <div class="wave-divider" aria-hidden="true">
   <svg viewBox="0 0 1440 40" preserveAspectRatio="none" height="40">
     <path d="M0,20 C240,40 480,0 720,20 C960,40 1200,0 1440,20 L1440,40 L0,40 Z"
-      fill="#0B1A28" opacity="0.8"/>
+      fill="#1A0A2E" opacity="0.8"/>
     <path d="M0,28 C360,8 720,36 1080,16 C1260,8 1380,28 1440,24 L1440,40 L0,40 Z"
-      fill="#0B1628" opacity="0.6"/>
+      fill="#150820" opacity="0.6"/>
   </svg>
 </div>
 
@@ -1033,7 +1037,7 @@ window.addEventListener('load', () => {
 </div>
 
 <!-- Meander divider -->
-<div style="background:#080F1A;padding:1rem 0"><div class="meander-border" style="max-width:1100px;margin:0 auto"></div></div>
+<div style="background:#120618;padding:1rem 0"><div class="meander-border" style="max-width:1100px;margin:0 auto"></div></div>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━
      EPISODES — FLIP CARDS
@@ -1085,17 +1089,17 @@ window.addEventListener('load', () => {
   </div>
 </section>
 
-<!-- Coastal wave divider -->
-<div class="wave-divider" style="background:linear-gradient(180deg,#080F1A 0%,#060C14 100%)" aria-hidden="true">
+<!-- Wave divider -->
+<div class="wave-divider" style="background:linear-gradient(180deg,#120618 0%,#0E0618 100%)" aria-hidden="true">
   <svg viewBox="0 0 1440 50" preserveAspectRatio="none" height="50">
     <path d="M0,25 C180,50 360,0 540,25 C720,50 900,0 1080,25 C1260,50 1380,15 1440,20 L1440,50 L0,50 Z"
-      fill="#050A10" opacity="0.9"/>
+      fill="#0E0618" opacity="0.9"/>
   </svg>
 </div>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━
      STAVROS COMMENTARY — STICKY SPLIT
-     Byzantine icon treatment
+     Palazzo icon treatment
 ━━━━━━━━━━━━━━━━━━━━━━━━━ -->
 <section class="commentary-section flipbook-section" id="fb-commentary" aria-label="Stavros Commentary">
   <canvas class="flipbook-canvas" id="canvas-commentary"></canvas>
@@ -1149,12 +1153,12 @@ window.addEventListener('load', () => {
 </section>
 
 <!-- Meander + wave transition -->
-<div style="background:#050A10">
+<div style="background:#0E0618">
   <div class="meander-border" style="max-width:1100px;margin:0 auto 0"></div>
 </div>
-<div class="wave-divider" style="background:#050A10" aria-hidden="true">
+<div class="wave-divider" style="background:#0E0618" aria-hidden="true">
   <svg viewBox="0 0 1440 30" preserveAspectRatio="none" height="30">
-    <path d="M0,15 C360,30 720,0 1080,15 C1260,22 1380,8 1440,12 L1440,30 L0,30 Z" fill="#080F18"/>
+    <path d="M0,15 C360,30 720,0 1080,15 C1260,22 1380,8 1440,12 L1440,30 L0,30 Z" fill="#120618"/>
   </svg>
 </div>
 
@@ -1201,11 +1205,11 @@ window.addEventListener('load', () => {
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
-<section style="background:#0a0806;border-top:1px solid #222;border-bottom:1px solid #222;padding:64px 20px;text-align:center;">
+<!-- ── KIT EMAIL FORM ── -->
+<section style="background:#120618;border-top:1px solid rgba(201,168,76,0.15);border-bottom:1px solid rgba(201,168,76,0.15);padding:64px 20px;text-align:center;">
   <div style="max-width:560px;margin:0 auto;">
     <p style="font-family:Cinzel,serif;font-size:10px;letter-spacing:4px;color:#c9a84c;text-transform:uppercase;margin-bottom:12px;">FREE — PRIMARY SOURCE NOTES</p>
-    <h2 style="font-family:Cinzel,serif;font-size:22px;color:#f5f0e8;margin-bottom:8px;">The version Stavros didn't put in the video</h2>
+    <h2 style="font-family:'Bodoni Moda',serif;font-size:22px;font-style:italic;color:#f5f0e8;margin-bottom:8px;">The version Stavros didn't put in the video</h2>
     <p style="font-size:13px;color:#888;margin-bottom:24px;line-height:1.7;">What the primary sources actually say — sent after every episode.</p>
     <script async data-uid="a62ecc2651" src="https://krios-primary-sources.kit.com/a62ecc2651/index.js"></script>
   </div>
@@ -1325,4 +1329,3 @@ function closeMobileNav() {
 }
 </script>
 </body>
-</html>
