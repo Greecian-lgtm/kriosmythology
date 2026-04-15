@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Quiz: How Well Do You Know Troy? | Krios Mythology</title>
+<meta name="description" content="Test your knowledge of Troy from Greek mythology. 5 questions based on primary sources, not textbooks.">
+<meta property="og:title" content="I scored _/5 on the Troy quiz — Krios Mythology">
+<meta property="og:url" content="https://kriosmythology.com/tools/quiz-ep006-troy.html">
+<style>:root{--bg:#0a0806;--text:#e8d5a0;--gold:#c9a84c;--white:#f5f0e8;--dim:#8a7430;--correct:#4a7c59;--wrong:#8c3a3a}
+body{background:var(--bg);color:var(--text);font-family:Georgia,serif;max-width:720px;margin:0 auto;padding:2rem 1.5rem;line-height:1.7}
+h1{color:var(--white);font-size:1.8rem;border-bottom:2px solid var(--gold);padding-bottom:.5rem}
+h2{color:var(--gold)}
+a{color:var(--gold)}
+.nav{color:var(--dim);font-size:.85rem;margin-bottom:2rem}
+.nav a{color:var(--dim)}
+button{background:var(--gold);color:var(--bg);border:none;padding:.8rem 1.5rem;border-radius:4px;cursor:pointer;font-family:Georgia,serif;font-size:1rem;margin:.4rem;transition:all .2s}
+button:hover{opacity:.85}
+.question-card{background:#1a1510;border:1px solid var(--gold);border-radius:8px;padding:1.5rem;margin:1.5rem 0}
+.score-card{background:#1a1510;border:2px solid var(--gold);border-radius:8px;padding:2rem;margin:2rem 0;text-align:center}
+.score-card h2{font-size:2.5rem;margin:.5rem 0}
+.share-btn{background:var(--gold);color:var(--bg);padding:1rem 2rem;border-radius:4px;text-decoration:none;display:inline-block;font-weight:bold;margin:.5rem}
+.correct{border-color:var(--correct)}
+.wrong{border-color:var(--wrong)}
+.hidden{display:none}
+.myth-card{background:#1a1510;border:1px solid var(--gold);border-radius:8px;padding:2rem;margin:1.5rem 0;text-align:center}
+.myth-card .wrong-version{color:var(--wrong);font-size:1.1rem;text-decoration:line-through;opacity:.7}
+.myth-card .right-version{color:var(--correct);font-size:1.3rem;margin-top:1rem}
+.myth-card .source{color:var(--dim);font-size:.85rem;margin-top:.5rem}
+</style>
+</head>
+<body>
+<div class="nav"><a href="https://kriosmythology.com">Krios</a> > <a href="https://kriosmythology.com/tools">Tools</a> > Quiz</div>
+<h1>How Well Do You Know Troy?</h1>
+<p>5 questions. Primary sources only. Your textbook won't help you here.</p>
+<div id="quiz"></div>
+<div id="result" class="score-card hidden">
+    <p style="color:var(--dim)">YOUR SCORE</p>
+    <h2 id="score-display" style="color:var(--gold)"></h2>
+    <p id="score-msg"></p>
+    <div style="margin-top:1.5rem">
+        <a id="share-twitter" class="share-btn" target="_blank">Share on X</a>
+        <a id="share-copy" class="share-btn" href="#" onclick="copyScore();return false">Copy Result</a>
+    </div>
+    <p style="margin-top:1.5rem"><a href="https://youtube.com/@KriosMythology">Watch the full Troy episode on YouTube →</a></p>
+</div>
+<script>
+const Q = [{"question": "According to the script, what is the primary reason the Greek coalition mobilized for war against Troy?", "options": ["Paris fell in love with Helen and eloped with her", "Paris violated xenia by breaking the sacred covenant between host and guest", "The Trojans insulted Greek honor by refusing to trade fairly"], "correct": 1, "explanation": "Stavros explicitly states: 'The entire Greek coalition doesn't mobilise over a love affair. They mobilise because the sacred bond between host and guest has been publicly desecrated and gone unanswered.' This is established as a divine law enforced by Zeus, not a romantic dispute."}, {"question": "How does the script characterize the nature of xenia in ancient Greek culture?", "options": ["A polite social custom that guests and hosts could choose to follow or ignore", "A sacred obligation and covenant enforced by Zeus that was legally binding on both parties", "A commercial agreement between trading partners to ensure fair exchange"], "correct": 1, "explanation": "The script states: 'Xenia was a sacred obligation \u2014 a covenant between host and guest enforced by Zeus himself' and 'It wasn't courtesy. It was law. Divine law.' This establishes it as mandatory, not optional."}, {"question": "Where does Homer's Iliad actually end?", "options": ["With the Greeks entering Troy through the wooden horse and beginning the sack of the city", "With the death of Paris and the final victory celebration of the Greek forces", "With the funeral of Hector, before Troy falls"], "correct": 2, "explanation": "Stavros emphasizes: 'The Iliad ends before Troy falls. Homer doesn't show you the wooden horse... The poem ends with the funeral of Hector. A Trojan funeral.' He notes this ending on the losing side was a deliberate choice."}, {"question": "According to the script, what does Homer's choice to end the Iliad on a Trojan funeral reveal about his understanding of war?", "options": ["That Homer was secretly sympathetic to the Trojan cause and opposed Greek imperialism", "That there is no clean victory in war; winning comes at a devastating cost that can destroy the victors", "That the Trojans were actually the rightful rulers of the Mediterranean and deserved to win"], "correct": 1, "explanation": "Stavros states: 'There is no clean victory... The Greeks won the war and it destroyed them anyway' and explains that Homer showed the cost through the fates of Achilles, Agamemnon, Odysseus, and Ajax. The ending reflects Homer's understanding that 'winning and losing are not as' [different as people think]."}, {"question": "What English word does the script identify as an inadequate translation for xenia?", "options": ["Friendship", "Hospitality", "Brotherhood"], "correct": 1, "explanation": "Stavros says: 'Xenia is usually translated as hospitality. That translation is almost insultingly inadequate.' He explains that hospitality is something you choose, while xenia was something you owed\u2014a fundamental distinction."}];
+let current = 0, score = 0, answered = false;
+const quizDiv = document.getElementById('quiz');
+const resultDiv = document.getElementById('result');
+
+function render() {
+    if (current >= Q.length) { showResult(); return; }
+    const q = Q[current];
+    let html = '<div class="question-card"><p style="color:var(--dim)">Question ' + (current+1) + '/' + Q.length + '</p>';
+    html += '<h2 style="color:var(--white);font-size:1.2rem">' + q.question + '</h2>';
+    html += '<div id="options">';
+    q.options.forEach((opt, i) => {
+        html += '<button onclick="answer(' + i + ')" id="opt' + i + '">' + opt + '</button><br>';
+    });
+    html += '</div><p id="explanation" class="hidden" style="margin-top:1rem;color:var(--dim)"></p>';
+    html += '<button id="next-btn" class="hidden" onclick="next()" style="margin-top:1rem">Next →</button></div>';
+    quizDiv.innerHTML = html;
+    answered = false;
+}
+
+function answer(i) {
+    if (answered) return;
+    answered = true;
+    const q = Q[current];
+    const btns = document.querySelectorAll('#options button');
+    btns.forEach((b,j) => {
+        b.style.opacity = j === q.correct ? '1' : '0.4';
+        if (j === q.correct) b.style.background = '#4a7c59';
+        if (j === i && i !== q.correct) b.style.background = '#8c3a3a';
+    });
+    if (i === q.correct) score++;
+    document.getElementById('explanation').textContent = q.explanation;
+    document.getElementById('explanation').classList.remove('hidden');
+    document.getElementById('next-btn').classList.remove('hidden');
+}
+
+function next() { current++; render(); }
+
+function showResult() {
+    quizDiv.classList.add('hidden');
+    resultDiv.classList.remove('hidden');
+    document.getElementById('score-display').textContent = score + '/' + Q.length;
+    const msgs = ['The primary sources would be disappointed.','Not bad, but Homer expected more.','Solid knowledge. The ancients approve.','Impressive. You read the actual sources.','Perfect. Stavros is proud.'];
+    document.getElementById('score-msg').textContent = msgs[score] || msgs[2];
+    const shareText = 'I scored ' + score + '/5 on the Troy mythology quiz. Primary sources only. Can you beat me? https://kriosmythology.com/tools/quiz-ep006-troy.html';
+    document.getElementById('share-twitter').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText);
+}
+
+function copyScore() {
+    const text = 'I scored ' + score + '/5 on the Troy mythology quiz — @KriosMythology. Can you beat me? kriosmythology.com/tools/quiz-ep006-troy.html';
+    navigator.clipboard.writeText(text).then(() => { document.getElementById('share-copy').textContent = 'Copied!'; });
+}
+
+render();
+</script>
+<footer style="margin-top:3rem;border-top:1px solid var(--dim);color:var(--dim);font-size:.85rem;padding-top:1rem">
+<p>© 2026 Stavros Research Labs LLC | <a href="https://kriosmythology.com">kriosmythology.com</a></p>
+</footer>
+</body></html>

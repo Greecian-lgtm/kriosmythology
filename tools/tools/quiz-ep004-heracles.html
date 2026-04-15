@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Quiz: How Well Do You Know Heracles? | Krios Mythology</title>
+<meta name="description" content="Test your knowledge of Heracles from Greek mythology. 5 questions based on primary sources, not textbooks.">
+<meta property="og:title" content="I scored _/5 on the Heracles quiz — Krios Mythology">
+<meta property="og:url" content="https://kriosmythology.com/tools/quiz-ep004-heracles.html">
+<style>:root{--bg:#0a0806;--text:#e8d5a0;--gold:#c9a84c;--white:#f5f0e8;--dim:#8a7430;--correct:#4a7c59;--wrong:#8c3a3a}
+body{background:var(--bg);color:var(--text);font-family:Georgia,serif;max-width:720px;margin:0 auto;padding:2rem 1.5rem;line-height:1.7}
+h1{color:var(--white);font-size:1.8rem;border-bottom:2px solid var(--gold);padding-bottom:.5rem}
+h2{color:var(--gold)}
+a{color:var(--gold)}
+.nav{color:var(--dim);font-size:.85rem;margin-bottom:2rem}
+.nav a{color:var(--dim)}
+button{background:var(--gold);color:var(--bg);border:none;padding:.8rem 1.5rem;border-radius:4px;cursor:pointer;font-family:Georgia,serif;font-size:1rem;margin:.4rem;transition:all .2s}
+button:hover{opacity:.85}
+.question-card{background:#1a1510;border:1px solid var(--gold);border-radius:8px;padding:1.5rem;margin:1.5rem 0}
+.score-card{background:#1a1510;border:2px solid var(--gold);border-radius:8px;padding:2rem;margin:2rem 0;text-align:center}
+.score-card h2{font-size:2.5rem;margin:.5rem 0}
+.share-btn{background:var(--gold);color:var(--bg);padding:1rem 2rem;border-radius:4px;text-decoration:none;display:inline-block;font-weight:bold;margin:.5rem}
+.correct{border-color:var(--correct)}
+.wrong{border-color:var(--wrong)}
+.hidden{display:none}
+.myth-card{background:#1a1510;border:1px solid var(--gold);border-radius:8px;padding:2rem;margin:1.5rem 0;text-align:center}
+.myth-card .wrong-version{color:var(--wrong);font-size:1.1rem;text-decoration:line-through;opacity:.7}
+.myth-card .right-version{color:var(--correct);font-size:1.3rem;margin-top:1rem}
+.myth-card .source{color:var(--dim);font-size:.85rem;margin-top:.5rem}
+</style>
+</head>
+<body>
+<div class="nav"><a href="https://kriosmythology.com">Krios</a> > <a href="https://kriosmythology.com/tools">Tools</a> > Quiz</div>
+<h1>How Well Do You Know Heracles?</h1>
+<p>5 questions. Primary sources only. Your textbook won't help you here.</p>
+<div id="quiz"></div>
+<div id="result" class="score-card hidden">
+    <p style="color:var(--dim)">YOUR SCORE</p>
+    <h2 id="score-display" style="color:var(--gold)"></h2>
+    <p id="score-msg"></p>
+    <div style="margin-top:1.5rem">
+        <a id="share-twitter" class="share-btn" target="_blank">Share on X</a>
+        <a id="share-copy" class="share-btn" href="#" onclick="copyScore();return false">Copy Result</a>
+    </div>
+    <p style="margin-top:1.5rem"><a href="https://youtube.com/@KriosMythology">Watch the full Heracles episode on YouTube →</a></p>
+</div>
+<script>
+const Q = [{"question": "According to Apollodorus, when did the canonical list of twelve labours become fixed in Greek mythology?", "options": ["During Homer's lifetime in the 8th century BCE", "In the first or second century CE", "During Pindar's time in the fifth century BCE"], "correct": 1, "explanation": "Stavros states: 'The canonical twelve...doesn't appear as a complete fixed sequence until Apollodorus, writing somewhere around the first or second century CE. That's roughly seven hundred years after the myth was already circulating.'"}, {"question": "What does the name 'Heracles' literally translate to?", "options": ["Glory of Zeus", "Strength of Ares", "Glory of Hera"], "correct": 2, "explanation": "Stavros explains: 'Heracles translates as 'glory of Hera' \u2014 Hera-kleos. The man Hera spent his entire life trying to destroy was named, by the Delphic Oracle according to Apollodorus, specifically to appease her.'"}, {"question": "Which ancient civilization's hero shares structural similarities with Heracles, including divine parentage and a journey to the world's edges?", "options": ["Egyptian pharaohs", "Mesopotamian Gilgamesh", "Hittite warriors"], "correct": 1, "explanation": "Stavros notes: 'The Mesopotamian hero Gilgamesh shares the same basic architecture: superhuman strength, divine parentage, a companion whose death breaks him, a journey to the edges of the world, an encounter with death itself.'"}, {"question": "What does Heracles represent in Homer's Iliad?", "options": ["A contemporary hero equal to Achilles and Hector", "A figure from a previous, more violent age that current heroes measure themselves against", "An immortal god who occasionally helps mortals"], "correct": 1, "explanation": "Stavros states: 'He appears in the Iliad as a figure from a previous, more violent age \u2014 someone the current heroes measure themselves against but can't quite reach.'"}, {"question": "According to art historians like John Boardman, what Buddhist deity may have been influenced by Heracles imagery spread by Alexander the Great's armies?", "options": ["Brahma the Creator", "Vajrapani the guardian deity", "Avalokiteshvara the bodhisattva"], "correct": 1, "explanation": "Stavros explains: 'Art historians, including John Boardman in his work on the diffusion of classical imagery, have argued that Vajrapani \u2014 the guardian deity you'll find in Buddhist temples across East and Southeast Asia, the muscular protector figure' may have been influenced by Alexander's soldiers bringing Heracles imagery eastward."}];
+let current = 0, score = 0, answered = false;
+const quizDiv = document.getElementById('quiz');
+const resultDiv = document.getElementById('result');
+
+function render() {
+    if (current >= Q.length) { showResult(); return; }
+    const q = Q[current];
+    let html = '<div class="question-card"><p style="color:var(--dim)">Question ' + (current+1) + '/' + Q.length + '</p>';
+    html += '<h2 style="color:var(--white);font-size:1.2rem">' + q.question + '</h2>';
+    html += '<div id="options">';
+    q.options.forEach((opt, i) => {
+        html += '<button onclick="answer(' + i + ')" id="opt' + i + '">' + opt + '</button><br>';
+    });
+    html += '</div><p id="explanation" class="hidden" style="margin-top:1rem;color:var(--dim)"></p>';
+    html += '<button id="next-btn" class="hidden" onclick="next()" style="margin-top:1rem">Next →</button></div>';
+    quizDiv.innerHTML = html;
+    answered = false;
+}
+
+function answer(i) {
+    if (answered) return;
+    answered = true;
+    const q = Q[current];
+    const btns = document.querySelectorAll('#options button');
+    btns.forEach((b,j) => {
+        b.style.opacity = j === q.correct ? '1' : '0.4';
+        if (j === q.correct) b.style.background = '#4a7c59';
+        if (j === i && i !== q.correct) b.style.background = '#8c3a3a';
+    });
+    if (i === q.correct) score++;
+    document.getElementById('explanation').textContent = q.explanation;
+    document.getElementById('explanation').classList.remove('hidden');
+    document.getElementById('next-btn').classList.remove('hidden');
+}
+
+function next() { current++; render(); }
+
+function showResult() {
+    quizDiv.classList.add('hidden');
+    resultDiv.classList.remove('hidden');
+    document.getElementById('score-display').textContent = score + '/' + Q.length;
+    const msgs = ['The primary sources would be disappointed.','Not bad, but Homer expected more.','Solid knowledge. The ancients approve.','Impressive. You read the actual sources.','Perfect. Stavros is proud.'];
+    document.getElementById('score-msg').textContent = msgs[score] || msgs[2];
+    const shareText = 'I scored ' + score + '/5 on the Heracles mythology quiz. Primary sources only. Can you beat me? https://kriosmythology.com/tools/quiz-ep004-heracles.html';
+    document.getElementById('share-twitter').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText);
+}
+
+function copyScore() {
+    const text = 'I scored ' + score + '/5 on the Heracles mythology quiz — @KriosMythology. Can you beat me? kriosmythology.com/tools/quiz-ep004-heracles.html';
+    navigator.clipboard.writeText(text).then(() => { document.getElementById('share-copy').textContent = 'Copied!'; });
+}
+
+render();
+</script>
+<footer style="margin-top:3rem;border-top:1px solid var(--dim);color:var(--dim);font-size:.85rem;padding-top:1rem">
+<p>© 2026 Stavros Research Labs LLC | <a href="https://kriosmythology.com">kriosmythology.com</a></p>
+</footer>
+</body></html>

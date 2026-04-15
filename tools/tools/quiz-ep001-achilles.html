@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Quiz: How Well Do You Know Achilles? | Krios Mythology</title>
+<meta name="description" content="Test your knowledge of Achilles from Greek mythology. 5 questions based on primary sources, not textbooks.">
+<meta property="og:title" content="I scored _/5 on the Achilles quiz — Krios Mythology">
+<meta property="og:url" content="https://kriosmythology.com/tools/quiz-ep001-achilles.html">
+<style>:root{--bg:#0a0806;--text:#e8d5a0;--gold:#c9a84c;--white:#f5f0e8;--dim:#8a7430;--correct:#4a7c59;--wrong:#8c3a3a}
+body{background:var(--bg);color:var(--text);font-family:Georgia,serif;max-width:720px;margin:0 auto;padding:2rem 1.5rem;line-height:1.7}
+h1{color:var(--white);font-size:1.8rem;border-bottom:2px solid var(--gold);padding-bottom:.5rem}
+h2{color:var(--gold)}
+a{color:var(--gold)}
+.nav{color:var(--dim);font-size:.85rem;margin-bottom:2rem}
+.nav a{color:var(--dim)}
+button{background:var(--gold);color:var(--bg);border:none;padding:.8rem 1.5rem;border-radius:4px;cursor:pointer;font-family:Georgia,serif;font-size:1rem;margin:.4rem;transition:all .2s}
+button:hover{opacity:.85}
+.question-card{background:#1a1510;border:1px solid var(--gold);border-radius:8px;padding:1.5rem;margin:1.5rem 0}
+.score-card{background:#1a1510;border:2px solid var(--gold);border-radius:8px;padding:2rem;margin:2rem 0;text-align:center}
+.score-card h2{font-size:2.5rem;margin:.5rem 0}
+.share-btn{background:var(--gold);color:var(--bg);padding:1rem 2rem;border-radius:4px;text-decoration:none;display:inline-block;font-weight:bold;margin:.5rem}
+.correct{border-color:var(--correct)}
+.wrong{border-color:var(--wrong)}
+.hidden{display:none}
+.myth-card{background:#1a1510;border:1px solid var(--gold);border-radius:8px;padding:2rem;margin:1.5rem 0;text-align:center}
+.myth-card .wrong-version{color:var(--wrong);font-size:1.1rem;text-decoration:line-through;opacity:.7}
+.myth-card .right-version{color:var(--correct);font-size:1.3rem;margin-top:1rem}
+.myth-card .source{color:var(--dim);font-size:.85rem;margin-top:.5rem}
+</style>
+</head>
+<body>
+<div class="nav"><a href="https://kriosmythology.com">Krios</a> > <a href="https://kriosmythology.com/tools">Tools</a> > Quiz</div>
+<h1>How Well Do You Know Achilles?</h1>
+<p>5 questions. Primary sources only. Your textbook won't help you here.</p>
+<div id="quiz"></div>
+<div id="result" class="score-card hidden">
+    <p style="color:var(--dim)">YOUR SCORE</p>
+    <h2 id="score-display" style="color:var(--gold)"></h2>
+    <p id="score-msg"></p>
+    <div style="margin-top:1.5rem">
+        <a id="share-twitter" class="share-btn" target="_blank">Share on X</a>
+        <a id="share-copy" class="share-btn" href="#" onclick="copyScore();return false">Copy Result</a>
+    </div>
+    <p style="margin-top:1.5rem"><a href="https://youtube.com/@KriosMythology">Watch the full Achilles episode on YouTube →</a></p>
+</div>
+<script>
+const Q = [{"question": "According to the script, what is Achilles' true motivation for withdrawing from battle?", "options": ["He is protecting his honor through righteous anger alone", "He is orchestrating calculated revenge, wanting Greeks to fail enough to crawl back but not enough for Troy to win", "He is afraid that continued fighting will diminish his strength"], "correct": 1, "explanation": "The script states: 'He's not just protecting his honor, he's orchestrating a very specific kind of revenge. He wants the Greeks to fail badly enough that they'll come crawling back, but not so badly that Troy actually wins the war.' This reveals Achilles' strategy is cold and calculated, not merely emotional."}, {"question": "What does kleos represent according to the script?", "options": ["A monetary reward given to victorious warriors", "A form of immortality earned through making others remember your story", "The approval of the Greek gods for honorable conduct"], "correct": 1, "explanation": "The script explains: 'kleos isn't just fame. It's closer to a kind of immortality that you have to earn by making other people remember your story.' This definition emphasizes that kleos depends on cultural memory rather than material wealth or divine approval."}, {"question": "Why does the script suggest Homer's audience would find details about bronze-working and chariots in the Iliad unfamiliar?", "options": ["Because Homer invented these details to make the story more fantastical", "Because these details are from the actual Bronze Age collapse period, centuries before Homer's time", "Because the Greeks of Homer's era had not yet developed metalworking technology"], "correct": 1, "explanation": "The script states: 'There are details about bronze-working and specific types of chariots that Homer's audience wouldn't have recognized, because they're from the actual Bronze Age collapse period the war is supposedly set in.' This indicates the story preserves ancient, pre-Homeric details."}, {"question": "What is the critical risk that Achilles takes by withdrawing from battle, according to the script?", "options": ["He risks being permanently exiled from Greece", "He risks his kleos dying if he miscalculates and everyone dies, since his immortal fame requires survivors to tell his story", "He risks losing his divine weapon, the spear Peleus gave him"], "correct": 1, "explanation": "The script warns: 'If he miscalculates and everyone dies, his kleos dies too' because 'it only works if the right people survive to tell it.' Achilles gambles not just with his life but with his entire system of achieving immortality through cultural memory."}, {"question": "According to the script, which of these is NOT mentioned as an alternative version of Achilles' story that existed in antiquity?", "options": ["Achilles survives the war, marries Helen, and rules the islands of the blessed", "Achilles is actually Scythian or from around the Black Sea rather than Greek", "Achilles chooses to die young in battle to guarantee his eternal fame"], "correct": 2, "explanation": "The script states: 'In some versions, Achilles isn't Greek at all - he's Scythian, or from somewhere around the Black Sea. There are versions where he survives the war, marries Helen, and rules the islands of the blessed.' The third option about dying young for fame is not mentioned as an ancient variant."}];
+let current = 0, score = 0, answered = false;
+const quizDiv = document.getElementById('quiz');
+const resultDiv = document.getElementById('result');
+
+function render() {
+    if (current >= Q.length) { showResult(); return; }
+    const q = Q[current];
+    let html = '<div class="question-card"><p style="color:var(--dim)">Question ' + (current+1) + '/' + Q.length + '</p>';
+    html += '<h2 style="color:var(--white);font-size:1.2rem">' + q.question + '</h2>';
+    html += '<div id="options">';
+    q.options.forEach((opt, i) => {
+        html += '<button onclick="answer(' + i + ')" id="opt' + i + '">' + opt + '</button><br>';
+    });
+    html += '</div><p id="explanation" class="hidden" style="margin-top:1rem;color:var(--dim)"></p>';
+    html += '<button id="next-btn" class="hidden" onclick="next()" style="margin-top:1rem">Next →</button></div>';
+    quizDiv.innerHTML = html;
+    answered = false;
+}
+
+function answer(i) {
+    if (answered) return;
+    answered = true;
+    const q = Q[current];
+    const btns = document.querySelectorAll('#options button');
+    btns.forEach((b,j) => {
+        b.style.opacity = j === q.correct ? '1' : '0.4';
+        if (j === q.correct) b.style.background = '#4a7c59';
+        if (j === i && i !== q.correct) b.style.background = '#8c3a3a';
+    });
+    if (i === q.correct) score++;
+    document.getElementById('explanation').textContent = q.explanation;
+    document.getElementById('explanation').classList.remove('hidden');
+    document.getElementById('next-btn').classList.remove('hidden');
+}
+
+function next() { current++; render(); }
+
+function showResult() {
+    quizDiv.classList.add('hidden');
+    resultDiv.classList.remove('hidden');
+    document.getElementById('score-display').textContent = score + '/' + Q.length;
+    const msgs = ['The primary sources would be disappointed.','Not bad, but Homer expected more.','Solid knowledge. The ancients approve.','Impressive. You read the actual sources.','Perfect. Stavros is proud.'];
+    document.getElementById('score-msg').textContent = msgs[score] || msgs[2];
+    const shareText = 'I scored ' + score + '/5 on the Achilles mythology quiz. Primary sources only. Can you beat me? https://kriosmythology.com/tools/quiz-ep001-achilles.html';
+    document.getElementById('share-twitter').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText);
+}
+
+function copyScore() {
+    const text = 'I scored ' + score + '/5 on the Achilles mythology quiz — @KriosMythology. Can you beat me? kriosmythology.com/tools/quiz-ep001-achilles.html';
+    navigator.clipboard.writeText(text).then(() => { document.getElementById('share-copy').textContent = 'Copied!'; });
+}
+
+render();
+</script>
+<footer style="margin-top:3rem;border-top:1px solid var(--dim);color:var(--dim);font-size:.85rem;padding-top:1rem">
+<p>© 2026 Stavros Research Labs LLC | <a href="https://kriosmythology.com">kriosmythology.com</a></p>
+</footer>
+</body></html>
