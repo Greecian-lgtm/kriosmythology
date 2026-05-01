@@ -188,12 +188,12 @@ h2.dw em{color:var(--blue2)}
 /* ── IMAGE GRID (Masonry-style) ────────── */
 .img-grid{display:grid;grid-template-columns:repeat(3,1fr);
   grid-template-rows:auto auto;gap:4px;margin:3rem 0}
-.ig-item{overflow:hidden;position:relative}
+.ig-item{overflow:hidden;position:relative;height:280px}
 .ig-item img{width:100%;height:100%;object-fit:cover;
   transform:scale(1.06);transition:transform .6s var(--ez);will-change:transform}
 .ig-item:hover img{transform:scale(1)}
-.ig-item.tall{grid-row:span 2}
-.ig-item.wide{grid-column:span 2}
+.ig-item.tall{grid-row:span 2;height:564px}
+.ig-item.wide{grid-column:span 2;height:280px}
 .ig-item::after{content:"";position:absolute;inset:0;
   background:linear-gradient(to top,rgba(26,58,92,.6) 0%,transparent 50%);
   opacity:0;transition:opacity .3s}
@@ -590,7 +590,7 @@ h2.dw em{color:var(--blue2)}
     </div>
   </div>
 </section>
-<section class="sec sec-aeg2" data-sec="cyclades" style="padding-bottom:0">
+<section class="sec sec-aeg2" data-sec="cyclades">
   <div class="sec-inner">
     <span class="eye eye-dk reveal">The Cyclades</span>
     <h2 class="dw reveal d1">Where the myths<br><em>actually happened.</em></h2>
@@ -696,7 +696,7 @@ h2.dw em{color:var(--blue2)}
 
       <div class="ep-card reveal d2" data-cat="war place">
         <div class="ep-card-img">
-          <img src="images/ruins.jpg"
+          <img src="images/thermopylae.jpg"
                alt="Thermopylae monument"
                onerror="this.src='';this.parentElement.style.background='var(--aeg)'">
           <div class="ep-card-img-overlay"></div>
@@ -718,8 +718,8 @@ h2.dw em{color:var(--blue2)}
 
       <div class="ep-card reveal" data-cat="hero">
         <div class="ep-card-img">
-          <img src="images/ruins.jpg"
-               alt="Heracles — Attic black-figure amphora"
+          <img src="images/warrior.jpg"
+               alt="Heracles — ancient warrior"
                onerror="this.src='';this.parentElement.style.background='var(--aeg3)'">
           <div class="ep-card-img-overlay"></div>
           <span class="ep-card-num">04</span>
@@ -762,8 +762,8 @@ h2.dw em{color:var(--blue2)}
 
       <div class="ep-card reveal d2" data-cat="war place">
         <div class="ep-card-img">
-          <img src="images/vase.jpg"
-               alt="Troy — ancient vase painting"
+          <img src="images/temple.jpg"
+               alt="Troy — ancient ruins"
                onerror="this.src='';this.parentElement.style.background='var(--aeg)'">
           <div class="ep-card-img-overlay"></div>
           <span class="ep-card-num">06</span>
@@ -785,7 +785,7 @@ h2.dw em{color:var(--blue2)}
       <div class="ep-card reveal" data-cat="hero place">
         <div class="ep-card-img">
           <img src="images/ruins.jpg"
-               alt="Knossos Palace, Crete"
+               alt="Knossos Palace — ancient columns"
                onerror="this.src='';this.parentElement.style.background='var(--aeg3)'">
           <div class="ep-card-img-overlay"></div>
           <span class="ep-card-num">07</span>
@@ -806,8 +806,8 @@ h2.dw em{color:var(--blue2)}
 
       <div class="ep-card reveal d1" data-cat="place">
         <div class="ep-card-img">
-          <img src="images/hero.jpg"
-               alt="Cyclades — the islands"
+          <img src="images/mykonos.jpg"
+               alt="Cyclades — Mykonos windmill"
                onerror="this.src='';this.parentElement.style.background='var(--aeg2)'">
           <div class="ep-card-img-overlay"></div>
           <span class="ep-card-num">08</span>
