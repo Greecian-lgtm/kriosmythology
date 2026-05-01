@@ -527,7 +527,7 @@ h2.dw em{color:var(--blue2)}
     </div>
     <div class="hero-stats" id="hero-stats">
       <div class="hst">
-        <span class="hst-n" data-count="10" data-suffix="">0</span>
+        <span class="hst-n" data-count="10" data-suffix="">10</span>
         <span class="hst-l">S1 Episodes</span>
       </div>
       <div class="hst">
@@ -535,7 +535,7 @@ h2.dw em{color:var(--blue2)}
         <span class="hst-l">Years of Sources</span>
       </div>
       <div class="hst">
-        <span class="hst-n" data-count="5" data-suffix="">0</span>
+        <span class="hst-n" data-count="5" data-suffix="">5</span>
         <span class="hst-l">Languages</span>
       </div>
       <div class="hst">
@@ -1230,42 +1230,39 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // ── EPISODE CARD STAGGER ──
   gsap.from(".ep-card", {
-    opacity: 0,
-    y: 30,
-    duration: 0.7,
-    stagger: 0.08,
+    y: 20,
+    duration: 0.6,
+    stagger: 0.06,
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".ep-grid",
-      start: "top 85%",
+      start: "top 90%",
       once: true
     }
   });
 
   // ── SOURCE CARD STAGGER ──
   gsap.from(".src-card", {
-    opacity: 0,
-    y: 20,
-    duration: 0.6,
-    stagger: 0.07,
+    y: 15,
+    duration: 0.5,
+    stagger: 0.06,
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".src-grid",
-      start: "top 85%",
+      start: "top 90%",
       once: true
     }
   });
 
   // ── WORD PANEL ITEMS ──
   gsap.from(".word-item", {
-    opacity: 0,
-    x: 20,
-    duration: 0.6,
-    stagger: 0.1,
+    x: 15,
+    duration: 0.5,
+    stagger: 0.08,
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".word-panel",
-      start: "top 80%",
+      start: "top 85%",
       once: true
     }
   });
@@ -1273,13 +1270,12 @@ document.addEventListener("DOMContentLoaded", function() {
   // ── GREEK WORD SCALE ON SCROLL ──
   document.querySelectorAll(".w-gr").forEach(word => {
     gsap.from(word, {
-      scale: 0.8,
-      opacity: 0,
-      duration: 0.6,
+      scale: 0.92,
+      duration: 0.5,
       ease: "back.out(1.4)",
       scrollTrigger: {
         trigger: word,
-        start: "top 85%",
+        start: "top 90%",
         once: true
       }
     });
@@ -1287,14 +1283,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // ── IMAGE GRID REVEAL ──
   gsap.from(".ig-item", {
-    opacity: 0,
-    scale: 0.95,
-    duration: 0.8,
-    stagger: 0.1,
+    scale: 0.98,
+    duration: 0.7,
+    stagger: 0.08,
     ease: "power2.out",
     scrollTrigger: {
       trigger: ".img-grid",
-      start: "top 80%",
+      start: "top 90%",
       once: true
     }
   });
@@ -1305,31 +1300,28 @@ document.addEventListener("DOMContentLoaded", function() {
     const text = split.querySelector(".split-text");
     if (img && text) {
       gsap.from(img, {
-        opacity: 0,
-        x: -40,
-        duration: 1,
+        x: -30,
+        duration: 0.9,
         ease: "power3.out",
-        scrollTrigger: { trigger: split, start: "top 80%", once: true }
+        scrollTrigger: { trigger: split, start: "top 85%", once: true }
       });
       gsap.from(text, {
-        opacity: 0,
-        x: 40,
-        duration: 1,
+        x: 30,
+        duration: 0.9,
         ease: "power3.out",
-        scrollTrigger: { trigger: split, start: "top 80%", once: true }
+        scrollTrigger: { trigger: split, start: "top 85%", once: true }
       });
     }
   });
 
   // ── FULL QUOTE TEXT ──
   gsap.from(".fq-text", {
-    opacity: 0,
-    y: 30,
-    duration: 1,
+    y: 25,
+    duration: 0.9,
     ease: "power3.out",
     scrollTrigger: {
       trigger: ".full-quote",
-      start: "top 70%",
+      start: "top 80%",
       once: true
     }
   });
