@@ -1,1328 +1,1459 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CR9SJHDTPB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-CR9SJHDTPB');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KRIOS — The Stories You Thought You Knew</title>
-    <meta name="description" content="Greek mythology told from primary sources. Every claim traced to Homer, Hesiod, Pindar and the ancient tradition. Stavros Commentary — new episodes weekly.">
-    <meta property="og:title" content="KRIOS — The Stories You Thought You Knew">
-    <meta property="og:description" content="Greek mythology told from primary sources. Not the popular retelling.">
-    <meta property="og:url" content="https://www.kriosmythology.com">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            /* Paros Dark Aegean palette — Option B */
-            --bg-deep: #0A1520;           /* Deep Aegean night */
-            --blue-mid: #1A3A5C;          /* Cycladic cobalt shadow */
-            --blue-light: #C9972A;        /* Paros gold — replaces cold blue accent */
-            --terracotta: #B85C38;        /* Marble amber */
-            --aegean: #1B4F8A;            /* True Aegean blue */
-            --ivory: #EDE8DC;             /* Whitewash marble */
-            --text-main: #F5F0E8;         /* Warm whitewash white */
-            --text-muted: rgba(237, 232, 220, 0.55);
-            --border-thin: rgba(201, 151, 42, 0.15); /* Gold border */
-            --font-display: 'Cinzel', serif;
-            --font-editorial: 'Cormorant Garamond', serif;
-            --font-ui: 'Inter', sans-serif;
-            --ease: cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            background-color: var(--bg-deep);
-            background-image: 
-                radial-gradient(ellipse at 20% 50%, rgba(27,79,138,0.08) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 20%, rgba(201,151,42,0.05) 0%, transparent 50%);
-            color: var(--text-main);
-            font-family: var(--font-editorial);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
-            line-height: 1.5;
-        }
-
-        .t-display {
-            font-family: var(--font-display);
-            font-size: clamp(4rem, 10vw, 9rem);
-            line-height: 0.9;
-            letter-spacing: 0.04em;
-            font-weight: 400;
-        }
-
-        .t-expressive {
-            font-family: var(--font-editorial);
-            font-style: italic;
-            font-size: clamp(2rem, 5vw, 4.5rem);
-            line-height: 1;
-            font-weight: 300;
-        }
-
-        .t-meta {
-            font-family: var(--font-ui);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-        }
-
-        .t-body {
-            font-family: var(--font-ui);
-            font-size: 0.9rem;
-            font-weight: 300;
-            line-height: 1.6;
-            color: rgba(255,255,255,0.8);
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0 4vw;
-        }
-
-        .hairline-divider {
-            height: 1px;
-            width: 100%;
-            background: linear-gradient(to right, transparent, rgba(201,151,42,0.3), transparent);
-            margin: 4rem 0;
-        }
-
-        /* NAV */
-        nav {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            background: linear-gradient(to bottom, rgba(8,16,26,0.95) 0%, rgba(8,16,26,0.0) 100%);
-            padding: 2rem 4vw;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            mix-blend-mode: difference;
-        }
-
-        .nav-logo {
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            letter-spacing: 0.08em;
-            text-decoration: none;
-            color: var(--text-main);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 0;
-            background: rgba(8,16,26,0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(201,151,42,0.25);
-            border-radius: 40px;
-            padding: 0.5rem 0.25rem;
-        }
-
-        .nav-links a {
-            color: #F5F0E8;
-            text-decoration: none;
-            font-family: var(--font-ui);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            transition: color 0.3s var(--ease);
-        }
-
-        .nav-links a {
-            padding: 0.4rem 1.2rem;
-            border-radius: 30px;
-            transition: background 0.2s, color 0.2s;
-        }
-        .nav-links a:hover {
-            color: var(--blue-light);
-            background: rgba(201,151,42,0.12);
-        }
-
-        /* HERO SCROLL CANVAS */
-        .hero-scroll {
-            position: relative;
-            height: 200vh;
-            width: 100%;
-        }
-
-        .hero-scroll canvas {
-            position: sticky;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            display: block;
-            object-fit: cover;
-        }
-
-        .hero-overlay {
-            position: sticky;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            pointer-events: none;
-            margin-top: -100vh;
-        }
-
-        .hero-overlay-inner {
-            position: relative;
-            z-index: 2;
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 2rem;
-            align-items: end;
-            width: 100%;
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0 4vw;
-            pointer-events: auto;
-        }
-
-        .hero-gradient {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: 
-                linear-gradient(to top, #0A1520 0%, rgba(10,21,32,0.5) 30%, transparent 60%),
-                linear-gradient(to right, rgba(5,10,18,0.75) 0%, rgba(5,10,18,0.4) 40%, transparent 70%);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Rotating stamp */
-        .stamp {
-            position: absolute;
-            bottom: 3%; right: 2vw;
-            z-index: 3;
-            width: 120px; height: 120px;
-            animation: rotate 45s linear infinite;
-            opacity: 0.35;
-            pointer-events: none;
-        }
-
-        .stamp svg {
-            width: 100%; height: 100%;
-            fill: var(--text-main);
-            font-family: var(--font-ui);
-            font-size: 11px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .hero-title-block {
-            grid-column: 2 / 11;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .hero-title-word {
-            display: inline-block;
-            will-change: transform;
-        }
-
-        .hero-sub {
-            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
-            margin-left: 15%;
-            margin-bottom: -0.5rem;
-            z-index: 2;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-
-        .hero-title { text-shadow: 0 2px 4px rgba(0,0,0,0.9), 0 10px 40px rgba(0,0,0,0.8); margin-bottom: 2rem; }
-
-        .hero-tagline {
-            font-family: var(--font-editorial);
-            font-size: 1.3rem;
-            color: rgba(255,255,255,0.95);
-            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
-            font-style: italic;
-            margin-top: 1.5rem;
-            max-width: 480px;
-        }
-
-        .hero-cta {
-            margin-top: 2.5rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            color: var(--text-main);
-            text-decoration: none;
-            font-family: var(--font-ui);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            border-bottom: 1px solid var(--blue-light);
-            padding-bottom: 4px;
-            transition: gap 0.3s ease;
-        }
-
-        .hero-cta:hover { gap: 1.4rem; color: var(--blue-light); }
-
-        .hero-meta {
-            grid-column: 9 / 12;
-            text-align: right;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            padding-bottom: 2rem;
-        }
-
-        .hero-meta p {
-            font-family: var(--font-editorial);
-            font-size: 1.2rem;
-            font-style: italic;
-            color: var(--text-muted);
-        }
-
-        /* STATS BAR */
-        .stats-bar {
-            background: rgba(27,79,138,0.15);
-            border-top: 1px solid var(--border-thin);
-            border-bottom: 1px solid var(--border-thin);
-            padding: 2rem 4vw;
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .stat-item { text-align: center; }
-
-        .stat-number {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            color: var(--blue-light);
-            line-height: 1;
-            margin-bottom: 0.4rem;
-        }
-
-        /* EMAIL CAPTURE */
-        .email-capture {
-            padding: 4rem 0;
-            background: var(--bg-deep);
-            border-top: 1px solid rgba(201,151,42,0.2);
-            border-bottom: 1px solid rgba(201,151,42,0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .email-capture .t-meta {
-            margin-bottom: 1.5rem;
-        }
-        .email-capture .kit-form-wrap {
-            width: 100%;
-            max-width: 600px;
-            padding: 0 2rem;
-        }
-
-        /* EPISODES */
-        .episodes-section {
-            padding: 8rem 0;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 4rem;
-        }
-
-        .section-link {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-family: var(--font-ui);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            transition: color 0.3s;
-            border-bottom: 1px solid var(--border-thin);
-            padding-bottom: 2px;
-        }
-
-        .section-link:hover { color: var(--blue-light); border-color: var(--blue-light); }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .card {
-            border: 1px solid var(--border-thin);
-            padding: 2.5rem 2rem;
-            position: relative;
-            background: rgba(27,79,138,0.06);
-            backdrop-filter: blur(5px);
-            transition: background 0.4s var(--ease), border-color 0.4s var(--ease);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            text-decoration: none;
-            color: inherit;
-            will-change: transform;
-        }
-
-        .card:hover {
-            background: rgba(201,151,42,0.04);
-            border-color: rgba(255,255,255,0.3);
-        }
-
-        .card-number {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            color: var(--blue-light);
-            line-height: 1;
-            margin-bottom: 2rem;
-            opacity: 0.7;
-        }
-
-        .card-tag {
-            font-family: var(--font-ui);
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--blue-light);
-            margin-bottom: 0.8rem;
-        }
-
-        .card-title {
-            font-family: var(--font-display);
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            line-height: 1.25;
-            letter-spacing: 0.01em;
-        }
-
-        .card-desc { margin-bottom: 2rem; flex-grow: 1; }
-
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid var(--border-thin);
-            padding-top: 1rem;
-        }
-
-        /* STAVROS WORD */
-        .word-section {
-            padding: 8rem 0;
-            border-top: 1px solid var(--border-thin);
-            border-bottom: 1px solid var(--border-thin);
-            background: rgba(201,151,42,0.06);
-        }
-
-        .word-inner {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 6rem;
-            align-items: start;
-        }
-
-        .word-greek {
-            font-family: var(--font-display);
-            font-size: clamp(4rem, 8vw, 8rem);
-            color: var(--blue-light);
-            line-height: 0.9;
-            margin-bottom: 0.5rem;
-        }
-
-        .word-transliteration {
-            font-family: var(--font-ui);
-            font-size: 0.8rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-
-        .word-definition {
-            font-family: var(--font-editorial);
-            font-size: 1.6rem;
-            font-style: italic;
-            line-height: 1.5;
-            color: var(--text-main);
-            margin-bottom: 1.5rem;
-            border-left: 2px solid var(--blue-light);
-            padding-left: 2rem;
-        }
-
-        .word-body {
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.95);
-            text-shadow: 0 2px 8px rgba(0,0,0,0.9);
-            line-height: 1.75;
-            font-family: var(--font-editorial);
-        }
-
-        .word-episodes {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .word-ep-tag {
-            font-family: var(--font-ui);
-            font-size: 0.65rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--blue-light);
-            border: 1px solid rgba(36,101,168,0.4);
-            padding: 0.4rem 1rem;
-        }
-
-        /* PAROS NOTE */
-        .paros-section {
-            padding: 6rem 0;
-            border-bottom: 1px solid var(--border-thin);
-        }
-
-        .paros-inner {
-            max-width: 780px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .paros-quote {
-            font-family: var(--font-editorial);
-            font-size: clamp(1.4rem, 3vw, 2.2rem);
-            font-style: italic;
-            line-height: 1.6;
-            color: rgba(255,255,255,0.85);
-            margin-bottom: 2rem;
-        }
-
-        .paros-attr {
-            font-family: var(--font-ui);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--blue-light);
-        }
-
-        /* SOURCES */
-        .sources-section { padding: 6rem 0; }
-
-        .table-container { width: 100%; overflow-x: auto; }
-
-        table { width: 100%; border-collapse: collapse; text-align: left; }
-
-        th, td { padding: 1.5rem 1rem; border-bottom: 1px solid var(--border-thin); }
-
-        th {
-            font-family: var(--font-ui);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            font-weight: 400;
-            border-top: 1px solid var(--border-thin);
-        }
-
-        td { font-family: var(--font-editorial); font-size: 1.2rem; }
-
-        td.td-meta {
-            font-family: var(--font-ui);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        td.td-italic { font-style: italic; color: var(--blue-light); }
-        tr:hover td { background: rgba(255,255,255,0.02); }
-
-        /* SUBSCRIBE */
-        .subscribe-section {
-            padding: 10rem 0;
-            text-align: center;
-            border-top: 1px solid var(--border-thin);
-            background: radial-gradient(circle at center, rgba(36,101,168,0.12) 0%, transparent 70%);
-        }
-
-        .subscribe-content { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
-
-        .subscribe-content .t-expressive { margin-bottom: 1.5rem; }
-
-        .subscribe-body {
-            font-family: var(--font-editorial);
-            font-size: 1.2rem;
-            font-style: italic;
-            color: var(--text-muted);
-            margin-bottom: 3rem;
-            line-height: 1.6;
-        }
-
-        .btn-youtube {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            background: var(--blue-mid);
-            border: 1px solid var(--blue-light);
-            color: var(--text-main);
-            padding: 1rem 2.5rem;
-            font-family: var(--font-ui);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            text-decoration: none;
-            transition: background 0.3s, transform 0.2s;
-        }
-
-        .btn-youtube:hover { background: var(--blue-light); transform: translateY(-2px); }
-
-        /* FOOTER */
-        footer {
-            padding: 4rem 4vw;
-            display: flex;
-            justify-content: space-between;
-            border-top: 1px solid var(--border-thin);
-        }
-
-        /* RESPONSIVE */
-        /* Hamburger button */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            padding: 10px 14px;
-            background: rgba(201,151,42,0.15);
-            backdrop-filter: blur(12px);
-            border: 1.5px solid rgba(201,151,42,0.6);
-            border-radius: 10px;
-            box-shadow: 0 2px 12px rgba(201,151,42,0.2);
-        }
-        .hamburger span {
-            display: block;
-            width: 26px;
-            height: 2.5px;
-            background: #C9972A;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-        .hamburger.open span:nth-child(2) { opacity: 0; }
-        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-        /* Mobile menu overlay */
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(8,16,26,0.97);
-            z-index: 99;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0;
-        }
-        .mobile-menu.open { display: flex; }
-        .mobile-menu a {
-            color: #F5F0E8;
-            text-decoration: none;
-            font-family: var(--font-display);
-            font-size: 1.4rem;
-            letter-spacing: 0.1em;
-            padding: 1.25rem 2rem;
-            width: 100%;
-            text-align: center;
-            border-bottom: 1px solid rgba(201,151,42,0.15);
-            transition: color 0.2s, background 0.2s;
-        }
-        .mobile-menu a:first-child { border-top: 1px solid rgba(201,151,42,0.15); }
-        .mobile-menu a:hover { color: var(--blue-light); background: rgba(201,151,42,0.06); }
-        .mobile-menu .close-btn {
-            position: absolute;
-            top: 1.2rem; right: 1.5rem;
-            background: none;
-            border: none;
-            color: #F5F0E8;
-            font-size: 1.8rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        @media (max-width: 1024px) {
-            .cards-grid { grid-template-columns: repeat(2, 1fr); }
-            .hero-overlay-inner { grid-template-columns: 1fr; }
-            .hero-title-block { grid-column: 1 / -1; }
-            .hero-meta { grid-column: 1 / -1; text-align: left; margin-top: 2rem; }
-            .stamp { display: none; }
-            .word-inner { grid-template-columns: 1fr; gap: 3rem; }
-        }
-
-        @media (max-width: 900px) {
-            .cards-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
-            .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-            footer { flex-direction: column; gap: 1rem; }
-            .stats-bar { flex-wrap: wrap; gap: 2rem; }
-        }
-
-        /* Reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            .stamp { animation: none; }
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>KRIOS — The Stories You Thought You Knew</title>
+<meta name="description" content="Greek mythology told from primary sources. Not the popular retelling. Every claim traced to Homer, Hesiod, and the ancient tradition. Paros, Cyclades.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --aeg:#1A3A5C;--aeg2:#1F3E61;--aeg3:#243F5E;
+  --blue:#2B7FD4;--blue2:#3A8FE4;--blue-d:rgba(43,127,212,.12);
+  --terra:#C86432;--terra-d:rgba(200,100,50,.12);
+  --wash:#F7F5F0;--wash2:#EDE9E1;--wash3:#E3DDD4;--wash4:#D8D1C6;
+  --ink:#1A2A3A;--ink2:#2E3E50;--mu:#4A5A6A;--dim:#7A8A96;
+  --od:#F0EDE6;--od7:rgba(240,237,230,.72);--od4:rgba(240,237,230,.42);
+  --lt:rgba(26,42,58,.10);--dk8:rgba(240,237,230,.08);--dk15:rgba(240,237,230,.15);
+  --fc:"Barlow Condensed",Impact,sans-serif;
+  --fh:"Cinzel",Georgia,serif;
+  --fb:"Crimson Pro",Georgia,serif;
+  --fm:"JetBrains Mono",monospace;
+  --mx:1200px;--g:clamp(1.5rem,5vw,4rem);--ez:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);color:var(--ink);background:var(--aeg);
+  line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+::selection{background:var(--blue);color:#fff}
+
+/* ── SCROLL COUNTER ────────────────────── */
+#sc{position:fixed;left:1.25rem;top:50%;transform:translateY(-50%);
+  z-index:100;display:flex;flex-direction:column;align-items:center;
+  gap:6px;pointer-events:none}
+.sc-n{font-family:var(--fc);font-size:11px;font-weight:900;
+  letter-spacing:.14em;color:rgba(43,127,212,.3);
+  writing-mode:vertical-rl;text-transform:uppercase;transition:color .5s}
+.sc-n.bright{color:rgba(43,127,212,.7)}
+.sc-bar{width:1px;height:32px;background:rgba(43,127,212,.15)}
+.sc-tot{font-family:var(--fm);font-size:9px;letter-spacing:.1em;
+  color:rgba(43,127,212,.18);writing-mode:vertical-rl}
+
+/* ── NAV ───────────────────────────────── */
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 var(--g);background:rgba(26,58,92,.0);
+  backdrop-filter:blur(0px);border-bottom:1px solid transparent;
+  transition:background .4s,backdrop-filter .4s,border-color .4s}
+#nav.scrolled{background:rgba(26,58,92,.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--dk8)}
+#nav.on-light{background:rgba(247,245,240,.96);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--lt)}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.nav-wm{font-family:var(--fh);font-size:16px;font-weight:700;
+  letter-spacing:.22em;color:var(--od);text-transform:uppercase;transition:color .3s}
+#nav.on-light .nav-wm{color:var(--ink)}
+.nav-sub{font-family:var(--fm);font-size:9px;font-weight:500;
+  letter-spacing:.12em;color:var(--od4);text-transform:uppercase;
+  display:block;margin-top:1px;transition:color .3s}
+#nav.on-light .nav-sub{color:var(--mu)}
+.nav-links{display:flex;gap:1.75rem;list-style:none;align-items:center}
+.nav-links a{font-family:var(--fm);font-size:11px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--od4);transition:color .25s}
+#nav.on-light .nav-links a{color:var(--mu)}
+.nav-links a:hover{color:var(--blue2)}
+#nav.on-light .nav-links a:hover{color:var(--blue)}
+.nav-cta{font-family:var(--fc);font-size:13px;font-weight:900;
+  letter-spacing:.15em;text-transform:uppercase;padding:8px 20px;
+  border:1px solid var(--blue);color:var(--blue);
+  transition:background .25s,color .25s}
+.nav-cta:hover{background:var(--blue);color:#fff}
+
+/* ── HERO ──────────────────────────────── */
+#hero{position:relative;height:100svh;overflow:hidden;background:var(--aeg)}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg-img{width:100%;height:120%;object-fit:cover;object-position:center;
+  transform:scale(1.15);will-change:transform}
+.hero-overlay{position:absolute;inset:0;
+  background:linear-gradient(
+    160deg,
+    rgba(26,58,92,.78) 0%,
+    rgba(26,58,92,.55) 40%,
+    rgba(26,58,92,.82) 100%)}
+.hero-overlay2{position:absolute;inset:0;
+  background:linear-gradient(to bottom,
+    rgba(26,58,92,.0) 0%,
+    rgba(26,58,92,.0) 50%,
+    rgba(26,58,92,.95) 90%,
+    rgba(26,58,92,1) 100%)}
+.hero-grain{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size:200px}
+.hero-content{position:absolute;inset:0;z-index:2;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 var(--g) 0;padding-left:calc(var(--g) + 3rem)}
+.hero-eye{font-family:var(--fm);font-size:11px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--blue2);
+  display:flex;align-items:center;gap:14px;margin-bottom:1.25rem}
+.hero-eye::before{content:"";width:32px;height:1px;background:var(--blue)}
+.hero-krios{font-family:var(--fc);font-weight:900;text-transform:uppercase;
+  font-size:clamp(8rem,22vw,21rem);line-height:.82;letter-spacing:-.02em;
+  color:var(--od);display:block;will-change:transform}
+.hero-krios .acc{color:var(--blue2)}
+.hero-tagline{font-family:var(--fh);font-size:clamp(.9rem,1.8vw,1.375rem);
+  font-weight:400;color:var(--od7);letter-spacing:.08em;
+  text-transform:uppercase;margin:.875rem 0 2rem}
+.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;
+  gap:3rem;flex-wrap:wrap}
+.hero-desc{font-family:var(--fb);font-size:1rem;font-weight:300;
+  font-style:italic;color:var(--od7);line-height:1.8;max-width:440px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;flex-shrink:0}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--dk8);margin-top:3rem}
+.hst{padding:1.25rem 0 2rem;border-right:1px solid var(--dk8);padding-right:2rem}
+.hst:last-child{border-right:none;padding-right:0}
+.hst-n{font-family:var(--fc);font-weight:900;font-size:1.875rem;
+  color:var(--od);display:block;line-height:1}
+.hst-l{font-family:var(--fm);font-size:9px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--od4);
+  margin-top:5px;display:block}
+
+/* ── MARQUEE ───────────────────────────── */
+#mq{background:var(--aeg2);border-top:1px solid var(--dk8);
+  border-bottom:1px solid var(--dk8);padding:11px 0;overflow:hidden}
+.mq-inner{display:flex;width:max-content;animation:mqs 40s linear infinite}
+@keyframes mqs{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mq-item{display:flex;align-items:center;gap:2rem;padding:0 2rem;
+  font-family:var(--fm);font-size:10px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;color:var(--od4)}
+.mq-dot{width:4px;height:4px;border-radius:50%;background:var(--blue);flex-shrink:0}
+.mq-hi{color:var(--blue2)}
+
+/* ── PHOTO BANNER (full-bleed between sections) ─── */
+.photo-banner{position:relative;height:50vh;overflow:hidden}
+.photo-banner img{width:100%;height:120%;object-fit:cover;
+  object-position:center;transform:translateY(0);will-change:transform}
+.photo-banner-overlay{position:absolute;inset:0}
+.pb-caption{position:absolute;bottom:2rem;right:2rem;
+  font-family:var(--fm);font-size:9px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(240,237,230,.45)}
+
+/* ── SECTIONS ──────────────────────────── */
+.sec{padding:6rem var(--g)}
+.sec-inner{max-width:var(--mx);margin:0 auto}
+.sec-aeg{background:var(--aeg)}
+.sec-aeg2{background:var(--aeg2)}
+.sec-aeg3{background:var(--aeg3)}
+.sec-wash{background:var(--wash)}
+.sec-wash2{background:var(--wash2)}
+.sec-wash3{background:var(--wash3)}
+
+/* ── SECTION LABELS ────────────────────── */
+.eye{font-family:var(--fm);font-size:10px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--blue);
+  display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.eye::before{content:"";width:24px;height:1px;background:var(--blue)}
+.eye-dk{color:rgba(43,127,212,.7)}
+.eye-dk::before{background:rgba(43,127,212,.5)}
+h2{font-family:var(--fh);font-weight:600;
+  font-size:clamp(2rem,4.5vw,3.75rem);line-height:1.05;
+  letter-spacing:.02em;color:var(--ink);margin-bottom:1.25rem}
+h2.dw{color:var(--od)}
+h2 em{font-style:italic;color:var(--blue)}
+h2.dw em{color:var(--blue2)}
+.dl{width:32px;height:1px;background:var(--blue);margin-bottom:2rem}
+.dl-dim{background:rgba(43,127,212,.35)}
+.lead{font-family:var(--fb);font-size:1.0625rem;font-weight:300;
+  color:var(--mu);line-height:1.9;max-width:580px;margin-bottom:2.5rem}
+.lead-dk{color:var(--od7)}
+
+/* ── SPLIT SECTIONS (image + text) ─────── */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:560px}
+.split-img{position:relative;overflow:hidden}
+.split-img img{width:100%;height:100%;object-fit:cover;
+  transform:scale(1.05);transition:transform 6s ease;will-change:transform}
+.split-img:hover img{transform:scale(1)}
+.split-img-overlay{position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(26,58,92,.35) 0%,transparent 60%)}
+.split-text{display:flex;flex-direction:column;justify-content:center;
+  padding:4rem 3.5rem}
+.split-rev .split-img{order:2}
+.split-rev .split-text{order:1}
+
+/* ── IMAGE GRID (Masonry-style) ────────── */
+.img-grid{display:grid;grid-template-columns:repeat(3,1fr);
+  grid-template-rows:auto auto;gap:4px;margin:3rem 0}
+.ig-item{overflow:hidden;position:relative}
+.ig-item img{width:100%;height:100%;object-fit:cover;
+  transform:scale(1.06);transition:transform .6s var(--ez);will-change:transform}
+.ig-item:hover img{transform:scale(1)}
+.ig-item.tall{grid-row:span 2}
+.ig-item.wide{grid-column:span 2}
+.ig-item::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(26,58,92,.6) 0%,transparent 50%);
+  opacity:0;transition:opacity .3s}
+.ig-item:hover::after{opacity:1}
+.ig-caption{position:absolute;bottom:.875rem;left:1rem;
+  font-family:var(--fm);font-size:9px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(240,237,230,.9);
+  opacity:0;transform:translateY(4px);transition:opacity .3s,transform .3s;
+  z-index:2}
+.ig-item:hover .ig-caption{opacity:1;transform:none}
+
+/* ── EPISODE FILTER + GRID ─────────────── */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2.5rem}
+.f-btn{font-family:var(--fm);font-size:10px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;padding:7px 18px;
+  border:1px solid var(--lt);background:var(--wash);color:var(--mu);
+  cursor:pointer;transition:all .2s}
+.f-btn:hover{border-color:var(--blue);color:var(--blue)}
+.f-btn.on{background:var(--ink);border-color:var(--ink);color:var(--wash)}
+.ep-grid{display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--lt)}
+.ep-card{background:var(--wash);border-top:2px solid transparent;
+  transition:border-color .25s,background .25s,transform .25s;
+  overflow:hidden}
+.ep-card.hidden{display:none}
+.ep-card-img{height:200px;overflow:hidden;position:relative}
+.ep-card-img img{width:100%;height:100%;object-fit:cover;
+  transform:scale(1.06);transition:transform .6s var(--ez)}
+.ep-card:hover .ep-card-img img{transform:scale(1)}
+.ep-card-img-overlay{position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(26,42,58,.75) 0%,transparent 60%)}
+.ep-card-num{position:absolute;bottom:.875rem;left:1.25rem;
+  font-family:var(--fc);font-weight:900;font-size:2rem;
+  color:rgba(240,237,230,.9);line-height:1;letter-spacing:-.01em}
+.ep-card-season{position:absolute;top:.875rem;right:.875rem;
+  font-family:var(--fm);font-size:9px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;
+  background:rgba(43,127,212,.85);color:#fff;
+  padding:3px 8px}
+.ep-body{padding:1.75rem 1.75rem 1.5rem}
+.ep-card:hover{border-top-color:var(--blue);background:var(--wash2);
+  transform:translateY(-2px)}
+.ep-season-lbl{font-family:var(--fm);font-size:9px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--blue);
+  margin-bottom:.5rem;display:block}
+.ep-title{font-family:var(--fh);font-weight:600;font-size:1.2rem;
+  color:var(--ink);letter-spacing:.02em;margin-bottom:.375rem;line-height:1.3}
+.ep-hook{font-family:var(--fm);font-size:9px;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--mu);
+  margin-bottom:.75rem}
+.ep-desc{font-family:var(--fb);font-size:13.5px;font-weight:300;
+  color:var(--mu);line-height:1.8;margin-bottom:1rem}
+.ep-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:.875rem}
+.ep-tag{font-family:var(--fm);font-size:9px;font-weight:500;
+  letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;
+  background:var(--wash2);color:var(--ink2);border:1px solid var(--wash3)}
+.ep-tag.blue{background:var(--blue-d);border-color:rgba(43,127,212,.25);color:var(--blue)}
+.ep-tag.terra{background:var(--terra-d);border-color:rgba(200,100,50,.25);color:var(--terra)}
+.ep-watch{display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--fm);font-size:10px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--blue);
+  border-bottom:1px solid rgba(43,127,212,.3);padding-bottom:2px;
+  transition:border-color .2s,gap .2s}
+.ep-watch:hover{gap:10px;border-color:var(--blue)}
+.ep-coming{font-family:var(--fm);font-size:10px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--dim);display:block}
+
+/* ── STAVROS COMMENTARY ─────────────────── */
+.commentary-grid{display:grid;grid-template-columns:1fr 400px;gap:5rem}
+.pull-quote{padding:2.5rem 2.75rem;background:rgba(43,127,212,.09);
+  border-left:2px solid var(--blue);margin-top:2.5rem}
+.pq-marks{font-family:var(--fc);font-size:5rem;font-weight:900;
+  color:rgba(43,127,212,.2);line-height:.8;display:block;margin-bottom:.75rem}
+.pq-text{font-family:var(--fb);font-style:italic;font-weight:300;
+  font-size:clamp(1.125rem,2vw,1.5rem);line-height:1.65;
+  color:var(--od);letter-spacing:-.01em;margin-bottom:1.5rem}
+.pq-attr{font-family:var(--fm);font-size:10px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--blue2)}
+.pq-role{font-family:var(--fm);font-size:10px;font-weight:400;
+  color:var(--od4);margin-top:4px;letter-spacing:.08em}
+.word-panel{background:rgba(43,127,212,.06);border:1px solid var(--dk15);
+  padding:2rem;display:flex;flex-direction:column;gap:1.5rem}
+.word-item{padding-bottom:1.5rem;border-bottom:1px solid var(--dk8)}
+.word-item:last-child{border-bottom:none;padding-bottom:0}
+.w-lbl{font-family:var(--fm);font-size:9px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(43,127,212,.55);margin-bottom:.5rem;display:block}
+.w-gr{font-family:var(--fh);font-size:2rem;font-weight:600;
+  color:var(--od);letter-spacing:.05em;line-height:1.1;display:block}
+.w-en{font-family:var(--fb);font-style:italic;font-weight:300;
+  font-size:.875rem;color:var(--od4);display:block;margin-top:.25rem}
+.w-def{font-family:var(--fb);font-size:14px;font-weight:300;
+  color:var(--od7);line-height:1.75;margin-top:.75rem}
+
+/* ── INVESTIGATE PANEL ──────────────────── */
+.inv-grid{display:grid;grid-template-columns:1fr 400px;gap:5rem;align-items:center}
+.inv-badge{display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--fm);font-size:10px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:16px}
+.inv-dot{width:6px;height:6px;border-radius:50%;background:var(--terra);
+  animation:pulse 1.6s ease infinite}
+@keyframes pulse{0%,100%{opacity:.4;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}
+.case-file{background:rgba(43,127,212,.07);border:1px solid var(--dk15);padding:2rem}
+.case-hdr{font-family:var(--fm);font-size:10px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--od4);
+  margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid var(--dk8)}
+.case-ex{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--dk8)}
+.case-ex:last-child{border-bottom:none}
+.ce-n{font-family:var(--fm);font-size:9px;font-weight:500;
+  color:var(--blue2);letter-spacing:.1em;text-transform:uppercase;
+  min-width:28px;padding-top:1px}
+.ce-t{font-family:var(--fb);font-size:13px;font-weight:300;
+  color:var(--od7);line-height:1.6}
+.case-verd{display:flex;align-items:center;gap:8px;margin-top:1.25rem;
+  font-family:var(--fm);font-size:10px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--terra)}
+
+/* ── SOURCES ────────────────────────────── */
+.src-grid{display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--lt);margin-top:2.5rem}
+.src-card{background:var(--wash);padding:1.75rem 1.5rem;
+  border-top:2px solid transparent;transition:border-color .25s,background .25s}
+.src-card:hover{border-top-color:var(--blue);background:var(--wash2)}
+.src-date{font-family:var(--fm);font-size:9px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--blue);
+  margin-bottom:.5rem;display:block}
+.src-auth{font-family:var(--fh);font-size:1.0625rem;font-weight:600;
+  color:var(--ink);margin-bottom:.25rem;line-height:1.2}
+.src-work{font-family:var(--fb);font-style:italic;font-size:.9375rem;
+  font-weight:300;color:var(--ink2);margin-bottom:.75rem}
+.src-used{font-family:var(--fm);font-size:9px;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.src-type{font-family:var(--fm);font-size:8px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;
+  background:var(--wash2);color:var(--mu);border:1px solid var(--wash3);
+  display:inline-block;margin-bottom:.625rem}
+.src-type.ng{background:var(--blue-d);border-color:rgba(43,127,212,.25);color:var(--blue)}
+
+/* ── QUOTE FULLBLEED ────────────────────── */
+.full-quote{position:relative;min-height:420px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center}
+.fq-bg{position:absolute;inset:0}
+.fq-bg img{width:100%;height:120%;object-fit:cover;
+  object-position:center 30%;transform:translateY(0);will-change:transform}
+.fq-overlay{position:absolute;inset:0;
+  background:rgba(26,58,92,.78)}
+.fq-content{position:relative;z-index:2;text-align:center;
+  padding:4rem var(--g);max-width:800px}
+.fq-marks{font-family:var(--fc);font-size:5rem;font-weight:900;
+  color:rgba(43,127,212,.35);line-height:.8;display:block;margin-bottom:1rem}
+.fq-text{font-family:var(--fh);font-style:italic;font-size:clamp(1.25rem,3vw,2rem);
+  font-weight:400;color:var(--od);line-height:1.5;letter-spacing:.01em;
+  margin-bottom:1.5rem}
+.fq-attr{font-family:var(--fm);font-size:10px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--blue2)}
+
+/* ── EMAIL CAPTURE ──────────────────────── */
+.email-wrap{max-width:560px;margin:0 auto;text-align:center}
+.email-form{display:flex;margin-top:2rem;max-width:460px;
+  margin-left:auto;margin-right:auto}
+.email-in{flex:1;background:var(--wash2);border:1px solid var(--wash3);
+  border-right:none;padding:13px 18px;font-family:var(--fb);
+  font-size:15px;font-weight:300;color:var(--ink);
+  outline:none;transition:border-color .2s}
+.email-in:focus{border-color:var(--blue)}
+.email-in::placeholder{color:var(--dim)}
+.email-btn{font-family:var(--fc);font-size:14px;font-weight:900;
+  letter-spacing:.15em;text-transform:uppercase;padding:13px 24px;
+  background:var(--aeg);color:var(--od);border:none;cursor:pointer;
+  white-space:nowrap;transition:background .2s}
+.email-btn:hover{background:var(--blue);color:#fff}
+.email-note{font-family:var(--fm);font-size:10px;font-weight:400;
+  letter-spacing:.06em;color:var(--dim);margin-top:.75rem}
+.ep-pr{display:flex;justify-content:center;gap:2rem;margin-top:1.5rem;flex-wrap:wrap}
+.ep-pr-item{font-family:var(--fm);font-size:10px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--mu);
+  display:flex;align-items:center;gap:6px}
+.ep-pr-item::before{content:"";width:12px;height:1px;background:var(--blue)}
+.langs{display:flex;justify-content:center;gap:1.25rem;margin-top:1.75rem;flex-wrap:wrap}
+.lang-a{font-family:var(--fm);font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--dim);transition:color .2s}
+.lang-a:hover{color:var(--blue)}
+
+/* ── BUTTONS ────────────────────────────── */
+.btn-blue{font-family:var(--fc);font-size:14px;font-weight:900;
+  letter-spacing:.15em;text-transform:uppercase;padding:13px 28px;
+  background:var(--blue);color:#fff;border:none;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:background .2s,transform .15s;
+  white-space:nowrap;text-decoration:none}
+.btn-blue:hover{background:var(--blue2);transform:translateY(-1px)}
+.btn-ow{font-family:var(--fc);font-size:13px;font-weight:900;
+  letter-spacing:.15em;text-transform:uppercase;padding:12px 24px;
+  background:transparent;color:var(--od7);border:1px solid var(--dk15);
+  cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+  transition:background .2s,border-color .2s;
+  white-space:nowrap;text-decoration:none}
+.btn-ow:hover{background:rgba(240,237,230,.07);border-color:rgba(240,237,230,.25)}
+.btn-dk{font-family:var(--fc);font-size:13px;font-weight:900;
+  letter-spacing:.15em;text-transform:uppercase;padding:12px 24px;
+  background:transparent;color:var(--ink);border:1px solid var(--lt);
+  cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+  transition:border-color .2s,color .2s;
+  white-space:nowrap;text-decoration:none}
+.btn-dk:hover{border-color:var(--blue);color:var(--blue)}
+.btn-aeg{font-family:var(--fc);font-size:14px;font-weight:900;
+  letter-spacing:.15em;text-transform:uppercase;padding:13px 28px;
+  background:var(--aeg);color:var(--od);border:none;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:opacity .2s;white-space:nowrap;text-decoration:none}
+.btn-aeg:hover{opacity:.85}
+
+/* ── FOOTER ─────────────────────────────── */
+#footer{background:var(--aeg);border-top:1px solid var(--dk8);
+  padding:3rem var(--g) 2.5rem}
+.ft{max-width:var(--mx);margin:0 auto}
+.ft-top{display:flex;align-items:center;justify-content:space-between;
+  gap:2rem;flex-wrap:wrap;padding-bottom:1.5rem;
+  border-bottom:1px solid var(--dk8);margin-bottom:1.5rem}
+.ft-brand{display:flex;align-items:center;gap:10px}
+.ft-wm{font-family:var(--fh);font-size:18px;font-weight:700;
+  color:var(--od);letter-spacing:.25em;text-transform:uppercase}
+.ft-sub{font-family:var(--fm);font-size:9px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(43,127,212,.55);display:block;margin-top:2px}
+.ft-links{display:flex;gap:2rem;flex-wrap:wrap;list-style:none}
+.ft-links a{font-family:var(--fm);font-size:10px;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--od4);transition:color .2s}
+.ft-links a:hover{color:var(--blue2)}
+.ft-disc{font-family:var(--fb);font-size:12px;font-weight:300;
+  color:var(--od4);line-height:1.8}
+
+/* ── REVEAL ANIMATIONS ──────────────────── */
+.reveal{opacity:0;transform:translateY(28px);
+  transition:opacity .8s var(--ez),transform .8s var(--ez)}
+.reveal.in{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-28px);
+  transition:opacity .8s var(--ez),transform .8s var(--ez)}
+.reveal-left.in{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(28px);
+  transition:opacity .8s var(--ez),transform .8s var(--ez)}
+.reveal-right.in{opacity:1;transform:none}
+.reveal-scale{opacity:0;transform:scale(.96);
+  transition:opacity .8s var(--ez),transform .8s var(--ez)}
+.reveal-scale.in{opacity:1;transform:scale(1)}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}
+.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* ── RESPONSIVE ─────────────────────────── */
+@media(max-width:1200px){#sc{display:none}}
+@media(max-width:1024px){
+  .split{grid-template-columns:1fr;min-height:auto}
+  .split-img{height:350px}
+  .split-rev .split-img,.split-rev .split-text{order:unset}
+  .commentary-grid,.inv-grid{grid-template-columns:1fr;gap:3rem}
+  .ep-grid{grid-template-columns:repeat(2,1fr)}
+  .src-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .img-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .ep-grid{grid-template-columns:1fr}
+  .src-grid{grid-template-columns:1fr}
+  .img-grid{grid-template-columns:1fr}
+  .hero-krios{font-size:clamp(5rem,18vw,9rem)}
+  .email-form{flex-direction:column}
+  .email-in{border-right:1px solid var(--wash3);border-bottom:none}
+  .ft-top{flex-direction:column;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.reveal-left,.reveal-right,.reveal-scale{
+    opacity:1;transform:none;transition:none}
+  .mq-inner{animation:none}
+  .hero-bg-img,.fq-bg img,.photo-banner img{transform:none}
+}
+</style>
 </head>
 <body>
-
-    <nav>
-        <a href="/" class="nav-logo">KRIOS</a>
-        <div class="nav-links">
-            <a href="#episodes">Episodes</a>
-            <a href="#sources">Primary Sources</a>
-            <a href="/links/">Links</a>
-            <a href="/tools/real-or-fake/" style="color:var(--blue-light);">Real or Fake?</a>
-        </div>
-        <button class="hamburger" id="hamburger" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
-    </nav>
-
-    <!-- Mobile menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <button class="close-btn" id="closeMenu">✕</button>
-        <a href="#episodes" onclick="closeMobileMenu()">Episodes</a>
-        <a href="#sources" onclick="closeMobileMenu()">Primary Sources</a>
-        <a href="/links/">Links</a>
-        <a href="/tools/real-or-fake/" style="color:var(--blue-light);">Real or Fake?</a>
-        <a href="https://www.youtube.com/@KriosMythology" target="_blank" style="color:#C9972A;">▶ Subscribe on YouTube</a>
-        <a href="/investigate.html" style="color:#C9972A;">🔍 Investigate Free</a>
+<div id="sc" aria-hidden="true">
+  <span class="sc-n" id="sc-cur">S1</span>
+  <div class="sc-bar"></div>
+  <span class="sc-tot">10</span>
+</div>
+<nav id="nav">
+  <a href="#hero" class="nav-brand">
+    <svg width="28" height="28" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="30" cy="30" r="27" fill="none" stroke="#2B7FD4" stroke-width="1.2"/>
+      <text x="30" y="36" text-anchor="middle" font-family="Georgia,serif"
+        font-size="17" font-weight="700" fill="#2B7FD4" letter-spacing="2">KR</text>
+    </svg>
+    <div>
+      <span class="nav-wm">KRIOS</span>
+      <span class="nav-sub">Paros · Cyclades</span>
     </div>
-
-    <!-- HERO — SCROLL-DRIVEN CANVAS -->
-    <section class="hero-scroll" id="hero-scroll">
-        <!-- ROTATING STAMP — TOP LEFT -->
-        <div class="stamp">
-            <svg viewBox="0 0 100 100">
-                <path id="curve" d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="transparent"></path>
-                <text>
-                    <textPath href="#curve" startOffset="0%">
-                        Paros · Cyclades · Primary Sources · Stavros Commentary ·
-                    </textPath>
-                </text>
-            </svg>
-        </div>
-        <canvas id="hero-canvas"></canvas>
-        <div class="hero-overlay">
-            <div class="hero-gradient"></div>
-            <div class="hero-overlay-inner">
-                <div class="hero-title-block">
-                    <div class="t-expressive hero-sub">The stories of the</div>
-                    <h1 class="t-display hero-title" id="hero-title">KRIOS</h1>
-                    <p class="hero-tagline">Greek mythology told from primary sources — not the popular retelling. Every claim traced to Homer, Hesiod, and the ancient tradition.</p>
-                    <a href="https://www.youtube.com/@KriosMythology?utm_source=kriosmythology.com&utm_medium=website&utm_campaign=subscribe" target="_blank" class="hero-cta">Watch on YouTube &#8599;</a>
-                </div>
-                <div class="hero-meta">
-                    <p>Season 1</p>
-                    <p>10 Episodes</p>
-                    <p>All Primary Sources</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- INVESTIGATE -->
-    <section class="subscribe-section" style="border-top: 1px solid rgba(201, 168, 76, 0.15); padding-top: 6rem;">
-        <div class="subscribe-content">
-            <span class="t-meta" style="margin-bottom:1.5rem;display:block;color:#c9a84c;">Unknown Files — Free Case</span>
-            <h2 class="t-expressive">Investigate the real cause of the Trojan War.</h2>
-            <p class="subscribe-body">Primary sources. Cross-cultural evidence. Five exhibits. One verdict. Play the free investigation case — no login required.</p>
-            <a href="/investigate.html" class="btn-youtube" style="background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);color:#c9a84c;">&#128270; Open Case File</a>
-        </div>
-    </section>
-    <!-- SUBSCRIBE -->
-    <section class="subscribe-section">
-        <div class="subscribe-content">
-            <span class="t-meta" style="margin-bottom:1.5rem;display:block;">Join the Channel</span>
-            <h2 class="t-expressive">Every episode will change something you thought you knew.</h2>
-            <p class="subscribe-body">Season 1 covers Achilles, Odysseus, Thermopylae, Heracles, Medusa, Troy and four more. Every claim traced to primary sources. New episodes weekly.</p>
-            <a href="https://www.youtube.com/@KriosMythology?utm_source=kriosmythology.com&utm_medium=website&utm_campaign=subscribe" target="_blank" class="btn-youtube">&#9654; Subscribe on YouTube</a>
-        </div>
-    </section>
-
-
-    <!-- STATS -->
-    <div class="stats-bar">
-        <div class="stat-item">
-            <div class="stat-number" data-target="10">10</div>
-            <span class="t-meta">S1 Episodes</span>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number" data-target="3000" data-suffix="+">3,000+</div>
-            <span class="t-meta">Years of Sources</span>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number" data-target="5">5</div>
-            <span class="t-meta">Languages</span>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number" data-target="0">0</div>
-            <span class="t-meta">Unverified Claims</span>
-        </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#episodes">Episodes</a></li>
+    <li><a href="#commentary">Commentary</a></li>
+    <li><a href="#investigate">Investigate</a></li>
+    <li><a href="#sources">Sources</a></li>
+    <li><a href="#notes">Notes</a></li>
+  </ul>
+  <a href="https://www.youtube.com/@KriosMythology"
+     target="_blank" rel="noopener" class="nav-cta">Watch Free ↗</a>
+</nav>
+<section id="hero">
+  <div class="hero-bg">
+    <img class="hero-bg-img" id="hero-parallax"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Santorini_Greece.jpg/1280px-Santorini_Greece.jpg"
+      alt="Cyclades — Santorini, Greece"
+      onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Oia_Santorini_Greece.jpg/1280px-Oia_Santorini_Greece.jpg'">
+    <div class="hero-overlay"></div>
+    <div class="hero-overlay2"></div>
+  </div>
+  <div class="hero-grain" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-eye" id="hero-eye">
+      Stavros Krios · Paros, Cyclades · Primary Sources · Since Homer
     </div>
-
-    <div class="container">
-        <div class="hairline-divider"></div>
-    </div>
-
-    <div style="text-align:center;padding:1.5rem 0 0.5rem;font-family:var(--font-sans)">
-      <p style="font-size:0.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--c-stone);margin-bottom:0.75rem">Subtitles available in</p>
-      <div style="display:inline-flex;gap:0.5rem;flex-wrap:wrap;justify-content:center">
-        <span style="font-size:0.8rem;padding:4px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:20px;color:var(--c-parchment)">🇪🇸 Español</span>
-        <span style="font-size:0.8rem;padding:4px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:20px;color:var(--c-parchment)">🇧🇷 Português</span>
-        <span style="font-size:0.8rem;padding:4px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:20px;color:var(--c-parchment)">🇬🇷 Ελληνικά</span>
-        <span style="font-size:0.8rem;padding:4px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:20px;color:var(--c-parchment)">🇩🇪 Deutsch</span>
+    <span class="hero-krios" id="hero-krios">K<span class="acc">R</span>IOS</span>
+    <p class="hero-tagline" id="hero-tag">The Stories You Thought You Knew</p>
+    <div class="hero-bottom" id="hero-bottom">
+      <p class="hero-desc">Greek mythology told from primary sources — not the popular
+        retelling. Every claim traced to Homer, Hesiod, and the ancient tradition.</p>
+      <div class="hero-actions">
+        <a href="https://www.youtube.com/@KriosMythology"
+           target="_blank" rel="noopener" class="btn-blue">Watch on YouTube ↗</a>
+        <a href="#investigate" class="btn-ow">Investigate Free</a>
       </div>
     </div>
-
-    <!-- EMAIL CAPTURE -->
-    <section class="email-capture">
-        <span class="t-meta">FREE — PRIMARY SOURCE NOTES</span>
-        <div class="kit-form-wrap">
-            <script async data-uid="a62ecc2651" src="https://krios-primary-sources.kit.com/a62ecc2651/index.js"></script>
-        </div>
-    </section>
-
-    <!-- EPISODES -->
-    <section class="episodes-section container" id="episodes">
-        <div class="section-header">
-            <h2 class="t-display" style="font-size:3.5rem;">Season 1 Episodes</h2>
-            <a href="https://www.youtube.com/@KriosMythology?utm_source=kriosmythology.com&utm_medium=website&utm_campaign=subscribe" target="_blank" class="section-link">All Episodes &#8599;</a>
-        </div>
-
-
-        <div class="section-header" style="margin-bottom:2rem;">
-            <h3 class="t-display" style="font-size:2rem; color: var(--gold);">Latest Episodes</h3>
-        </div>
-        <div id="latest-episodes-feed" class="cards-grid" style="margin-bottom:4rem;">
-            <div class="card" style="opacity:0.5;"><p class="t-body">Loading latest episodes...</p></div>
-        </div>
-        <script>
-        (function() {
-            var CHANNEL_ID = 'UC845GaAiIR51FFPD5wEsXAg';
-            var RSS_URL = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID;
-            var PROXY = 'https://api.allorigins.win/get?url=' + encodeURIComponent(RSS_URL);
-            fetch(PROXY)
-                .then(function(r){ return r.json(); })
-                .then(function(data) {
-                    var parser = new DOMParser();
-                    var xml = parser.parseFromString(data.contents, 'text/xml');
-                    var entries = xml.querySelectorAll('entry');
-                    var feed = document.getElementById('latest-episodes-feed');
-                    feed.innerHTML = '';
-                    var count = 0;
-                    entries.forEach(function(entry) {
-                        if (count >= 3) return;
-                        var title = entry.querySelector('title') ? entry.querySelector('title').textContent : '';
-                        var link = entry.querySelector('link') ? entry.querySelector('link').getAttribute('href') : '#';
-                        var videoId = link.split('v=')[1] || '';
-                        var thumb = videoId ? 'https://img.youtube.com/vi/' + videoId + '/maxresdefault.jpg' : '';
-                        var published = entry.querySelector('published') ? entry.querySelector('published').textContent.substring(0,10) : '';
-                        var card = document.createElement('a');
-                        card.href = link;
-                        card.target = '_blank';
-                        card.className = 'card';
-                        card.innerHTML = (thumb ? '<img src="' + thumb + '" alt="' + title + '" style="width:100%;border-radius:4px;margin-bottom:1rem;aspect-ratio:16/9;object-fit:cover;">' : '') +
-                            '<h3 class="card-title">' + title + '</h3>' +
-                            '<div class="card-meta"><span class="t-meta">Watch Episode</span><span class="t-meta">' + published + '</span></div>';
-                        feed.appendChild(card);
-                        count++;
-                    });
-                    if (count === 0) feed.innerHTML = '<p class="t-body">No episodes found.</p>';
-                })
-                .catch(function(e){ 
-                    document.getElementById('latest-episodes-feed').innerHTML = '';
-                });
-        })();
-        </script>
-
-        <div class="cards-grid" style="margin-top:2rem;">
-
-            <a href="https://www.youtube.com/watch?v=rsNL4YMtjxY" target="_blank" class="card">
-                <div class="card-number">I</div>
-                <div class="card-tag">kleos · menis</div>
-                <h3 class="card-title">Achilles Wasn't Sulking — He Was Running a Calculation</h3>
-                <p class="t-body card-desc">Homer opens the Iliad with menis — not ordinary anger. Achilles didn't withdraw because his feelings were hurt. He was orchestrating a precise, calculated revenge while protecting his shot at immortality.</p>
-                <div class="card-meta">
-                    <span class="t-meta">Watch Episode</span>
-                    <span class="t-meta">14 Min</span>
-                </div>
-            </a>
-
-            <a href="https://www.youtube.com/watch?v=Xb9KPwSu3ZI" target="_blank" class="card">
-                <div class="card-number">II</div>
-                <div class="card-tag">metis · unreliable narrator</div>
-                <h3 class="card-title">Odysseus Was Not the Hero Homer Made Him Out to Be</h3>
-                <p class="t-body card-desc">Books 9–12 — the Cyclops, the Sirens, the land of the dead — are narrated by Odysseus himself, at a dinner party, to an audience whose ships he needs. Every other character in Greek literature calls him a liar.</p>
-                <div class="card-meta">
-                    <span class="t-meta">Watch Episode</span>
-                    <span class="t-meta">14 Min</span>
-                </div>
-            </a>
-
-            <a href="https://www.youtube.com/watch?v=RfTLBpKWbso" target="_blank" class="card">
-                <div class="card-number">III</div>
-                <div class="card-tag">sacrifice · strategy</div>
-                <h3 class="card-title">What Actually Happened at Thermopylae</h3>
-                <p class="t-body card-desc">There were 7,000 men at Thermopylae, not 300. The 700 Thespians fought to the last — nobody makes films about them. Leonidas knew he was going to die before he marched there. The oracle had told him.</p>
-                <div class="card-meta">
-                    <span class="t-meta">Watch Episode</span>
-                    <span class="t-meta">8 Min</span>
-                </div>
-            </a>
-
-            <a href="https://www.youtube.com/watch?v=UQFGj0XNoZA" target="_blank" class="card">
-                <div class="card-number">IV</div>
-                <div class="card-tag">penance · atonement</div>
-                <h3 class="card-title">Heracles and the Worst Myth Nobody Tells</h3>
-                <p class="t-body card-desc">Before the twelve labours, Hera drove Heracles temporarily insane and he murdered his own wife and children. The labours weren't heroic adventures — they were penance assigned by a petty, jealous king.</p>
-                <div class="card-meta">
-                    <span class="t-meta">Watch Episode</span>
-                    <span class="t-meta">7 Min</span>
-                </div>
-            </a>
-
-            <a href="https://www.youtube.com/watch?v=Xosw8UmfxQU" target="_blank" class="card">
-                <div class="card-number">V</div>
-                <div class="card-tag">xenia · tragedy</div>
-                <h3 class="card-title">Perseus and the Monster That Wasn't the Point</h3>
-                <p class="t-body card-desc">Medusa was a priestess of Athena. Poseidon assaulted her in Athena's own temple. Athena punished Medusa — not Poseidon. A woman wronged by a god, punished by a goddess, hunted by a hero. A tragedy wearing a hero's mask.</p>
-                <div class="card-meta">
-                    <span class="t-meta">Watch Episode</span>
-                    <span class="t-meta">9 Min</span>
-                </div>
-            </a>
-
-            <a href="https://www.youtube.com/watch?v=Tno9KSxxcok" target="_blank" class="card">
-                <div class="card-number">VI</div>
-                <div class="card-tag">kleos · archaeology</div>
-                <h3 class="card-title">The Real Troy — Did It Actually Happen?</h3>
-                <p class="t-body card-desc">There are nine cities buried at Hisarlik. Schliemann dug straight through the one that matched Homer's timeline to reach treasure a thousand years older. The Iliad ends with Hector's funeral — not Troy's fall.</p>
-                <div class="card-meta">
-                    <span class="t-meta">Watch Episode</span>
-                    <span class="t-meta">13 Min</span>
-                </div>
-            </a>
-
-        </div>
-    </section>
-
-    <div class="container">
-        <div class="hairline-divider"></div>
+    <div class="hero-stats" id="hero-stats">
+      <div class="hst">
+        <span class="hst-n" data-count="10" data-suffix="">0</span>
+        <span class="hst-l">S1 Episodes</span>
+      </div>
+      <div class="hst">
+        <span class="hst-n">3,000+</span>
+        <span class="hst-l">Years of Sources</span>
+      </div>
+      <div class="hst">
+        <span class="hst-n" data-count="5" data-suffix="">0</span>
+        <span class="hst-l">Languages</span>
+      </div>
+      <div class="hst">
+        <span class="hst-n" data-count="0" data-suffix="">0</span>
+        <span class="hst-l">Unverified Claims</span>
+      </div>
     </div>
+  </div>
+</section>
+<div id="mq" aria-hidden="true">
+  <div class="mq-inner">
+    <span class="mq-item"><span class="mq-hi">Homer</span><span class="mq-dot"></span>Iliad · c. 8th C. BCE<span class="mq-dot"></span></span>
+    <span class="mq-item"><span class="mq-hi">Hesiod</span><span class="mq-dot"></span>Theogony · c. 700 BCE<span class="mq-dot"></span></span>
+    <span class="mq-item"><span class="mq-hi">Herodotus</span><span class="mq-dot"></span>Histories · c. 430 BCE<span class="mq-dot"></span></span>
+    <span class="mq-item"><span class="mq-hi">Parian Chronicle</span><span class="mq-dot"></span>Marble Stele · Paros Island · 264 BCE<span class="mq-dot"></span></span>
+    <span class="mq-item"><span class="mq-hi">Hittite Tablets</span><span class="mq-dot"></span>Wilusa Treaty · c. 1280 BCE<span class="mq-dot"></span></span>
+    <span class="mq-item"><span class="mq-hi">Pindar</span><span class="mq-dot"></span>Pythian Ode 12 · 498 BCE<span class="mq-dot"></span></span>
+    <span class="mq-item"><span class="mq-hi">Euripides</span><span class="mq-dot"></span>Heracles · c. 416 BCE<span class="mq-dot"></span></span>
+    <span class="mq-item"><span class="mq-hi">Apollodorus</span><span class="mq-dot"></span>Bibliotheca · c. 2nd C. BCE<span class="mq-dot"></span></span>
+    <span class="mq-item"><span class="mq-hi">Homer</span><span class="mq-dot"></span>Iliad · c. 8th C. BCE<span class="mq-dot"></span></span>
+    <span class="mq-item"><span class="mq-hi">Hesiod</span><span class="mq-dot"></span>Theogony · c. 700 BCE<span class="mq-dot"></span></span>
+    <span class="mq-item"><span class="mq-hi">Herodotus</span><span class="mq-dot"></span>Histories · c. 430 BCE<span class="mq-dot"></span></span>
+    <span class="mq-item"><span class="mq-hi">Parian Chronicle</span><span class="mq-dot"></span>Marble Stele · Paros Island · 264 BCE<span class="mq-dot"></span></span>
+    <span class="mq-item"><span class="mq-hi">Hittite Tablets</span><span class="mq-dot"></span>Wilusa Treaty · c. 1280 BCE<span class="mq-dot"></span></span>
+    <span class="mq-item"><span class="mq-hi">Pindar</span><span class="mq-dot"></span>Pythian Ode 12 · 498 BCE<span class="mq-dot"></span></span>
+    <span class="mq-item"><span class="mq-hi">Euripides</span><span class="mq-dot"></span>Heracles · c. 416 BCE<span class="mq-dot"></span></span>
+    <span class="mq-item"><span class="mq-hi">Apollodorus</span><span class="mq-dot"></span>Bibliotheca · c. 2nd C. BCE<span class="mq-dot"></span></span>
+  </div>
+</div>
+<section class="sec sec-wash" data-sec="intro">
+  <div class="sec-inner">
+    <div class="split reveal-scale">
+      <div class="split-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Paros_-_Parikia_view.jpg/1280px-Paros_-_Parikia_view.jpg"
+             alt="Parikia, Paros Island, Cyclades"
+             onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Santorini_Greece.jpg/640px-Santorini_Greece.jpg'">
+        <div class="split-img-overlay"></div>
+      </div>
+      <div class="split-text">
+        <span class="eye reveal d1">Paros, Cyclades</span>
+        <h2 class="reveal d1">These stories weren't<br><em>mythology</em> to us.</h2>
+        <div class="dl reveal d2"></div>
+        <p class="lead reveal d2">They were just history — the local kind. Theseus sailed
+          through these islands. The marble that built the Parthenon came out of the ground here.
+          The Parian Chronicle — one of the only surviving Greek chronologies — was found
+          on this island.</p>
+        <p class="lead reveal d3" style="font-style:italic;color:var(--blue)">
+          — Stavros Krios, Paros, Cyclades</p>
+        <a href="#episodes" class="btn-aeg reveal d3" style="margin-top:.5rem">
+          Watch S1 Episodes ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="sec sec-aeg2" data-sec="cyclades" style="padding-bottom:0">
+  <div class="sec-inner">
+    <span class="eye eye-dk reveal">The Cyclades</span>
+    <h2 class="dw reveal d1">Where the myths<br><em>actually happened.</em></h2>
+    <div class="dl dl-dim reveal d2"></div>
+    <p class="lead lead-dk reveal d2" style="max-width:500px">
+      Paros. Delos. Naxos. Mykonos. These weren't just beautiful islands —
+      they were the stage for every myth Stavros investigates.</p>
+  </div>
+  <div class="img-grid" style="margin-top:2rem">
+    <div class="ig-item tall reveal">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Santorini_Greece.jpg/640px-Santorini_Greece.jpg"
+           alt="Santorini, Cyclades"
+           onerror="this.style.background='var(--aeg3)'">
+      <div class="ig-caption">Santorini · Thira</div>
+    </div>
+    <div class="ig-item reveal d1">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Paros_-_Parikia_view.jpg/640px-Paros_-_Parikia_view.jpg"
+           alt="Parikia, Paros"
+           onerror="this.style.background='var(--aeg2)'">
+      <div class="ig-caption">Parikia · Paros</div>
+    </div>
+    <div class="ig-item reveal d2">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Oia_Santorini_Greece.jpg/640px-Oia_Santorini_Greece.jpg"
+           alt="Oia, Santorini"
+           onerror="this.style.background='var(--aeg3)'">
+      <div class="ig-caption">Oia · Santorini</div>
+    </div>
+    <div class="ig-item wide reveal d1">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Naxos_-_town_view.jpg/1280px-Naxos_-_town_view.jpg"
+           alt="Naxos town"
+           onerror="this.style.background='var(--aeg)'">
+      <div class="ig-caption">Naxos · Island of Dionysos</div>
+    </div>
+  </div>
+</section>
+<section id="episodes" class="sec sec-wash" data-sec="episodes">
+  <div class="sec-inner">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;
+      flex-wrap:wrap;gap:1.5rem;margin-bottom:2.5rem">
+      <div>
+        <span class="eye reveal">All episodes</span>
+        <h2 class="reveal d1">Season 1 —<br><em>Ten Episodes.</em></h2>
+        <div class="dl reveal d2"></div>
+        <p class="lead reveal d2">Every episode will change something you thought you knew.
+          Primary sources only. Oldest cited, not most famous.</p>
+      </div>
+      <a href="https://www.youtube.com/@KriosMythology" target="_blank" rel="noopener"
+         class="btn-aeg reveal" style="flex-shrink:0">All on YouTube ↗</a>
+    </div>
+    <div class="filters reveal">
+      <button class="f-btn on" data-f="all">All</button>
+      <button class="f-btn" data-f="war">War &amp; Strategy</button>
+      <button class="f-btn" data-f="hero">Heroes &amp; Tragedy</button>
+      <button class="f-btn" data-f="place">Place &amp; History</button>
+    </div>
+    <div class="ep-grid">
 
-    <!-- STAVROS WORD -->
-    <section class="word-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="t-meta">Stavros Commentary</span>
-                <span class="t-meta">S1 — The Word</span>
-            </div>
-            <div class="word-inner">
-                <div class="word-left">
-                    <div class="word-greek">&#956;&#8134;&#957;&#953;&#962;</div>
-                    <div class="word-transliteration">menis</div>
-                </div>
-                <div class="word-right">
-                    <p class="word-definition">Not ordinary anger. A divinely-sanctioned, cosmically consequential wrath — the kind that reshapes the course of history and implicates the gods themselves.</p>
-                    <p class="word-body">Homer opens the entire Iliad with this single word. Not battle, not glory, not Troy. Menis. Every death in the poem flows from that first line. No other mortal in Homer gets menis — it belongs to gods and to Achilles alone, and that tells you everything about what Homer thought of him.<br><br>
-                    The popular reading is that Achilles sulks. The primary source reading is that he exercises the only power available to a man whose purpose has been publicly destroyed: strategic withdrawal, with divine endorsement behind it.</p>
-                    <div class="word-episodes">
-                        <span class="word-ep-tag">EP001 — Achilles</span>
-                        <span class="word-ep-tag">EP006 — Troy</span>
-                    </div>
-                </div>
-            </div>
+      <div class="ep-card reveal" data-cat="war hero">
+        <div class="ep-card-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Ajax-Achilles-Kylix-SVG.svg/640px-Ajax-Achilles-Kylix-SVG.svg"
+               alt="Achilles — Attic black-figure"
+               onerror="this.src='';this.parentElement.style.background='var(--aeg3)'">
+          <div class="ep-card-img-overlay"></div>
+          <span class="ep-card-num">01</span>
+          <span class="ep-card-season">War &amp; Strategy</span>
         </div>
-    </section>
-
-    <!-- PAROS NOTE -->
-    <section class="paros-section">
-        <div class="container paros-inner">
-            <p class="paros-quote">"These stories weren't mythology to my family. They were just history — the local kind. Theseus sailed through these islands. The marble that built the Parthenon came out of the ground here. That changes how you read the sources."</p>
-            <span class="paros-attr">Stavros · Paros, Cyclades · First Generation</span>
+        <div class="ep-body">
+          <div class="ep-title">Achilles</div>
+          <div class="ep-hook">ikleos · menis</div>
+          <p class="ep-desc">Homer opens the Iliad with menis — not ordinary anger.
+            Achilles didn't sulk. He was orchestrating a precise, calculated revenge.</p>
+          <div class="ep-tags">
+            <span class="ep-tag blue">Primary source</span>
+            <span class="ep-tag">Homer · 14 min</span>
+          </div>
+          <a href="https://www.youtube.com/watch?v=rsNL4YMtjxY"
+             target="_blank" rel="noopener" class="ep-watch">Watch episode ↗</a>
         </div>
-    </section>
+      </div>
 
-    <!-- PRIMARY SOURCES -->
-    <section class="sources-section container" id="sources">
-        <div class="section-header">
-            <h2 class="t-expressive" style="font-size:3rem;">Primary Sources</h2>
-            <span class="t-meta">Every Claim Referenced</span>
+      <div class="ep-card reveal d1" data-cat="hero">
+        <div class="ep-card-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Odysseus_Polyphemus_Louvre_G44.jpg/640px-Odysseus_Polyphemus_Louvre_G44.jpg"
+               alt="Odysseus — Attic vase painting"
+               onerror="this.src='';this.parentElement.style.background='var(--aeg2)'">
+          <div class="ep-card-img-overlay"></div>
+          <span class="ep-card-num">02</span>
+          <span class="ep-card-season">Heroes &amp; Tragedy</span>
         </div>
-
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Author / Source</th>
-                        <th>Work</th>
-                        <th>Date</th>
-                        <th>Used In</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Homer</td>
-                        <td class="td-italic">Iliad · Odyssey</td>
-                        <td class="td-meta">c. 8th C. BCE</td>
-                        <td class="td-meta">EP001, EP002, EP006</td>
-                    </tr>
-                    <tr>
-                        <td>Hesiod</td>
-                        <td class="td-italic">Theogony · Works and Days</td>
-                        <td class="td-meta">c. 700 BCE</td>
-                        <td class="td-meta">EP005</td>
-                    </tr>
-                    <tr>
-                        <td>Pindar</td>
-                        <td class="td-italic">Pythian Ode 12</td>
-                        <td class="td-meta">498 BCE</td>
-                        <td class="td-meta">EP005</td>
-                    </tr>
-                    <tr>
-                        <td>Herodotus</td>
-                        <td class="td-italic">Histories, Book 7</td>
-                        <td class="td-meta">c. 430 BCE</td>
-                        <td class="td-meta">EP003</td>
-                    </tr>
-                    <tr>
-                        <td>Apollodorus</td>
-                        <td class="td-italic">Bibliotheca</td>
-                        <td class="td-meta">c. 2nd C. BCE</td>
-                        <td class="td-meta">EP004, EP005</td>
-                    </tr>
-                    <tr>
-                        <td>Euripides</td>
-                        <td class="td-italic">Heracles</td>
-                        <td class="td-meta">c. 416 BCE</td>
-                        <td class="td-meta">EP004</td>
-                    </tr>
-                    <tr>
-                        <td>Parian Chronicle</td>
-                        <td class="td-italic">Marble Stele — Paros Island</td>
-                        <td class="td-meta">264 BCE</td>
-                        <td class="td-meta">Chronology</td>
-                    </tr>
-                    <tr>
-                        <td>Hittite Tablets</td>
-                        <td class="td-italic">Wilusa Treaty (Alaksandu)</td>
-                        <td class="td-meta">c. 1280 BCE</td>
-                        <td class="td-meta">EP006</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="ep-body">
+          <div class="ep-title">Odysseus</div>
+          <div class="ep-hook">metis · unreliable narrator</div>
+          <p class="ep-desc">Books 9–12 are narrated by Odysseus himself, at a dinner
+            party, to an audience whose ships he needs. Every character calls him a liar.</p>
+          <div class="ep-tags">
+            <span class="ep-tag terra">Algorithm seed</span>
+            <span class="ep-tag">Homer · 14 min</span>
+          </div>
+          <a href="https://www.youtube.com/watch?v=Xb9KPwSu3ZI"
+             target="_blank" rel="noopener" class="ep-watch">Watch episode ↗</a>
         </div>
-    </section>
+      </div>
 
+      <div class="ep-card reveal d2" data-cat="war place">
+        <div class="ep-card-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Thermopylae_monument.jpg/640px-Thermopylae_monument.jpg"
+               alt="Thermopylae monument"
+               onerror="this.src='';this.parentElement.style.background='var(--aeg)'">
+          <div class="ep-card-img-overlay"></div>
+          <span class="ep-card-num">03</span>
+          <span class="ep-card-season">War &amp; Strategy</span>
+        </div>
+        <div class="ep-body">
+          <div class="ep-title">Thermopylae</div>
+          <div class="ep-hook">sacrifice · strategy</div>
+          <p class="ep-desc">There were 7,000 men at Thermopylae, not 300. The 700
+            Thespians fought to the last — nobody makes films about them.</p>
+          <div class="ep-tags">
+            <span class="ep-tag">Herodotus · 8 min</span>
+          </div>
+          <a href="https://www.youtube.com/watch?v=RfTLBpKWbso"
+             target="_blank" rel="noopener" class="ep-watch">Watch episode ↗</a>
+        </div>
+      </div>
 
+      <div class="ep-card reveal" data-cat="hero">
+        <div class="ep-card-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Heracles_Eurystheus_Louvre_E701.jpg/640px-Heracles_Eurystheus_Louvre_E701.jpg"
+               alt="Heracles — Attic black-figure amphora"
+               onerror="this.src='';this.parentElement.style.background='var(--aeg3)'">
+          <div class="ep-card-img-overlay"></div>
+          <span class="ep-card-num">04</span>
+          <span class="ep-card-season">Heroes &amp; Tragedy</span>
+        </div>
+        <div class="ep-body">
+          <div class="ep-title">Heracles</div>
+          <div class="ep-hook">penance · atonement</div>
+          <p class="ep-desc">Before the twelve labours, Hera drove Heracles temporarily
+            insane and he murdered his own family. The labours were penance.</p>
+          <div class="ep-tags">
+            <span class="ep-tag">Euripides · Apollodorus · 7 min</span>
+          </div>
+          <a href="https://www.youtube.com/watch?v=UQFGj0XNoZA"
+             target="_blank" rel="noopener" class="ep-watch">Watch episode ↗</a>
+        </div>
+      </div>
 
-    <footer>
-        <span class="t-meta">&copy; MMXXVI KRIOS — Stavros Commentary</span>
-        <span class="t-meta">kriosmythology.com · <a href="https://www.youtube.com/@KriosMythology?utm_source=kriosmythology.com&utm_medium=website&utm_campaign=subscribe" target="_blank" style="color:var(--text-muted);text-decoration:none;">YouTube &#8599;</a></span>
-    </footer>
+      <div class="ep-card reveal d1" data-cat="hero">
+        <div class="ep-card-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Medusa_sculpture_from_the_Vatican_Museums.jpg/640px-Medusa_sculpture_from_the_Vatican_Museums.jpg"
+               alt="Medusa — Vatican Museums"
+               onerror="this.src='';this.parentElement.style.background='var(--aeg2)'">
+          <div class="ep-card-img-overlay"></div>
+          <span class="ep-card-num">05</span>
+          <span class="ep-card-season">Heroes &amp; Tragedy</span>
+        </div>
+        <div class="ep-body">
+          <div class="ep-title">Medusa</div>
+          <div class="ep-hook">xenia · tragedy</div>
+          <p class="ep-desc">Medusa was a priestess of Athena. Poseidon assaulted her
+            in Athena's own temple. Athena punished Medusa — not Poseidon.</p>
+          <div class="ep-tags">
+            <span class="ep-tag">Hesiod · Pindar · Ovid · 9 min</span>
+          </div>
+          <a href="https://www.youtube.com/watch?v=Xosw8UmfxQU"
+             target="_blank" rel="noopener" class="ep-watch">Watch episode ↗</a>
+        </div>
+      </div>
 
-    <!-- GSAP + ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+      <div class="ep-card reveal d2" data-cat="war place">
+        <div class="ep-card-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Trojan_War_Achilles_Hector.jpg/640px-Trojan_War_Achilles_Hector.jpg"
+               alt="Troy — ancient vase painting"
+               onerror="this.src='';this.parentElement.style.background='var(--aeg)'">
+          <div class="ep-card-img-overlay"></div>
+          <span class="ep-card-num">06</span>
+          <span class="ep-card-season">Place &amp; History</span>
+        </div>
+        <div class="ep-body">
+          <div class="ep-title">Troy</div>
+          <div class="ep-hook">kleos · archaeology</div>
+          <p class="ep-desc">There are nine cities buried at Hisarlik. Schliemann dug
+            straight through the one that matched Homer's timeline.</p>
+          <div class="ep-tags">
+            <span class="ep-tag">Homer · Hittite Tablets · 13 min</span>
+          </div>
+          <a href="https://www.youtube.com/watch?v=Tno9KSxxcok"
+             target="_blank" rel="noopener" class="ep-watch">Watch episode ↗</a>
+        </div>
+      </div>
 
-    <script>
-    (function() {
-        'use strict';
+      <div class="ep-card reveal" data-cat="hero place">
+        <div class="ep-card-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Knossos_-_North_Pillar_Hall.jpg/640px-Knossos_-_North_Pillar_Hall.jpg"
+               alt="Knossos Palace, Crete"
+               onerror="this.src='';this.parentElement.style.background='var(--aeg3)'">
+          <div class="ep-card-img-overlay"></div>
+          <span class="ep-card-num">07</span>
+          <span class="ep-card-season">Place &amp; History</span>
+        </div>
+        <div class="ep-body">
+          <div class="ep-title">Theseus</div>
+          <div class="ep-hook">The labyrinth was real</div>
+          <p class="ep-desc">The palace at Knossos had hundreds of rooms and no straight
+            corridors. Theseus was a political myth built on an archaeological reality.</p>
+          <div class="ep-tags">
+            <span class="ep-tag">Plutarch · Linear B · Published</span>
+          </div>
+          <a href="https://www.youtube.com/watch?v=AvdqOQHR2W4"
+             target="_blank" rel="noopener" class="ep-watch">Watch episode ↗</a>
+        </div>
+      </div>
 
-        // Respect reduced motion
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReducedMotion) return;
+      <div class="ep-card reveal d1" data-cat="place">
+        <div class="ep-card-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Santorini_Greece.jpg/640px-Santorini_Greece.jpg"
+               alt="Cyclades — the islands"
+               onerror="this.src='';this.parentElement.style.background='var(--aeg2)'">
+          <div class="ep-card-img-overlay"></div>
+          <span class="ep-card-num">08</span>
+          <span class="ep-card-season">Place &amp; History</span>
+        </div>
+        <div class="ep-body">
+          <div class="ep-title">Cyclades</div>
+          <div class="ep-hook">The deposit layer sounds like broken pottery</div>
+          <p class="ep-desc">Before Delos became Apollo's sacred island, it was the centre
+            of the Cycladic civilisation. The marble idols were originally painted.</p>
+          <div class="ep-tags">
+            <span class="ep-tag blue">Retention v2 · 8/8</span>
+            <span class="ep-tag">In pipeline</span>
+          </div>
+          <span class="ep-coming">Coming soon</span>
+        </div>
+      </div>
 
-        gsap.registerPlugin(ScrollTrigger);
+      <div class="ep-card reveal d2" data-cat="place">
+        <div class="ep-card-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Paros_-_Parikia_view.jpg/640px-Paros_-_Parikia_view.jpg"
+               alt="Paros Island"
+               onerror="this.src='';this.parentElement.style.background='var(--aeg)'">
+          <div class="ep-card-img-overlay"></div>
+          <span class="ep-card-num">09</span>
+          <span class="ep-card-season">Place &amp; History</span>
+        </div>
+        <div class="ep-body">
+          <div class="ep-title">Paros</div>
+          <div class="ep-hook">Stavros' island</div>
+          <p class="ep-desc">The Parian Chronicle — a marble stele found on Paros — is
+            one of the only surviving Greek chronologies. It dates the Trojan War.</p>
+          <div class="ep-tags">
+            <span class="ep-tag">Parian Chronicle · In pipeline</span>
+          </div>
+          <span class="ep-coming">Coming soon</span>
+        </div>
+      </div>
 
-        // ─── FRAME FLIPBOOK HERO ───
-        const canvas = document.getElementById('hero-canvas');
-        const ctx = canvas.getContext('2d');
-        const totalFrames = 241;
-        const frames = [];
-        let loadedCount = 0;
+      <div class="ep-card reveal" data-cat="place">
+        <div class="ep-card-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Acropolis_Athens.jpg/640px-Acropolis_Athens.jpg"
+               alt="Acropolis, Athens"
+               onerror="this.src='';this.parentElement.style.background='var(--aeg3)'">
+          <div class="ep-card-img-overlay"></div>
+          <span class="ep-card-num">10</span>
+          <span class="ep-card-season">Place &amp; History</span>
+        </div>
+        <div class="ep-body">
+          <div class="ep-title">Acropolis</div>
+          <div class="ep-hook">Before Athena</div>
+          <p class="ep-desc">The Acropolis was a Mycenaean palace before it was a temple.
+            Its marble came from the same quarries as the Parian Chronicle — Paros.</p>
+          <div class="ep-tags">
+            <span class="ep-tag">Linear B · Pausanias · In pipeline</span>
+          </div>
+          <span class="ep-coming">Coming soon</span>
+        </div>
+      </div>
 
-        function setCanvasSize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+    </div>
+  </div>
+</section>
+<div class="full-quote" id="fq-section">
+  <div class="fq-bg">
+    <img id="fq-parallax"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Oia_Santorini_Greece.jpg/1280px-Oia_Santorini_Greece.jpg"
+      alt="Oia, Santorini at sunset"
+      onerror="this.src='';this.parentElement.style.background='var(--aeg3)'">
+    <div class="fq-overlay"></div>
+  </div>
+  <div class="fq-content reveal">
+    <span class="fq-marks">〝</span>
+    <p class="fq-text">These stories weren't mythology to my family. They were just
+      history — the local kind. Theseus sailed through these islands. The marble
+      that built the Parthenon came out of the ground here.</p>
+    <div class="fq-attr">Stavros · Paros, Cyclades · First Generation Greek-American</div>
+  </div>
+</div>
+<section id="commentary" class="sec sec-aeg3" data-sec="commentary">
+  <div class="sec-inner">
+    <div class="commentary-grid">
+      <div class="reveal-left">
+        <span class="eye eye-dk">Stavros Commentary</span>
+        <h2 class="dw">The word Homer<br><em>used. And why.</em></h2>
+        <div class="dl dl-dim"></div>
+        <p class="lead lead-dk">Every episode has a Greek word at its centre. Not the
+          translation — the original. Because the translation is always a decision
+          someone else made for you.</p>
+        <div class="pull-quote">
+          <span class="pq-marks">〝</span>
+          <p class="pq-text">Primary sources only. Oldest source cited, not most famous.
+            If we cannot trace a claim to a primary source, we do not make the claim.
+            That is the Stavros Commentary rule — applied to every episode, every claim.</p>
+          <div class="pq-attr">The Krios Method</div>
+          <div class="pq-role">Applied to every episode · Every claim · S1 — S2+</div>
+        </div>
+      </div>
+      <div class="word-panel reveal-right">
+        <div class="word-item">
+          <span class="w-lbl">EP001 · Achilles</span>
+          <span class="w-gr">μῆνις</span>
+          <span class="w-en">menis</span>
+          <p class="w-def">Not ordinary anger. Divinely-sanctioned, cosmically consequential
+            wrath. No other mortal in Homer gets menis — only gods and Achilles alone.
+            That tells you everything about what Homer thought of him.</p>
+        </div>
+        <div class="word-item">
+          <span class="w-lbl">EP002 · Odysseus</span>
+          <span class="w-gr">μῆτις</span>
+          <span class="w-en">metis</span>
+          <p class="w-def">Cunning intelligence. Practical wisdom. The Odyssey is not
+            a story about a man trying to get home — it is a story about the most
+            dangerous kind of intelligence.</p>
+        </div>
+        <div class="word-item">
+          <span class="w-lbl">EP004 · Heracles</span>
+          <span class="w-gr">λύσσα</span>
+          <span class="w-en">lyssa</span>
+          <p class="w-def">Divine madness. The god-sent frenzy that made Heracles murder
+            his own family. In the ancient understanding — a force that entered the
+            body from outside.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="investigate" class="sec sec-aeg" data-sec="investigate">
+  <div class="sec-inner">
+    <div class="split reveal-scale" style="margin-bottom:0">
+      <div class="split-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Trojan_War_Achilles_Hector.jpg/640px-Trojan_War_Achilles_Hector.jpg"
+             alt="Troy — ancient vase painting"
+             onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Santorini_Greece.jpg/640px-Santorini_Greece.jpg'">
+        <div class="split-img-overlay"></div>
+      </div>
+      <div class="split-text" style="background:rgba(43,127,212,.06);border:1px solid var(--dk15)">
+        <div class="inv-badge"><div class="inv-dot"></div>Unknown Files · Free Case</div>
+        <h2 class="dw">Investigate the real<br>cause of the <em>Trojan War.</em></h2>
+        <div class="dl dl-dim"></div>
+        <p class="lead lead-dk">Primary sources. Cross-cultural evidence. Five exhibits.
+          One verdict. No login required. The companion case to EP006 — Troy.</p>
+        <div class="case-file" style="margin-bottom:1.5rem">
+          <div class="case-hdr">Case File — EP006 · Troy · 5 Exhibits</div>
+          <div class="case-ex"><span class="ce-n">EX 01</span>
+            <p class="ce-t">Homer's Iliad — written 400 years after the events it describes.</p></div>
+          <div class="case-ex"><span class="ce-n">EX 02</span>
+            <p class="ce-t">Hittite Tablets — Wilusa Treaty (Alaksandu), c. 1280 BCE.</p></div>
+          <div class="case-ex"><span class="ce-n">EX 03</span>
+            <p class="ce-t">Schliemann's excavation notes, 1871-1873. He dug the wrong layer.</p></div>
+          <div class="case-ex"><span class="ce-n">EX 04</span>
+            <p class="ce-t">Linear B tablets from Mycenae — bronze weapons inventory.</p></div>
+          <div class="case-ex"><span class="ce-n">EX 05</span>
+            <p class="ce-t">Korfmann excavations 1988-2005 — Troy VIIa matches Homer.</p></div>
+          <div class="case-verd">→ 5 exhibits · Your verdict</div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://kriosmythology.com/investigate.html" class="btn-blue">
+            Open Case File ↗</a>
+          <a href="https://www.youtube.com/watch?v=Tno9KSxxcok"
+             target="_blank" rel="noopener" class="btn-ow">Watch EP006</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="photo-banner">
+  <img id="pb1-parallax"
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Knossos_-_North_Pillar_Hall.jpg/1280px-Knossos_-_North_Pillar_Hall.jpg"
+    alt="Knossos Palace, Crete"
+    onerror="this.src='';this.parentElement.style.background='var(--aeg2)'">
+  <div class="photo-banner-overlay"
+    style="background:linear-gradient(to right,rgba(26,58,92,.7) 0%,rgba(26,58,92,.3) 100%)">
+  </div>
+  <div style="position:absolute;left:4rem;top:50%;transform:translateY(-50%);z-index:2">
+    <div style="font-family:var(--fm);font-size:10px;font-weight:500;
+      letter-spacing:.18em;text-transform:uppercase;color:var(--blue2);margin-bottom:.75rem">
+      Knossos · Crete · c. 1700 BCE
+    </div>
+    <div style="font-family:var(--fh);font-size:clamp(1.5rem,3vw,2.5rem);
+      font-weight:600;color:var(--od);letter-spacing:.02em;line-height:1.1">
+      The labyrinth<br>was real.
+    </div>
+  </div>
+  <div class="pb-caption">EP007 · Theseus</div>
+</div>
+<section id="sources" class="sec sec-wash" data-sec="sources">
+  <div class="sec-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start">
+      <div>
+        <span class="eye reveal">Primary sources</span>
+        <h2 class="reveal d1">Every claim<br><em>referenced.</em></h2>
+        <div class="dl reveal d2"></div>
+        <p class="lead reveal d2">No secondary sources used without a primary source
+          to back them. Oldest source cited, not most famous. If we cannot trace a claim
+          to a primary source, we do not make the claim.</p>
+        <div class="split reveal-scale" style="height:300px">
+          <div class="split-img" style="width:100%">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Paros_-_Parikia_view.jpg/640px-Paros_-_Parikia_view.jpg"
+                 alt="Paros — home of the Parian Chronicle"
+                 onerror="this.src='';this.parentElement.style.background='var(--aeg2)'">
+            <div class="split-img-overlay"></div>
+          </div>
+        </div>
+        <p style="font-family:var(--fm);font-size:9px;font-weight:500;letter-spacing:.1em;
+          text-transform:uppercase;color:var(--dim);margin-top:.875rem">
+          Paros Island — home of the Parian Chronicle, 264 BCE</p>
+      </div>
+      <div class="src-grid" style="grid-template-columns:1fr 1fr;margin-top:0">
+        <div class="src-card reveal">
+          <span class="src-type">Greek</span>
+          <span class="src-date">c. 8th C. BCE</span>
+          <div class="src-auth">Homer</div>
+          <div class="src-work">Iliad · Odyssey</div>
+          <div class="src-used">EP001 · EP002 · EP006</div>
+        </div>
+        <div class="src-card reveal d1">
+          <span class="src-type">Greek</span>
+          <span class="src-date">c. 700 BCE</span>
+          <div class="src-auth">Hesiod</div>
+          <div class="src-work">Theogony · Works and Days</div>
+          <div class="src-used">EP005</div>
+        </div>
+        <div class="src-card reveal d2">
+          <span class="src-type ng">Hittite</span>
+          <span class="src-date">c. 1280 BCE</span>
+          <div class="src-auth">Hittite Tablets</div>
+          <div class="src-work">Wilusa Treaty (Alaksandu)</div>
+          <div class="src-used">EP006</div>
+        </div>
+        <div class="src-card reveal d3">
+          <span class="src-type">Greek</span>
+          <span class="src-date">498 BCE</span>
+          <div class="src-auth">Pindar</div>
+          <div class="src-work">Pythian Ode 12</div>
+          <div class="src-used">EP005</div>
+        </div>
+        <div class="src-card reveal">
+          <span class="src-type">Greek</span>
+          <span class="src-date">c. 430 BCE</span>
+          <div class="src-auth">Herodotus</div>
+          <div class="src-work">Histories, Book 7</div>
+          <div class="src-used">EP003</div>
+        </div>
+        <div class="src-card reveal d1">
+          <span class="src-type">Greek</span>
+          <span class="src-date">c. 416 BCE</span>
+          <div class="src-auth">Euripides</div>
+          <div class="src-work">Heracles</div>
+          <div class="src-used">EP004</div>
+        </div>
+        <div class="src-card reveal d2">
+          <span class="src-type">Greek</span>
+          <span class="src-date">c. 2nd C. BCE</span>
+          <div class="src-auth">Apollodorus</div>
+          <div class="src-work">Bibliotheca</div>
+          <div class="src-used">EP004 · EP005</div>
+        </div>
+        <div class="src-card reveal d3">
+          <span class="src-type ng">Paros Island</span>
+          <span class="src-date">264 BCE</span>
+          <div class="src-auth">Parian Chronicle</div>
+          <div class="src-work">Marble Stele — Paros</div>
+          <div class="src-used">Chronology · EP009</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="notes" class="sec sec-wash2" data-sec="notes">
+  <div class="sec-inner">
+    <div class="email-wrap">
+      <span class="eye reveal" style="justify-content:center">Free · After every episode</span>
+      <h2 class="reveal d1" style="text-align:center">
+        The version Stavros<br>didn't put in the video.</h2>
+      <div class="dl reveal d2" style="margin-left:auto;margin-right:auto"></div>
+      <p class="lead reveal d2" style="text-align:center;margin-left:auto;margin-right:auto">
+        What the primary sources actually say — sent after every episode. Direct quotes,
+        contradictions between sources, the detail that didn't make the cut.</p>
+      <div class="email-form reveal d3">
+        <input type="email" class="email-in"
+               placeholder="Your email address" aria-label="Email address">
+        <button class="email-btn" onclick="handleSignup(this)">Get Notes →</button>
+      </div>
+      <p class="email-note reveal d3">One email per episode. No schedule. No other content. Unsubscribe instantly.</p>
+      <div class="ep-pr reveal d4">
+        <span class="ep-pr-item">Primary sources only</span>
+        <span class="ep-pr-item">After every episode</span>
+        <span class="ep-pr-item">Free forever</span>
+      </div>
+      <div class="langs reveal d4">
+        <a href="#" class="lang-a">ES Español</a>
+        <a href="#" class="lang-a">PT Português</a>
+        <a href="#" class="lang-a">ΕΛ Ελληνικά</a>
+        <a href="#" class="lang-a">DE Deutsch</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer id="footer">
+  <div class="ft">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <svg width="32" height="32" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="30" r="27" fill="none" stroke="#2B7FD4" stroke-width="1.2"/>
+          <text x="30" y="36" text-anchor="middle" font-family="Georgia,serif"
+            font-size="17" font-weight="700" fill="#2B7FD4" letter-spacing="2">KR</text>
+        </svg>
+        <div>
+          <div class="ft-wm">KRIOS</div>
+          <span class="ft-sub">Stavros Commentary · Paros, Cyclades</span>
+        </div>
+      </div>
+      <ul class="ft-links">
+        <li><a href="#episodes">Episodes</a></li>
+        <li><a href="#commentary">Commentary</a></li>
+        <li><a href="https://kriosmythology.com/investigate.html">Investigate</a></li>
+        <li><a href="#sources">Sources</a></li>
+        <li><a href="#notes">Notes</a></li>
+        <li><a href="https://www.youtube.com/@KriosMythology"
+               target="_blank" rel="noopener">YouTube ↗</a></li>
+      </ul>
+      <a href="https://www.youtube.com/@KriosMythology"
+         target="_blank" rel="noopener"
+         class="btn-blue" style="font-size:12px;padding:10px 20px">Subscribe ↗</a>
+    </div>
+    <div class="ft-disc">
+      <p>© MMXXVI KRIOS · The Stories You Thought You Knew · Stavros Commentary · kriosmythology.com</p>
+      <p style="margin-top:4px">All claims sourced to primary texts. Zero unverified claims.</p>
+    </div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.1/dist/lenis.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── LENIS SMOOTH SCROLL ──
+  const lenis = new Lenis({
+    duration: 1.4,
+    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+  });
+  lenis.on("scroll", ScrollTrigger.update);
+  gsap.ticker.add(time => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+  // ── HERO ENTRANCE ANIMATIONS ──
+  const heroTl = gsap.timeline({ delay: 0.1 });
+  heroTl
+    .from("#hero-eye", { opacity: 0, y: 20, duration: 0.8, ease: "power3.out" })
+    .from("#hero-krios", { opacity: 0, y: 40, duration: 1, ease: "power3.out" }, "-=0.5")
+    .from("#hero-tag", { opacity: 0, y: 20, duration: 0.8, ease: "power3.out" }, "-=0.6")
+    .from("#hero-bottom", { opacity: 0, y: 20, duration: 0.8, ease: "power3.out" }, "-=0.5")
+    .from("#hero-stats", { opacity: 0, y: 20, duration: 0.8, ease: "power3.out" }, "-=0.4");
+
+  // ── HERO PARALLAX ──
+  const heroBg = document.getElementById("hero-parallax");
+  if (heroBg) {
+    gsap.to(heroBg, {
+      yPercent: 18,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+  }
+
+  // ── HERO KRIOS KINETIC ON SCROLL ──
+  const heroKrios = document.querySelector(".hero-krios");
+  if (heroKrios) {
+    gsap.to(heroKrios, {
+      scale: 0.92,
+      opacity: 0.3,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "60% top",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+  }
+
+  // ── FULL QUOTE PARALLAX ──
+  const fqBg = document.getElementById("fq-parallax");
+  if (fqBg) {
+    gsap.to(fqBg, {
+      yPercent: 15,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#fq-section",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+  }
+
+  // ── PHOTO BANNER PARALLAX ──
+  const pb1 = document.getElementById("pb1-parallax");
+  if (pb1) {
+    const banner = pb1.closest(".photo-banner");
+    gsap.to(pb1, {
+      yPercent: 12,
+      ease: "none",
+      scrollTrigger: {
+        trigger: banner,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+  }
+
+  // ── EPISODE CARD STAGGER ──
+  gsap.from(".ep-card", {
+    opacity: 0,
+    y: 30,
+    duration: 0.7,
+    stagger: 0.08,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".ep-grid",
+      start: "top 85%",
+      once: true
+    }
+  });
+
+  // ── SOURCE CARD STAGGER ──
+  gsap.from(".src-card", {
+    opacity: 0,
+    y: 20,
+    duration: 0.6,
+    stagger: 0.07,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".src-grid",
+      start: "top 85%",
+      once: true
+    }
+  });
+
+  // ── WORD PANEL ITEMS ──
+  gsap.from(".word-item", {
+    opacity: 0,
+    x: 20,
+    duration: 0.6,
+    stagger: 0.1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".word-panel",
+      start: "top 80%",
+      once: true
+    }
+  });
+
+  // ── GREEK WORD SCALE ON SCROLL ──
+  document.querySelectorAll(".w-gr").forEach(word => {
+    gsap.from(word, {
+      scale: 0.8,
+      opacity: 0,
+      duration: 0.6,
+      ease: "back.out(1.4)",
+      scrollTrigger: {
+        trigger: word,
+        start: "top 85%",
+        once: true
+      }
+    });
+  });
+
+  // ── IMAGE GRID REVEAL ──
+  gsap.from(".ig-item", {
+    opacity: 0,
+    scale: 0.95,
+    duration: 0.8,
+    stagger: 0.1,
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".img-grid",
+      start: "top 80%",
+      once: true
+    }
+  });
+
+  // ── SPLIT SECTIONS ──
+  document.querySelectorAll(".split").forEach(split => {
+    const img = split.querySelector(".split-img");
+    const text = split.querySelector(".split-text");
+    if (img && text) {
+      gsap.from(img, {
+        opacity: 0,
+        x: -40,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: split, start: "top 80%", once: true }
+      });
+      gsap.from(text, {
+        opacity: 0,
+        x: 40,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: split, start: "top 80%", once: true }
+      });
+    }
+  });
+
+  // ── FULL QUOTE TEXT ──
+  gsap.from(".fq-text", {
+    opacity: 0,
+    y: 30,
+    duration: 1,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".full-quote",
+      start: "top 70%",
+      once: true
+    }
+  });
+
+  // ── REVEAL CLASSES (CSS-based) ──
+  const revObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add("in");
+        revObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06 });
+  document.querySelectorAll(".reveal,.reveal-left,.reveal-right,.reveal-scale")
+    .forEach(el => revObs.observe(el));
+
+  // ── NAV STATE ──
+  const nav = document.getElementById("nav");
+  const lightSecs = document.querySelectorAll(
+    ".sec-wash,.sec-wash2,.sec-wash3,#episodes,#sources,#notes");
+  let lastScrollY = 0;
+  lenis.on("scroll", ({ scroll }) => {
+    const onLight = [...lightSecs].some(s => {
+      const r = s.getBoundingClientRect();
+      return r.top <= 80 && r.bottom >= 80;
+    });
+    if (onLight) {
+      nav.classList.add("on-light");
+      nav.classList.remove("scrolled");
+    } else {
+      nav.classList.remove("on-light");
+      if (scroll > 100) nav.classList.add("scrolled");
+      else nav.classList.remove("scrolled");
+    }
+    lastScrollY = scroll;
+  });
+
+  // ── SCROLL COUNTER ──
+  const scCur = document.getElementById("sc-cur");
+  const secLabels = {
+    intro: "PAR", cyclades: "CYC",
+    episodes: "EP", commentary: "SC",
+    investigate: "UF", sources: "SRC", notes: "NTS"
+  };
+  const secIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && scCur) {
+        scCur.textContent = secLabels[e.target.dataset.sec] || "S1";
+        scCur.classList.toggle("bright",
+          e.target.classList.contains("sec-wash") ||
+          e.target.classList.contains("sec-wash2"));
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll("[data-sec]").forEach(s => secIO.observe(s));
+
+  // ── COUNTERS ──
+  const cntIO = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const el = en.target;
+      const target = parseInt(el.dataset.count);
+      if (isNaN(target)) return;
+      const suf = el.dataset.suffix || "";
+      const start = performance.now();
+      const dur = 1600;
+      (function tick(now) {
+        const p = Math.min((now - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * ease) + suf;
+        if (p < 1) requestAnimationFrame(tick);
+      })(performance.now());
+      cntIO.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll("[data-count]").forEach(el => cntIO.observe(el));
+
+  // ── EPISODE FILTER ──
+  document.querySelectorAll(".f-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".f-btn").forEach(b => b.classList.remove("on"));
+      btn.classList.add("on");
+      const f = btn.dataset.f;
+      document.querySelectorAll(".ep-card").forEach(card => {
+        const cats = (card.dataset.cat || "").split(" ");
+        const show = f === "all" || cats.includes(f);
+        card.classList.toggle("hidden", !show);
+        if (show) {
+          gsap.from(card, {
+            opacity: 0, y: 15, duration: 0.4, ease: "power2.out"
+          });
         }
-        setCanvasSize();
-        window.addEventListener('resize', setCanvasSize);
+      });
+    });
+  });
 
-        function drawFrame(index) {
-            const img = frames[index];
-            if (!img || !img.complete) return;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            // Cover fit
-            const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
-            const w = img.width * scale;
-            const h = img.height * scale;
-            const x = (canvas.width - w) / 2;
-            const y = (canvas.height - h) / 2;
-            ctx.drawImage(img, x, y, w, h);
-        }
+  // ── EMAIL SIGNUP ──
+  window.handleSignup = function(btn) {
+    const input = btn.previousElementSibling;
+    const email = input.value.trim();
+    if (!email || !email.includes("@")) {
+      gsap.to(input, {
+        borderColor: "#C86432", duration: 0.2,
+        onComplete: () => gsap.to(input, { borderColor: "", duration: 0.5, delay: 1.5 })
+      });
+      return;
+    }
+    btn.textContent = "Check your inbox";
+    btn.style.background = "#2B7FD4";
+    btn.disabled = true;
+  };
 
-        // Preload first 10 frames with priority, then rest
-        function loadFrame(i) {
-            return new Promise(function(resolve) {
-                const img = new Image();
-                img.onload = function() {
-                    loadedCount++;
-                    if (loadedCount === 1) drawFrame(0);
-                    resolve();
-                };
-                img.onerror = resolve;
-                img.src = 'frames/frame-' + String(i + 1).padStart(4, '0') + '.webp';
-                frames[i] = img;
-            });
-        }
+  // ── ANCHOR LINKS ──
+  document.querySelectorAll("a[href^='#']").forEach(a => {
+    a.addEventListener("click", e => {
+      const target = document.querySelector(a.getAttribute("href"));
+      if (target) {
+        e.preventDefault();
+        lenis.scrollTo(target, { offset: -56, duration: 1.4 });
+      }
+    });
+  });
 
-        async function preloadFrames() {
-            // Priority: first 10
-            const priority = [];
-            for (let i = 0; i < Math.min(10, totalFrames); i++) {
-                priority.push(loadFrame(i));
-            }
-            await Promise.all(priority);
-
-            // Rest in batches of 20
-            for (let batch = 10; batch < totalFrames; batch += 20) {
-                const promises = [];
-                for (let i = batch; i < Math.min(batch + 20, totalFrames); i++) {
-                    promises.push(loadFrame(i));
-                }
-                await Promise.all(promises);
-            }
-        }
-
-        preloadFrames();
-
-        // GSAP scrub the frame index
-        const frameObj = { frame: 0 };
-
-        gsap.to(frameObj, {
-            frame: totalFrames - 1,
-            snap: 'frame',
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '.hero-scroll',
-                start: 'top top',
-                end: 'bottom bottom',
-                scrub: 0.5,
-            },
-            onUpdate: function() {
-                drawFrame(Math.round(frameObj.frame));
-            }
-        });
-
-        // ─── HERO TITLE SPLIT + ANIMATE ───
-        const heroTitle = document.getElementById('hero-title');
-        const titleText = heroTitle.textContent;
-        heroTitle.innerHTML = '';
-        titleText.split('').forEach(function(char) {
-            const span = document.createElement('span');
-            span.className = 'hero-title-word';
-            span.textContent = char;
-            heroTitle.appendChild(span);
-        });
-
-        gsap.fromTo('#hero-title .hero-title-word', {
-            opacity: 0,
-            y: 60,
-            rotateX: -40
-        }, {
-            opacity: 1,
-            y: 0,
-            rotateX: 0,
-            duration: 1,
-            stagger: 0.12,
-            ease: 'power3.out',
-            delay: 0.3
-        });
-
-        gsap.fromTo('.hero-sub', { opacity: 0, y: 30 }, {
-            opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.1
-        });
-
-        gsap.fromTo('.hero-tagline', { opacity: 0, y: 20 }, {
-            opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.8
-        });
-
-        gsap.fromTo('.hero-cta', { opacity: 0, y: 20 }, {
-            opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 1
-        });
-
-        gsap.fromTo('.hero-meta p', { opacity: 0, x: 20 }, {
-            opacity: 1, x: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out', delay: 1.2
-        });
-
-        // ─── STATS COUNT-UP ───
-        document.querySelectorAll('.stat-number[data-target]').forEach(function(el) {
-            const target = parseInt(el.dataset.target);
-            const suffix = el.dataset.suffix || '';
-            if (target === 0) {
-                el.textContent = '0';
-                return;
-            }
-            const obj = { val: 0 };
-            gsap.to(obj, {
-                val: target,
-                duration: 2,
-                ease: 'power2.out',
-                snap: { val: 1 },
-                scrollTrigger: {
-                    trigger: el,
-                    start: 'top 90%',
-                    once: true
-                },
-                onUpdate: function() {
-                    el.textContent = Math.round(obj.val).toLocaleString() + suffix;
-                }
-            });
-        });
-
-        // ─── SECTION REVEALS ───
-
-        // Episodes section header
-        gsap.fromTo('.episodes-section .section-header', {
-            opacity: 0, y: 40
-        }, {
-            opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
-            scrollTrigger: { trigger: '.episodes-section', start: 'top 85%', once: true }
-        });
-
-        // Cards stagger in
-        gsap.fromTo('.cards-grid .card', {
-            opacity: 0, y: 50
-        }, {
-            opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power2.out',
-            scrollTrigger: { trigger: '.cards-grid', start: 'top 80%', once: true }
-        });
-
-        // Card hover with GSAP
-        document.querySelectorAll('.card').forEach(function(card) {
-            card.addEventListener('mouseenter', function() {
-                gsap.to(card, { y: -6, duration: 0.3, ease: 'power2.out' });
-            });
-            card.addEventListener('mouseleave', function() {
-                gsap.to(card, { y: 0, duration: 0.4, ease: 'elastic.out(1, 0.5)' });
-            });
-        });
-
-        // Word section cascade
-        gsap.fromTo('.word-left', {
-            opacity: 0, x: -40
-        }, {
-            opacity: 1, x: 0, duration: 0.8, ease: 'power2.out',
-            scrollTrigger: { trigger: '.word-section', start: 'top 85%', once: true }
-        });
-
-        gsap.fromTo('.word-right > *', {
-            opacity: 0, y: 30
-        }, {
-            opacity: 1, y: 0, duration: 0.7, stagger: 0.08, ease: 'power2.out',
-            scrollTrigger: { trigger: '.word-section', start: 'top 80%', once: true }
-        });
-
-        // Paros quote
-        gsap.fromTo('.paros-quote', {
-            opacity: 0, y: 30
-        }, {
-            opacity: 1, y: 0, duration: 1, ease: 'power2.out',
-            scrollTrigger: { trigger: '.paros-section', start: 'top 85%', once: true }
-        });
-
-        gsap.fromTo('.paros-attr', {
-            opacity: 0
-        }, {
-            opacity: 1, duration: 0.8, delay: 0.3, ease: 'power2.out',
-            scrollTrigger: { trigger: '.paros-section', start: 'top 85%', once: true }
-        });
-
-        // Sources table rows
-        gsap.fromTo('.sources-section .section-header', {
-            opacity: 0, y: 30
-        }, {
-            opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
-            scrollTrigger: { trigger: '.sources-section', start: 'top 85%', once: true }
-        });
-
-        gsap.fromTo('tbody tr', {
-            opacity: 0, y: 20
-        }, {
-            opacity: 1, y: 0, duration: 0.5, stagger: 0.06, ease: 'power2.out',
-            scrollTrigger: { trigger: 'tbody', start: 'top 85%', once: true }
-        });
-
-        // Subscribe section
-        gsap.fromTo('.subscribe-content > *', {
-            opacity: 0, y: 30
-        }, {
-            opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power2.out',
-            scrollTrigger: { trigger: '.subscribe-section', start: 'top 85%', once: true }
-        });
-
-        // Stamp fade in on scroll back to top area
-        gsap.fromTo('.stamp', { opacity: 0 }, {
-            opacity: 0.7, duration: 1, delay: 0.5, ease: 'power2.out'
-        });
-
-    })();
-    </script>
-
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const closeMenu = document.getElementById('closeMenu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('open');
-            mobileMenu.classList.toggle('open');
-            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-        });
-
-        closeMenu.addEventListener('click', closeMobileMenu);
-
-        function closeMobileMenu() {
-            hamburger.classList.remove('open');
-            mobileMenu.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        mobileMenu.addEventListener('click', (e) => {
-            if (e.target === mobileMenu) closeMobileMenu();
-        });
-    </script>
+});
+</script>
 </body>
 </html>
